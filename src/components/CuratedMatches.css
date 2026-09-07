@@ -1,0 +1,210 @@
+/* ==========================================================================
+   Curated Recommendations Component Styles
+   ========================================================================== */
+
+.curated-section {
+  padding: 60px 0 80px;
+  background-color: var(--bg-page);
+  transition: background-color 0.3s ease;
+}
+
+.curated-header {
+  margin-bottom: 36px;
+}
+
+.curated-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.job-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px -2px rgba(12, 47, 85, 0.05);
+  transition: all 0.25s ease;
+}
+
+[data-theme="dark"] .job-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-card);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(45, 212, 191, 0.5);
+  box-shadow: 0 10px 25px -4px rgba(12, 47, 85, 0.1);
+}
+
+/* Card Header Meta */
+.job-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.work-meta {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.match-pill {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: #0d9488;
+  background-color: #ccfbf1;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+[data-theme="dark"] .match-pill {
+  background-color: rgba(45, 212, 191, 0.15);
+  color: var(--teal-accent);
+}
+
+/* Role & Company */
+.job-main-info {
+  margin-bottom: 18px;
+}
+
+.job-role {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .job-role {
+  color: #ffffff;
+}
+
+.job-company {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Progress bar */
+.match-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.match-progress-track {
+  flex: 1;
+  height: 5px;
+  background-color: var(--navy-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .match-progress-track {
+  background-color: var(--border-subtle);
+}
+
+.match-progress-fill {
+  height: 100%;
+  background-color: #0d9488;
+  border-radius: var(--radius-full);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .match-progress-fill {
+  background-color: var(--teal-accent);
+}
+
+.match-percent-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Skills matched */
+.skills-matched-count {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+/* Tag Chips */
+.skill-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.skill-chip {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: var(--navy-50);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .skill-chip {
+  background-color: var(--bg-card-subtle);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+/* Apply button */
+.btn-apply {
+  margin-top: auto;
+  width: 100%;
+  background-color: var(--navy-800);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.925rem;
+  padding: 11px 0;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-apply:hover {
+  background-color: var(--navy-700);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(12, 47, 85, 0.2);
+}
+
+[data-theme="dark"] .btn-apply {
+  background-color: var(--teal-accent);
+  color: var(--navy-900);
+}
+
+[data-theme="dark"] .btn-apply:hover {
+  background-color: #26c2ad;
+  box-shadow: 0 4px 14px rgba(45, 212, 191, 0.3);
+}
+
+.btn-apply.applied {
+  background-color: #0d9488;
+  color: #ffffff;
+  cursor: default;
+}
+
+@media (max-width: 960px) {
+  .curated-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

@@ -1,0 +1,32 @@
+export const curatedJobs = [
+  {
+    id: 'job-1',
+    role: 'Junior ML Engineer',
+    company: 'Apex Data Systems',
+    workType: 'REMOTE',
+    duration: '6 MONTHS',
+    matchPercentage: 94,
+    skillsMatched: '6/7 skills matched',
+    tags: ['Python', 'PyTorch', 'FastAPI', 'SQL'],
+  },
+  {
+    id: 'job-2',
+    role: 'Full-Stack Intern',
+    company: 'Novus Cloud',
+    workType: 'HYBRID',
+    duration: '3 MONTHS',
+    matchPercentage: 87,
+    skillsMatched: '5/6 skills matched',
+    tags: ['React', 'Node.js', 'TypeScript', 'Tailwind'],
+  },
+  {
+    id: 'job-3',
+    role: 'Cloud Associate',
+    company: 'Nexus Global',
+    workType: 'ON-SITE',
+    duration: '6 MONTHS',
+    matchPercentage: 78,
+    skillsMatched: '4/6 skills matched',
+    tags: ['AWS', 'Docker', 'Linux', 'Git'],
+  },
+];
