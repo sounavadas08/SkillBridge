@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Application Tracker Component Styles
+   ========================================================================== */
+
+.tracker-section {
+  padding: 60px 0 90px;
+  background-color: var(--bg-page);
+  transition: background-color 0.3s ease;
+}
+
+.tracker-header {
+  margin-bottom: 36px;
+}
+
+.table-responsive-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  box-shadow: 0 4px 18px -2px rgba(12, 47, 85, 0.05);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .table-responsive-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-card);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+}
+
+.pipeline-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 780px;
+}
+
+/* Header */
+.pipeline-table thead tr {
+  background-color: var(--bg-header-table);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pipeline-table th {
+  padding: 16px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--navy-600);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .pipeline-table th {
+  color: #94a3b8;
+}
+
+/* Rows */
+.pipeline-row {
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color 0.2s ease;
+}
+
+.pipeline-row:last-child {
+  border-bottom: none;
+}
+
+.pipeline-row:hover {
+  background-color: rgba(45, 212, 191, 0.025);
+}
+
+[data-theme="dark"] .pipeline-row:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.pipeline-table td {
+  padding: 22px 24px;
+  font-size: 0.925rem;
+  vertical-align: middle;
+}
+
+.td-role {
+  font-weight: 700;
+  color: var(--navy-800);
+  font-size: 0.95rem;
+}
+
+[data-theme="dark"] .td-role {
+  color: #ffffff;
+}
+
+.td-company {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.td-date {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* Confidence Bar */
+.confidence-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 160px;
+}
+
+.confidence-bar-track {
+  flex: 1;
+  height: 4px;
+  background-color: var(--navy-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .confidence-bar-track {
+  background-color: var(--border-subtle);
+}
+
+.confidence-bar-fill {
+  height: 100%;
+  background-color: #0d9488;
+  border-radius: var(--radius-full);
+}
+
+[data-theme="dark"] .confidence-bar-fill {
+  background-color: var(--teal-accent);
+}
+
+.confidence-percent {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-scheduled {
+  background-color: var(--status-scheduled-bg);
+  color: var(--status-scheduled-text);
+  border: 1px solid var(--status-scheduled-border);
+}
+
+.status-review {
+  background-color: var(--status-review-bg);
+  color: var(--status-review-text);
+  border: 1px solid var(--status-review-border);
+}
+
+.status-offer {
+  background-color: var(--status-offer-bg);
+  color: var(--status-offer-text);
+  border: 1px solid var(--status-offer-border);
+}
