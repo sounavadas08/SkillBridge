@@ -1,0 +1,47 @@
+export const rolesSkillData = {
+  'cloud-infrastructure': {
+    roleTitle: 'Cloud Infrastructure Engineer',
+    subtitle: 'Comparing your current proficiency against role benchmarks across 8 core competencies',
+    overallReadiness: 74,
+    competencies: [
+      { name: 'Cloud Platforms\n(AWS/GCP/Azure)', profile: 62, benchmark: 90, gap: -28 },
+      { name: 'Kubernetes &\nOrchestration', profile: 45, benchmark: 85, gap: -40 },
+      { name: 'Infrastructure\nas Code', profile: 75, benchmark: 85, gap: -10 },
+      { name: 'Linux &\nNetworking', profile: 80, benchmark: 85, gap: -5 },
+      { name: 'CI/CD\nPipelines', profile: 60, benchmark: 80, gap: -20 },
+      { name: 'Security &\nCompliance', profile: 40, benchmark: 80, gap: -40 },
+      { name: 'Monitoring &\nObservability', profile: 55, benchmark: 75, gap: -20 },
+      { name: 'Scripting &\nAutomation', profile: 70, benchmark: 80, gap: -10 },
+    ],
+  },
+  'ml-engineer': {
+    roleTitle: 'Junior ML Engineer',
+    subtitle: 'Comparing your current proficiency against role benchmarks across 8 core competencies',
+    overallReadiness: 86,
+    competencies: [
+      { name: 'Deep Learning\nFrameworks', profile: 90, benchmark: 95, gap: -5 },
+      { name: 'Model Optimization\n& Serving', profile: 70, benchmark: 85, gap: -15 },
+      { name: 'Python &\nData Structures', profile: 95, benchmark: 95, gap: 0 },
+      { name: 'Data Pipeline\nEngineering', profile: 80, benchmark: 85, gap: -5 },
+      { name: 'Statistics &\nMathematics', profile: 85, benchmark: 90, gap: -5 },
+      { name: 'MLOps &\nCI/CD', profile: 60, benchmark: 80, gap: -20 },
+      { name: 'Feature Stores\n& Vector DBs', profile: 75, benchmark: 85, gap: -10 },
+      { name: 'API Development\n(FastAPI)', profile: 88, benchmark: 90, gap: -2 },
+    ],
+  },
+  'full-stack': {
+    roleTitle: 'Full-Stack Developer',
+    subtitle: 'Comparing your current proficiency against role benchmarks across 8 core competencies',
+    overallReadiness: 81,
+    competencies: [
+      { name: 'React &\nFrontend Arch', profile: 92, benchmark: 95, gap: -3 },
+      { name: 'Node.js &\nREST APIs', profile: 85, benchmark: 90, gap: -5 },
+      { name: 'TypeScript &\nType Safety', profile: 80, benchmark: 90, gap: -10 },
+      { name: 'Database Design\n& SQL', profile: 75, benchmark: 85, gap: -10 },
+      { name: 'System Security\n& Auth', profile: 65, benchmark: 85, gap: -20 },
+      { name: 'Testing &\nQuality (Jest)', profile: 60, benchmark: 80, gap: -20 },
+      { name: 'Docker &\nDeployment', profile: 70, benchmark: 85, gap: -15 },
+      { name: 'UI/UX &\nCSS Systems', profile: 90, benchmark: 90, gap: 0 },
+    ],
+  },
+};

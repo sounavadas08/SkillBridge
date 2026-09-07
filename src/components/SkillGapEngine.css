@@ -1,0 +1,329 @@
+/* ==========================================================================
+   Skill Gap Engine & Radar Chart Styles
+   ========================================================================== */
+
+.gap-engine-section {
+  padding: 60px 0 80px;
+  background-color: var(--bg-page);
+  transition: background-color 0.3s ease;
+}
+
+.gap-header {
+  margin-bottom: 36px;
+}
+
+.role-switcher-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.role-pills-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-card);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+}
+
+[data-theme="dark"] .role-pills-selector {
+  background-color: var(--bg-card-subtle);
+}
+
+.role-pill {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+}
+
+.role-pill:hover {
+  color: var(--text-primary);
+}
+
+.role-pill.active {
+  background-color: var(--navy-800);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(12, 47, 85, 0.2);
+}
+
+[data-theme="dark"] .role-pill.active {
+  background-color: var(--teal-accent);
+  color: var(--navy-900);
+}
+
+/* 2-Column Layout */
+.gap-engine-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Radar Chart Card */
+.radar-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 24px 20px;
+  box-shadow: 0 4px 18px -2px rgba(12, 47, 85, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .radar-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-card);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+}
+
+.radar-chart-container {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radar-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.radar-label {
+  font-family: var(--font-sans);
+  font-size: 0.725rem;
+  font-weight: 600;
+  fill: var(--text-secondary);
+  transition: fill 0.3s ease;
+}
+
+[data-theme="dark"] .radar-label {
+  fill: #94a3b8;
+}
+
+.profile-polygon {
+  filter: drop-shadow(0 2px 6px rgba(45, 212, 191, 0.25));
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.benchmark-polygon {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Radar Legend */
+.radar-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.profile-line {
+  background-color: #0d9488;
+}
+
+[data-theme="dark"] .profile-line {
+  background-color: var(--teal-accent);
+}
+
+.benchmark-line {
+  background: repeating-linear-gradient(
+    90deg,
+    #64748b 0,
+    #64748b 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  height: 2px;
+}
+
+.legend-text {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Right Analytics Column */
+.gap-analytics-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Competency Gaps List Card */
+.competency-gaps-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 24px 22px;
+  box-shadow: 0 4px 18px -2px rgba(12, 47, 85, 0.05);
+  flex: 1;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .competency-gaps-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-card);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+}
+
+.card-micro-tag {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.gap-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gap-row-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.gap-item-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+}
+
+.gap-item-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.gap-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.gap-high {
+  color: #ea580c;
+}
+
+.gap-med {
+  color: #d97706;
+}
+
+.gap-low {
+  color: #0d9488;
+}
+
+[data-theme="dark"] .gap-low {
+  color: var(--teal-accent);
+}
+
+.gap-track {
+  height: 4px;
+  background-color: var(--navy-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .gap-track {
+  background-color: var(--border-subtle);
+}
+
+.gap-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fill-orange {
+  background-color: #ea580c;
+}
+
+.fill-amber {
+  background-color: #f59e0b;
+}
+
+.fill-teal {
+  background-color: #0d9488;
+}
+
+[data-theme="dark"] .fill-teal {
+  background-color: var(--teal-accent);
+}
+
+/* Overall Readiness Card */
+.overall-readiness-card {
+  background-color: var(--navy-800);
+  border-radius: var(--radius-sm);
+  padding: 24px 22px;
+  color: #ffffff;
+  box-shadow: 0 6px 20px -2px rgba(12, 47, 85, 0.25);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .overall-readiness-card {
+  background-color: #0a2038;
+  border: 1px solid var(--border-card);
+}
+
+.readiness-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--teal-accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.readiness-metric {
+  font-family: var(--font-sans);
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.readiness-subtext {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  font-weight: 400;
+}
+
+@media (max-width: 960px) {
+  .gap-engine-layout {
+    grid-template-columns: 1fr;
+  }
+}
