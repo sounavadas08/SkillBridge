@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Stats Strip Styles
+   ========================================================================== */
+
+.stats-strip-wrapper {
+  position: relative;
+  margin-top: -65px;
+  z-index: 20;
+  margin-bottom: 60px;
+}
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 30px -4px rgba(12, 47, 85, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .stats-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-card);
+  box-shadow: 0 10px 35px -4px rgba(0, 0, 0, 0.45);
+}
+
+.stat-column {
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.stat-column:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .stat-column:not(:last-child)::after {
+  background-color: var(--border-subtle);
+}
+
+.stat-column:hover {
+  background-color: rgba(45, 212, 191, 0.03);
+}
+
+.stat-number {
+  font-family: var(--font-sans);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--navy-800);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .stat-number {
+  color: #ffffff;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .stats-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-column:nth-child(2)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .stats-card {
+    grid-template-columns: 1fr;
+  }
+  .stat-column:not(:last-child)::after {
+    display: none;
+  }
+  .stat-column {
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
