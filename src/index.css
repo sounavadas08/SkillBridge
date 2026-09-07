@@ -1,0 +1,283 @@
+/* ==========================================================================
+   SkillBridge Global Design System & Tokens
+   ========================================================================== */
+
+:root {
+  /* Brand Navy Palette */
+  --navy-900: #0a233f;
+  --navy-800: #0c2f55;
+  --navy-700: #103b68;
+  --navy-600: #164e7e;
+  --navy-500: #1e639e;
+  --navy-100: #e8eff6;
+  --navy-50:  #f0f5fa;
+
+  /* Teal / Mint Accent */
+  --teal-accent: #2dd4bf;
+  --teal-glow: rgba(45, 212, 191, 0.25);
+  --teal-dark: #0f766e;
+  --teal-light: #ccfbf1;
+
+  /* Light Theme Tokens */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --bg-card-hover: #ffffff;
+  --bg-header-table: #eef4f9;
+
+  --border-subtle: #e2e8f0;
+  --border-light: #edf2f7;
+  --border-card: #e2e8f0;
+  --border-navy: #1e4b77;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-hero-sub: #cbd5e1;
+  --text-inverse: #ffffff;
+
+  /* Status Colors */
+  --status-scheduled-bg: #fef3c7;
+  --status-scheduled-text: #b45309;
+  --status-scheduled-border: #fde68a;
+
+  --status-review-bg: #e0f2fe;
+  --status-review-text: #0369a1;
+  --status-review-border: #bae6fd;
+
+  --status-offer-bg: #dcfce7;
+  --status-offer-text: #15803d;
+  --status-offer-border: #bbf7d0;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 14px -2px rgba(12, 47, 85, 0.08);
+  --shadow-lg: 0 10px 25px -4px rgba(12, 47, 85, 0.12);
+  --shadow-glow: 0 0 30px rgba(45, 212, 191, 0.2);
+
+  /* Typography */
+  --font-serif: 'Newsreader', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Spacing & Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --container-max: 1200px;
+}
+
+[data-theme="dark"] {
+  --bg-page: #081628;
+  --bg-card: #0d223d;
+  --bg-card-subtle: #0f2746;
+  --bg-card-hover: #132f54;
+  --bg-header-table: #122b49;
+
+  --border-subtle: #1a3c63;
+  --border-light: #163456;
+  --border-card: #1c426e;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-hero-sub: #cbd5e1;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 25px -4px rgba(0, 0, 0, 0.5);
+
+  --status-scheduled-bg: rgba(245, 158, 11, 0.15);
+  --status-scheduled-text: #fbbf24;
+  --status-scheduled-border: rgba(245, 158, 11, 0.3);
+
+  --status-review-bg: rgba(14, 165, 233, 0.15);
+  --status-review-text: #38bdf8;
+  --status-review-border: rgba(14, 165, 233, 0.3);
+
+  --status-offer-bg: rgba(34, 197, 94, 0.15);
+  --status-offer-text: #4ade80;
+  --status-offer-border: rgba(34, 197, 94, 0.3);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Rules
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* ==========================================================================
+   Layout Containers & Utilities
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--teal-dark);
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .section-tag {
+  color: var(--teal-accent);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--navy-800);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+[data-theme="dark"] .section-title {
+  color: #f1f5f9;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin-bottom: 36px;
+}
+
+.serif-italic-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--teal-accent);
+}
+
+/* Base button primitives */
+.btn-primary-navy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--navy-800);
+  color: var(--text-inverse);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.btn-primary-navy:hover {
+  background-color: var(--navy-700);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-teal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #0d9488;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.btn-teal:hover {
+  background-color: #0f766e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.3);
+}
+
+.btn-ghost-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.btn-ghost-white:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-color: var(--text-muted);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
