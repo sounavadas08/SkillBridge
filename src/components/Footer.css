@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Footer Component Styles
+   ========================================================================== */
+
+.footer-bar {
+  background-color: #081d36;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 34px 0;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .footer-bar {
+  background-color: #050f1d;
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-copyright {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: #94a3b8;
+  letter-spacing: 0.01em;
+}
+
+[data-theme="dark"] .footer-copyright {
+  color: #64748b;
+}

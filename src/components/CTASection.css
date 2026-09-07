@@ -1,0 +1,110 @@
+/* ==========================================================================
+   CTA Section Styles
+   ========================================================================== */
+
+.cta-section {
+  padding: 100px 0 120px;
+  background-color: var(--bg-page);
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.cta-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 720px;
+}
+
+.cta-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--navy-800);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .cta-title {
+  color: #ffffff;
+}
+
+.cta-title-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.cta-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 580px;
+}
+
+.cta-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-student-signup {
+  background-color: var(--navy-800);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(12, 47, 85, 0.2);
+}
+
+.btn-student-signup:hover {
+  background-color: var(--navy-700);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(12, 47, 85, 0.3);
+}
+
+[data-theme="dark"] .btn-student-signup {
+  background-color: var(--teal-accent);
+  color: var(--navy-900);
+}
+
+[data-theme="dark"] .btn-student-signup:hover {
+  background-color: #26c2ad;
+  box-shadow: 0 6px 20px rgba(45, 212, 191, 0.3);
+}
+
+.btn-university-portal {
+  background-color: var(--bg-card);
+  color: var(--navy-800);
+  border: 1px solid var(--border-subtle);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.btn-university-portal:hover {
+  border-color: var(--navy-800);
+  background-color: rgba(12, 47, 85, 0.04);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-university-portal {
+  color: #ffffff;
+  border-color: var(--border-subtle);
+  background-color: var(--bg-card);
+}
+
+[data-theme="dark"] .btn-university-portal:hover {
+  border-color: var(--teal-accent);
+  background-color: rgba(45, 212, 191, 0.06);
+}
