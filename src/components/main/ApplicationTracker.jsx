@@ -1,5 +1,5 @@
 import React from 'react';
-import { applicationPipeline } from '../data/applications';
+import { applicationPipeline } from '../../data/applications';
 import './ApplicationTracker.css';
 
 export default function ApplicationTracker() {

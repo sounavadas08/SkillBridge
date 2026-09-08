@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import { useToast } from '../context/ToastContext';
+import { useTheme } from '../../context/ThemeContext';
+import { useToast } from '../../context/ToastContext';
 import './Navbar.css';
 
-export default function Navbar() {
+export default function Navbar({
+  user,
+  onOpenLogin,
+  onOpenOnboarding,
+  onOpenDashboard,
+  onLogout,
+  onNavigateLanding,
+}) {
   const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,14 +18,26 @@ export default function Navbar() {
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (onNavigateLanding) {
+      onNavigateLanding();
     }
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
   };
 
   const handleAuthAction = (actionName) => {
-    showToast(`${actionName} modal opened (Prototype Demo)`, 'info');
+    setMobileMenuOpen(false);
+    if (actionName === 'Sign In' && onOpenLogin) {
+      onOpenLogin();
+    } else if (actionName === 'Get Started' && onOpenOnboarding) {
+      onOpenOnboarding();
+    } else {
+      showToast(`${actionName} modal opened (Prototype Demo)`, 'info');
+    }
   };
 
   return (
@@ -108,21 +127,64 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Sign In Button */}
-          <button
-            className="nav-btn-signin"
-            onClick={() => handleAuthAction('Sign In')}
-          >
-            Sign In
-          </button>
+          {/* Auth Controls */}
+          {user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <button
+                className="nav-btn-signin"
+                onClick={onOpenDashboard}
+                title="Go to Dashboard"
+              >
+                Dashboard
+              </button>
+              <button
+                className="nav-btn-getstarted"
+                style={{ background: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border-subtle)', boxShadow: 'none' }}
+                onClick={onLogout}
+              >
+                Sign Out
+              </button>
+              <div
+                onClick={onOpenDashboard}
+                style={{
+                  width: '2.25rem',
+                  height: '2.25rem',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, var(--teal-accent), var(--navy-800))',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.875rem',
+                  cursor: 'pointer',
+                  border: '2px solid var(--bg-card)',
+                  boxShadow: '0 0 0 1px var(--border-card)'
+                }}
+                title={user.email || 'User'}
+              >
+                {(user.email ? user.email.charAt(0) : (user.role === 'recruiter' ? 'R' : 'S')).toUpperCase()}
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Sign In Button */}
+              <button
+                className="nav-btn-signin"
+                onClick={() => handleAuthAction('Sign In')}
+              >
+                Sign In
+              </button>
 
-          {/* Get Started Button */}
-          <button
-            className="nav-btn-getstarted"
-            onClick={() => handleAuthAction('Get Started')}
-          >
-            Get Started
-          </button>
+              {/* Get Started Button */}
+              <button
+                className="nav-btn-getstarted"
+                onClick={() => handleAuthAction('Get Started')}
+              >
+                Get Started
+              </button>
+            </>
+          )}
 
           {/* Mobile Hamburger Toggle */}
           <button
@@ -170,18 +232,38 @@ export default function Navbar() {
               Demo View
             </a>
             <div className="mobile-auth-actions">
-              <button
-                className="nav-btn-signin w-full"
-                onClick={() => handleAuthAction('Sign In')}
-              >
-                Sign In
-              </button>
-              <button
-                className="nav-btn-getstarted w-full"
-                onClick={() => handleAuthAction('Get Started')}
-              >
-                Get Started
-              </button>
+              {user ? (
+                <>
+                  <button
+                    className="nav-btn-signin w-full"
+                    onClick={() => { setMobileMenuOpen(false); onOpenDashboard(); }}
+                  >
+                    Dashboard ({user.role === 'recruiter' ? 'Employer' : 'Student'})
+                  </button>
+                  <button
+                    className="nav-btn-getstarted w-full"
+                    style={{ background: 'transparent', color: 'var(--text-muted)', border: '1px solid var(--border-subtle)' }}
+                    onClick={() => { setMobileMenuOpen(false); onLogout(); }}
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="nav-btn-signin w-full"
+                    onClick={() => handleAuthAction('Sign In')}
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    className="nav-btn-getstarted w-full"
+                    onClick={() => handleAuthAction('Get Started')}
+                  >
+                    Get Started
+                  </button>
+                </>
+              )}
             </div>
           </nav>
         </div>

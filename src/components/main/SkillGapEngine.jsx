@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { rolesSkillData } from '../data/radarData';
+import { rolesSkillData } from '../../data/radarData';
 import RadarChart from './RadarChart';
 import './SkillGapEngine.css';
 

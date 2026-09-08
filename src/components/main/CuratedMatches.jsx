@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { curatedJobs } from '../data/jobMatches';
-import { useToast } from '../context/ToastContext';
+import { curatedJobs } from '../../data/jobMatches';
+import { useToast } from '../../context/ToastContext';
 import './CuratedMatches.css';
 
 export default function CuratedMatches() {

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '../../context/ToastContext';
 import './Hero.css';
 
-export default function Hero() {
+export default function Hero({ onStartStudent, onStartEmployer }) {
   const { showToast } = useToast();
 
   const handleAction = (type) => {
@@ -11,7 +11,11 @@ export default function Hero() {
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       showToast('Navigating to active internship recommendations', 'success');
     } else {
-      showToast('Recruiter Portal: Post Opportunity modal opened', 'info');
+      if (onStartEmployer) {
+        onStartEmployer();
+      } else {
+        showToast('Opening Employer & Recruiter Onboarding Portal', 'info');
+      }
     }
   };
 

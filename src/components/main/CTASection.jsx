@@ -1,12 +1,24 @@
 import React from 'react';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '../../context/ToastContext';
 import './CTASection.css';
 
-export default function CTASection() {
+export default function CTASection({ onStartStudent, onStartEmployer }) {
   const { showToast } = useToast();
 
   const handleAction = (portalType) => {
-    showToast(`Redirecting to ${portalType} registration portal...`, 'info');
+    if (portalType === 'Student Sign Up') {
+      if (onStartStudent) {
+        onStartStudent();
+      } else {
+        showToast(`Redirecting to ${portalType} registration portal...`, 'info');
+      }
+    } else if (portalType === 'University Portal') {
+      if (onStartEmployer) {
+        onStartEmployer();
+      } else {
+        showToast(`Redirecting to ${portalType} registration portal...`, 'info');
+      }
+    }
   };
 
   return (
