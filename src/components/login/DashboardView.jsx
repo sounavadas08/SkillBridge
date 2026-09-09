@@ -1,9 +1,15 @@
 import React from 'react';
+import { StudentPortalLayout } from '../student/StudentPortalLayout';
 import './Login.css';
 
 export default function DashboardView({ user, onLogout, onExploreHome }) {
   const isRecruiter = user?.role === 'recruiter';
-  const displayName = user?.email ? user.email.split('@')[0] : (isRecruiter ? 'Hiring Team' : 'Alex');
+  
+  if (!isRecruiter) {
+    return <StudentPortalLayout user={user} onLogout={onLogout} onExploreHome={onExploreHome} />;
+  }
+
+  const displayName = user?.email ? user.email.split('@')[0] : 'Hiring Team';
 
   return (
     <div className="dashboard-wrapper">

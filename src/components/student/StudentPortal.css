@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Student Portal Design System & Utility Tokens
+   ========================================================================== */
+
+.student-portal-container {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+}
+
+[data-theme='dark'] .student-portal-container,
+.dark .student-portal-container {
+  --background: #090d16;
+  --foreground: #f3f4f6;
+  --card: #111827;
+  --card-foreground: #f3f4f6;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --muted: #1f2937;
+  --muted-foreground: #9ca3af;
+  --border: #1f2937;
+}
+
+/* Base Portal Container */
+.student-portal-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+}
+
+/* Sidebar Navigation */
+.student-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--card);
+  position: relative;
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 20;
+}
+
+.student-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.student-nav-item:hover {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--primary);
+}
+
+.student-nav-item.active {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--primary);
+  border-color: rgba(37, 99, 235, 0.3);
+  font-weight: 600;
+}
+
+/* Main Content Wrapper */
+.student-main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.student-view-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* AI Mentor Drawer */
+.mentor-drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 380px;
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  box-shadow: -4px 0 25px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tailwind Theme Utility Classes Mappings for Figma Components */
+.student-portal-container .bg-background { background-color: var(--background) !important; }
+.student-portal-container .text-foreground { color: var(--foreground) !important; }
+.student-portal-container .bg-card { background-color: var(--card) !important; }
+.student-portal-container .text-card-foreground { color: var(--card-foreground) !important; }
+.student-portal-container .border-border { border-color: var(--border) !important; }
+.student-portal-container .bg-muted { background-color: var(--muted) !important; }
+.student-portal-container .text-muted-foreground { color: var(--muted-foreground) !important; }
+.student-portal-container .bg-primary { background-color: var(--primary) !important; }
+.student-portal-container .text-primary { color: var(--primary) !important; }
+.student-portal-container .text-primary-foreground { color: var(--primary-foreground) !important; }
+
+.student-portal-container .bg-primary\/10 { background-color: rgba(37, 99, 235, 0.1) !important; }
+.student-portal-container .bg-primary\/5 { background-color: rgba(37, 99, 235, 0.05) !important; }
+.student-portal-container .border-primary\/20 { border-color: rgba(37, 99, 235, 0.2) !important; }
+.student-portal-container .border-primary\/40 { border-color: rgba(37, 99, 235, 0.4) !important; }
+.student-portal-container .hover\:border-primary\/50:hover { border-color: rgba(37, 99, 235, 0.5) !important; }
+.student-portal-container .hover\:bg-primary\/90:hover { background-color: rgba(37, 99, 235, 0.9) !important; }
+
+/* Dimension Utilities */
+.student-portal-container .size-2 { width: 0.5rem; height: 0.5rem; }
+.student-portal-container .size-8 { width: 2rem; height: 2rem; }
+.student-portal-container .size-24 { width: 6rem; height: 6rem; }
+.student-portal-container .size-32 { width: 8rem; height: 8rem; }
