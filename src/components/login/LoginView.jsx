@@ -70,7 +70,7 @@ export default function LoginView({ onLogin, onNewUser, onBackHome }) {
         {/* Logo area */}
         <div className="auth-logo-header">
           <div className="auth-logo-icon">
-            <span>S</span>
+            <img src="/logo-icon-dark.png" alt="SkillBridge" />
           </div>
           <span className="auth-logo-text">
             SkillBridge

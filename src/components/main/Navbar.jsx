@@ -46,7 +46,10 @@ export default function Navbar({
         {/* Brand Logo */}
         <a href="#" className="brand-logo" onClick={(e) => handleNavClick(e, 'hero')}>
           <div className="brand-icon">
-            <span>S</span>
+            <img 
+              src={theme === 'dark' ? '/logo-icon-dark.png' : '/logo-icon-light.png'} 
+              alt="SkillBridge Logo" 
+            />
           </div>
           <span className="brand-text">SkillBridge</span>
         </a>

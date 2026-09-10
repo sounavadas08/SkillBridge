@@ -82,10 +82,10 @@ export default function OnboardingView({ onComplete, onBackHome, onSwitchToLogin
       {/* Header */}
       <header className="onboarding-header">
         <div className="onboarding-header-brand" onClick={onBackHome}>
-          <div className="auth-logo-icon" style={{ width: '1.75rem', height: '1.75rem', fontSize: '0.875rem' }}>
-            <span>S</span>
+          <div className="auth-logo-icon" style={{ width: '2rem', height: '2rem' }}>
+            <img src="/logo-icon-dark.png" alt="SkillBridge" />
           </div>
-          <span className="auth-logo-text" style={{ fontSize: '1.0625rem' }}>
+          <span className="auth-logo-text" style={{ fontSize: '1.15rem' }}>
             SkillBridge
           </span>
         </div>

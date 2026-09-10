@@ -45,9 +45,13 @@ export function RecruiterPortalLayout({ user, onLogout, onExploreHome }) {
       >
         <div className="h-16 flex items-center px-4 border-b border-[var(--rp-hairline)] shrink-0 justify-between">
           <div className="flex items-center gap-3 overflow-hidden cursor-pointer" onClick={() => setActiveTab('dashboard')}>
-            <span className="rp-seal size-8 text-[var(--rp-orange)] shrink-0">
-              <Check size={16} />
-            </span>
+            <div className="size-8 rounded-lg overflow-hidden shrink-0 shadow-xs border border-primary/20">
+              <img 
+                src={theme === 'dark' ? '/logo-icon-dark.png' : '/logo-icon-light.png'} 
+                alt="SkillBridge" 
+                className="w-full h-full object-cover" 
+              />
+            </div>
             {!collapsed && (
               <span className="font-bold text-lg tracking-tight whitespace-nowrap text-[var(--rp-ink)] font-['Fraunces']">
                 Recruiter Portal

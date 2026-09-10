@@ -78,7 +78,13 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
       >
         <div className="student-sidebar-header h-16 flex items-center px-4 shrink-0 justify-between">
           <div className="flex items-center gap-3 overflow-hidden cursor-pointer" onClick={() => handleTabChange('command-center')}>
-            <GraduationCap className="size-8 text-primary shrink-0" />
+            <div className="size-8 rounded-lg overflow-hidden shrink-0 shadow-xs border border-primary/20">
+              <img 
+                src={theme === 'dark' ? '/logo-icon-dark.png' : '/logo-icon-light.png'} 
+                alt="SkillBridge" 
+                className="w-full h-full object-cover" 
+              />
+            </div>
             {!collapsed && (
               <span className="font-semibold text-lg tracking-tight whitespace-nowrap">
                 Student Portal
