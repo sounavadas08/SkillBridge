@@ -5,15 +5,27 @@ import {
   Camera, 
   User, 
   GraduationCap, 
-  FileText, 
   Globe, 
-  Github, 
-  Linkedin, 
   Sparkles, 
   RotateCcw,
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
+
+const GithubIcon = ({ size = 16, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const LinkedinIcon = ({ size = 16, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&h=400&fit=crop&auto=format";
 
@@ -322,7 +334,7 @@ export function EditProfileModal({ isOpen, onClose, user, onSave }) {
             </h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2 bg-background border border-border rounded-xl px-3.5 py-2 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
-                <Github size={16} className="text-muted-foreground shrink-0" />
+                <GithubIcon size={16} className="text-muted-foreground shrink-0" />
                 <input 
                   type="url" 
                   value={formData.github_url}
@@ -333,7 +345,7 @@ export function EditProfileModal({ isOpen, onClose, user, onSave }) {
               </div>
 
               <div className="flex items-center gap-2 bg-background border border-border rounded-xl px-3.5 py-2 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
-                <Linkedin size={16} className="text-muted-foreground shrink-0" />
+                <LinkedinIcon size={16} className="text-muted-foreground shrink-0" />
                 <input 
                   type="url" 
                   value={formData.linkedin_url}

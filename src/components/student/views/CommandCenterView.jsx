@@ -30,11 +30,15 @@ export function CommandCenterView({ onNavigateSection, user }) {
             />
           </div>
           <h2 className="text-xl font-medium">{userName}</h2>
-          <p className="text-muted-foreground text-sm mb-4">B.S. Computer Science • Class of 2025</p>
+          <p className="text-muted-foreground text-sm mb-4">
+            {user?.department || 'B.S. Computer Science'} • {user?.grad_year || 'Class of 2025'}
+          </p>
           <div className="w-full bg-muted rounded-full h-2 mb-2">
             <div className="bg-primary h-2 rounded-full transition-all duration-500" style={{ width: '85%' }} />
           </div>
-          <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono">Target: Frontend Eng</span>
+          <span className="text-xs text-muted-foreground uppercase tracking-wider font-mono">
+            Target: {user?.targetRole || 'Cloud Infrastructure'}
+          </span>
         </div>
 
         {/* Status Grid */}

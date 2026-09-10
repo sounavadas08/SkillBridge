@@ -40,7 +40,7 @@ const NAV_ITEMS = [
   { id: 'trends', label: 'Industry Trends', icon: TrendingUp },
 ];
 
-export function StudentPortalLayout({ user, onLogout, onExploreHome }) {
+export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUser }) {
   const [collapsed, setCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState('command-center');
   const [showMentorDrawer, setShowMentorDrawer] = useState(false);
@@ -138,7 +138,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome }) {
         <div className="student-view-wrapper">
           {activeTab === 'command-center' && <CommandCenterView user={user} onNavigateSection={(tab) => setActiveTab(tab)} />}
           {activeTab === 'ai-mentor' && <AiMentorView user={user} onNavigateSection={(tab) => setActiveTab(tab)} />}
-          {activeTab === 'skillvault' && <SkillVaultView user={user} />}
+          {activeTab === 'skillvault' && <SkillVaultView user={user} onUpdateUser={onUpdateUser} />}
           {activeTab === 'radar' && <SkillRadarView />}
           {activeTab === 'resume' && <AiResumeView user={user} />}
           {activeTab === 'opportunities' && <OpportunitiesView />}

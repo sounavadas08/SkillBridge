@@ -14,12 +14,58 @@ import './App.css';
 
 export default function App() {
   const [currentView, setCurrentView] = useState('landing'); // 'landing' | 'login' | 'onboarding' | 'dashboard'
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('skillbridge_user');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.error(e);
+    }
+    return null;
+  });
   const [onboardingRole, setOnboardingRole] = useState(null);
   const { showToast } = useToast();
 
+  React.useEffect(() => {
+    const syncProfileFromBackend = async () => {
+      try {
+        const res = await fetch('/api/auth/profile');
+        if (res.ok) {
+          const profile = await res.json();
+          setCurrentUser(prev => {
+            if (!prev || prev.role === 'student') {
+              const merged = { ...(prev || {}), ...profile };
+              localStorage.setItem('skillbridge_user', JSON.stringify(merged));
+              return merged;
+            }
+            return prev;
+          });
+        }
+      } catch (e) {
+        // Backend offline or unreachable
+      }
+    };
+    syncProfileFromBackend();
+  }, []);
+
+  const handleUpdateUser = async (updatedData) => {
+    const merged = { ...(currentUser || {}), ...updatedData };
+    setCurrentUser(merged);
+    try {
+      localStorage.setItem('skillbridge_user', JSON.stringify(merged));
+      await fetch('/api/auth/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedData)
+      });
+    } catch (err) {
+      console.warn("Backend profile sync failed, kept in local state:", err.message);
+    }
+  };
+
   const handleLoginSuccess = (userData) => {
     setCurrentUser(userData);
+    localStorage.setItem('skillbridge_user', JSON.stringify(userData));
     setCurrentView('dashboard');
     showToast(`Welcome back, ${userData.email || 'User'}!`, 'success');
   };
@@ -30,6 +76,7 @@ export default function App() {
       ...onboardingData,
     };
     setCurrentUser(newUser);
+    localStorage.setItem('skillbridge_user', JSON.stringify(newUser));
     setCurrentView('dashboard');
     showToast(
       `Profile completed! Welcome to your ${onboardingData.role === 'recruiter' ? 'Employer Portal' : 'Student Career Hub'}.`,
@@ -39,6 +86,7 @@ export default function App() {
 
   const handleLogout = () => {
     setCurrentUser(null);
+    localStorage.removeItem('skillbridge_user');
     setCurrentView('landing');
     showToast('You have been signed out successfully.', 'info');
   };
@@ -112,6 +160,7 @@ export default function App() {
           user={currentUser}
           onLogout={handleLogout}
           onExploreHome={() => setCurrentView('landing')}
+          onUpdateUser={handleUpdateUser}
         />
       )}
     </div>

@@ -2,11 +2,11 @@ import React from 'react';
 import { StudentPortalLayout } from '../student/StudentPortalLayout';
 import './Login.css';
 
-export default function DashboardView({ user, onLogout, onExploreHome }) {
+export default function DashboardView({ user, onLogout, onExploreHome, onUpdateUser }) {
   const isRecruiter = user?.role === 'recruiter';
   
   if (!isRecruiter) {
-    return <StudentPortalLayout user={user} onLogout={onLogout} onExploreHome={onExploreHome} />;
+    return <StudentPortalLayout user={user} onLogout={onLogout} onExploreHome={onExploreHome} onUpdateUser={onUpdateUser} />;
   }
 
   const displayName = user?.email ? user.email.split('@')[0] : 'Hiring Team';
