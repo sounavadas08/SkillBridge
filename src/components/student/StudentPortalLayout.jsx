@@ -13,10 +13,9 @@ import {
   MessageSquareText,
   Moon,
   Sun,
-  X,
-  Send,
   Home,
-  LogOut
+  LogOut,
+  Sparkles
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { CommandCenterView } from './views/CommandCenterView';
@@ -26,10 +25,13 @@ import { AiResumeView } from './views/AiResumeView';
 import { OpportunitiesView } from './views/OpportunitiesView';
 import { MockInterviewsView } from './views/MockInterviewsView';
 import { IndustryTrendsView } from './views/IndustryTrendsView';
+import { AiMentorView } from './views/AiMentorView';
+import { AiMentorDrawer } from './AiMentorDrawer';
 import './StudentPortal.css';
 
 const NAV_ITEMS = [
   { id: 'command-center', label: 'Command Center', icon: LayoutDashboard },
+  { id: 'ai-mentor', label: 'AI Mentor Studio', icon: Sparkles },
   { id: 'skillvault', label: 'SkillVault', icon: UserCircle2 },
   { id: 'radar', label: 'Skill-Gap Radar', icon: Radar },
   { id: 'resume', label: 'AI Resume Architect', icon: FileText },
@@ -42,32 +44,8 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome }) {
   const [collapsed, setCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState('command-center');
   const [showMentorDrawer, setShowMentorDrawer] = useState(false);
-  const [mentorMessages, setMentorMessages] = useState([
-    { id: 1, sender: 'ai', text: `Hi ${user?.name || 'Alex'}! I'm your SkillBridge AI Mentor. How can I help you with your career goals today?` }
-  ]);
-  const [chatInput, setChatInput] = useState('');
 
   const { theme, toggleTheme } = useTheme();
-
-  const handleSendMentorMessage = (e) => {
-    e.preventDefault();
-    if (!chatInput.trim()) return;
-
-    const userMsg = { id: Date.now(), sender: 'user', text: chatInput };
-    setMentorMessages(prev => [...prev, userMsg]);
-    setChatInput('');
-
-    setTimeout(() => {
-      setMentorMessages(prev => [
-        ...prev,
-        {
-          id: Date.now() + 1,
-          sender: 'ai',
-          text: `Great question regarding "${userMsg.text}". Based on your target Frontend Developer profile, I recommend prioritizing TypeScript generics and building 1-2 Next.js App Router projects!`
-        }
-      ]);
-    }, 1000);
-  };
 
   return (
     <div className="student-portal-container flex h-screen w-full overflow-hidden bg-background text-foreground">
@@ -136,10 +114,10 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome }) {
           <button 
             onClick={() => setShowMentorDrawer(true)}
             className={`flex items-center justify-center gap-2 bg-primary text-primary-foreground p-2.5 rounded-lg w-full hover:bg-primary/90 transition-colors shadow-sm ${collapsed ? 'px-0' : 'px-3'}`}
-            title={collapsed ? "Ask AI Mentor" : undefined}
+            title={collapsed ? "Quick AI Mentor" : undefined}
           >
             <MessageSquareText size={18} className="shrink-0" />
-            {!collapsed && <span className="font-medium whitespace-nowrap text-sm">Ask AI Mentor</span>}
+            {!collapsed && <span className="font-medium whitespace-nowrap text-sm">Quick AI Mentor</span>}
           </button>
 
           {onLogout && (
@@ -159,6 +137,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome }) {
       <main className="student-main-content flex-1 overflow-y-auto">
         <div className="student-view-wrapper">
           {activeTab === 'command-center' && <CommandCenterView user={user} onNavigateSection={(tab) => setActiveTab(tab)} />}
+          {activeTab === 'ai-mentor' && <AiMentorView user={user} onNavigateSection={(tab) => setActiveTab(tab)} />}
           {activeTab === 'skillvault' && <SkillVaultView user={user} />}
           {activeTab === 'radar' && <SkillRadarView />}
           {activeTab === 'resume' && <AiResumeView user={user} />}
@@ -168,60 +147,15 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome }) {
         </div>
       </main>
 
-      {/* AI Mentor Drawer */}
+      {/* AI Mentor Drawer Overlay */}
       {showMentorDrawer && (
-        <div 
-          className="mentor-drawer border-l border-border bg-card shadow-2xl flex flex-col z-50 transition-all duration-300"
-        >
-          <div className="p-4 border-b border-border flex items-center justify-between bg-muted/30">
-            <div className="flex items-center gap-2">
-              <div className="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                <MessageSquareText size={18} />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm">SkillBridge AI Mentor</h3>
-                <p className="text-[10px] text-green-500 font-mono">Online • 24/7 Career Guidance</p>
-              </div>
-            </div>
-            <button 
-              onClick={() => setShowMentorDrawer(false)}
-              className="p-1 text-muted-foreground hover:text-foreground rounded-lg"
-            >
-              <X size={18} />
-            </button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
-            {mentorMessages.map((msg) => (
-              <div 
-                key={msg.id}
-                className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div className={`max-w-[85%] p-3 rounded-xl text-xs leading-relaxed ${
-                  msg.sender === 'user'
-                    ? 'bg-primary text-primary-foreground rounded-br-none'
-                    : 'bg-muted text-foreground border border-border rounded-bl-none'
-                }`}>
-                  {msg.text}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <form onSubmit={handleSendMentorMessage} className="p-3 border-t border-border flex items-center gap-2 bg-card">
-            <input
-              type="text"
-              value={chatInput}
-              onChange={(e) => setChatInput(e.target.value)}
-              placeholder="Ask about skills, resume, interview tips..."
-              className="flex-1 bg-background border border-border rounded-lg px-3 py-2 text-xs outline-none focus:border-primary"
-            />
-            <button type="submit" className="p-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90">
-              <Send size={16} />
-            </button>
-          </form>
-        </div>
+        <AiMentorDrawer 
+          user={user} 
+          onClose={() => setShowMentorDrawer(false)} 
+          onNavigateSection={(tab) => { setActiveTab(tab); setShowMentorDrawer(false); }} 
+        />
       )}
     </div>
   );
 }
+
