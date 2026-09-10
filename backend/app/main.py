@@ -26,10 +26,11 @@ async def health_check():
         "model": settings.cloudflare_model
     }
 
-from app.database import Base, engine
+from app.database import init_db
 from app.routers import ai, skills, jobs, auth
 
-Base.metadata.create_all(bind=engine)
+init_db()
+
 
 app.include_router(ai.router)
 app.include_router(skills.router)

@@ -18,3 +18,25 @@ def get_db():
         yield db
     finally:
         db.close()
+
+def init_db():
+    Base.metadata.create_all(bind=engine)
+    if "sqlite" in settings.database_url:
+        with engine.connect() as conn:
+            cursor = conn.connection.cursor()
+            cursor.execute("PRAGMA table_info(users)")
+            existing_cols = [row[1] for row in cursor.fetchall()]
+            new_cols = [
+                ("avatar", "TEXT"),
+                ("bio", "TEXT"),
+                ("grad_year", "VARCHAR"),
+                ("specialization", "VARCHAR"),
+                ("github_url", "VARCHAR"),
+                ("linkedin_url", "VARCHAR"),
+                ("portfolio_url", "VARCHAR"),
+            ]
+            for col_name, col_type in new_cols:
+                if col_name not in existing_cols:
+                    cursor.execute(f"ALTER TABLE users ADD COLUMN {col_name} {col_type}")
+            conn.connection.commit()
+
