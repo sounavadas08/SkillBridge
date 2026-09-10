@@ -1,0 +1,5 @@
+# Ignore Python backend from Vercel frontend build
+backend/
+scripts/
+skillbridge.db
+.pytest_cache/

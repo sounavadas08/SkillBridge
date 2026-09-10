@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "vercel-build": "vite build",
     "preview": "vite preview"
   },
+
   "dependencies": {
     "@clerk/clerk-react": "^5.61.9",
     "@react-three/drei": "^10.7.8",
