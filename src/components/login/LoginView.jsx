@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { SignIn } from '@clerk/clerk-react';
 import { useSafeClerk } from '../../utils/clerkAuth';
 import './Login.css';
 
 export default function LoginView({ onLogin, onNewUser, onBackHome }) {
-  const { isClerkAvailable, clerk } = useSafeClerk();
+  const { isClerkAvailable, signIn } = useSafeClerk();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -23,18 +22,19 @@ export default function LoginView({ onLogin, onNewUser, onBackHome }) {
   };
 
   const handleGoogleLogin = async () => {
-    if (clerk && clerk.authenticateWithRedirect) {
+    if (signIn && signIn.authenticateWithRedirect) {
       try {
-        await clerk.authenticateWithRedirect({
+        await signIn.authenticateWithRedirect({
           strategy: 'oauth_google',
-          redirectUrl: '/portal.html',
-          redirectUrlComplete: '/portal.html',
+          redirectUrl: `${window.location.origin}/sso-callback`,
+          redirectUrlComplete: `${window.location.origin}/portal.html`,
         });
         return;
       } catch (err) {
         console.warn('Clerk Google SSO error:', err);
       }
     }
+    // Fallback if Clerk is not available
     if (onLogin) {
       onLogin({ email: 'demo.user@gmail.com', role: 'student', provider: 'google' });
     }

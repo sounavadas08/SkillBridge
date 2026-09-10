@@ -13,6 +13,7 @@ export default defineConfig({
           if (url === '/login') req.url = '/login.html';
           else if (url === '/onboarding') req.url = '/onboarding.html';
           else if (url === '/portal') req.url = '/portal.html';
+          else if (url === '/sso-callback') req.url = '/sso-callback.html';
           next();
         });
       },
@@ -28,6 +29,7 @@ export default defineConfig({
         login: resolve(__dirname, 'login.html'),
         onboarding: resolve(__dirname, 'onboarding.html'),
         portal: resolve(__dirname, 'portal.html'),
+        'sso-callback': resolve(__dirname, 'sso-callback.html'),
       },
     },
   },

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { ClerkProvider, useUser, useClerk } from '@clerk/clerk-react';
+import { ClerkProvider, useUser, useClerk, useSignIn } from '@clerk/clerk-react';
 
 const ClerkBridgeContext = createContext({
   isClerkAvailable: false,
@@ -7,16 +7,19 @@ const ClerkBridgeContext = createContext({
   isSignedIn: false,
   user: null,
   clerk: null,
+  signIn: null,
 });
 
 function ClerkInnerBridge({ children }) {
   const userResult = useUser();
   const clerk = useClerk();
+  const { signIn } = useSignIn();
 
   const value = {
     isClerkAvailable: true,
     ...userResult,
     clerk,
+    signIn,
   };
 
   return (
