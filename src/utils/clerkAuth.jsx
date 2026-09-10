@@ -1,5 +1,5 @@
-import React, { createContext, useContext } from 'react';
-import { ClerkProvider, useUser, useClerk, useSignIn } from '@clerk/clerk-react';
+import React, { createContext, useContext, Component } from 'react';
+import { ClerkProvider, useUser, useClerk } from '@clerk/clerk-react';
 
 const ClerkBridgeContext = createContext({
   isClerkAvailable: false,
@@ -7,19 +7,49 @@ const ClerkBridgeContext = createContext({
   isSignedIn: false,
   user: null,
   clerk: null,
-  signIn: null,
 });
+
+class ClerkErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.warn('Clerk initialization failed, falling back to local auth mode:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      const fallbackValue = {
+        isClerkAvailable: false,
+        isLoaded: true,
+        isSignedIn: false,
+        user: null,
+        clerk: null,
+      };
+      return (
+        <ClerkBridgeContext.Provider value={fallbackValue}>
+          {this.props.children}
+        </ClerkBridgeContext.Provider>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function ClerkInnerBridge({ children }) {
   const userResult = useUser();
   const clerk = useClerk();
-  const { signIn } = useSignIn();
 
   const value = {
     isClerkAvailable: true,
     ...userResult,
     clerk,
-    signIn,
   };
 
   return (
@@ -54,9 +84,11 @@ export function SkillBridgeClerkProvider({ publishableKey, children }) {
   }
 
   return (
-    <ClerkProvider publishableKey={publishableKey.trim()}>
-      <ClerkInnerBridge>{children}</ClerkInnerBridge>
-    </ClerkProvider>
+    <ClerkErrorBoundary>
+      <ClerkProvider publishableKey={publishableKey.trim()}>
+        <ClerkInnerBridge>{children}</ClerkInnerBridge>
+      </ClerkProvider>
+    </ClerkErrorBoundary>
   );
 }
 
