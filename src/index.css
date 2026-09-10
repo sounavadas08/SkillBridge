@@ -3,7 +3,18 @@
    ========================================================================== */
 
 :root {
+  /* Recruiter Portal Typography Families */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-ui: 'General Sans', system-ui, -apple-system, sans-serif;
+
   /* Brand Crimson Red & Vibrant Amber Palette (Light Mode) */
+  --recruiter-orange: #FF8100;
+  --recruiter-bg-light: #FCFCFC;
+  --recruiter-ink-light: #1A1712;
+  --recruiter-muted-light: #6B6459;
+  --recruiter-border-light: #E7E2D8;
+  --recruiter-surface-light: #F5F1E9;
+
   --crimson-red: #DC143C;
   --crimson-dark: #B91C1C;
   --crimson-soft: #FFE4E6;

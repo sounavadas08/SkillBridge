@@ -1,0 +1,252 @@
+/* ==========================================================================
+   Recruiter Portal Design System & Tokens
+   Academia-Industry Collaboration Platform (Figma Brief Spec)
+   ========================================================================== */
+
+.recruiter-portal-container {
+  --recruiter-font-display: 'Fraunces', Georgia, serif;
+  --recruiter-font-ui: 'General Sans', system-ui, -apple-system, sans-serif;
+
+  /* Light Theme (Default) */
+  --rp-orange: #FF8100;
+  --rp-bg: #FCFCFC;
+  --rp-ink: #1A1712;
+  --rp-muted: #6B6459;
+  --rp-hairline: #E7E2D8;
+  --rp-surface: #F5F1E9;
+  --rp-surface-hover: #EBE5D9;
+  --rp-seal-glow: rgba(255, 129, 0, 0.2);
+
+  font-family: var(--recruiter-font-ui);
+  background-color: var(--rp-bg);
+  color: var(--rp-ink);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.recruiter-portal-container[data-theme="dark"] {
+  /* Dark Theme */
+  --rp-orange: #B85A12;
+  --rp-bg: #000000;
+  --rp-ink: #F5F2EA;
+  --rp-muted: #8C8477;
+  --rp-hairline: #241C13;
+  --rp-surface: #120D08;
+  --rp-surface-hover: #1E1610;
+  --rp-seal-glow: rgba(184, 90, 18, 0.25);
+}
+
+/* Typography Hierarchy */
+.rp-display-xl {
+  font-family: var(--recruiter-font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: var(--rp-ink);
+}
+
+.rp-display-l {
+  font-family: var(--recruiter-font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--rp-ink);
+}
+
+.rp-heading {
+  font-family: var(--recruiter-font-display);
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--rp-ink);
+}
+
+.rp-body-l {
+  font-family: var(--recruiter-font-ui);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--rp-ink);
+  max-width: 72ch;
+}
+
+.rp-body {
+  font-family: var(--recruiter-font-ui);
+  font-size: 1rem;
+  line-height: 1.625;
+  color: var(--rp-ink);
+  max-width: 72ch;
+}
+
+.rp-meta {
+  font-family: var(--recruiter-font-ui);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--rp-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hairline Rules */
+.rp-hairline {
+  border: none;
+  border-bottom: 1px solid var(--rp-hairline);
+  margin: 0;
+  width: 100%;
+}
+
+.rp-hairline-right {
+  border-right: 1px solid var(--rp-hairline);
+}
+
+/* Verification Seal Motif */
+.rp-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 129, 0, 0.12);
+  border: 1.5px solid var(--rp-orange);
+  color: var(--rp-orange);
+  box-shadow: 0 0 12px var(--rp-seal-glow);
+  flex-shrink: 0;
+}
+
+/* Paper Card Surfaces */
+.rp-card {
+  background-color: var(--rp-surface);
+  border: 1px solid var(--rp-hairline);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.rp-card:hover {
+  border-color: var(--rp-orange);
+}
+
+/* Signal Orange Button */
+.rp-button-primary {
+  background-color: var(--rp-orange);
+  color: #FFFFFF;
+  font-family: var(--recruiter-font-ui);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 2px 8px var(--rp-seal-glow);
+}
+
+.rp-button-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.rp-button-secondary {
+  background-color: transparent;
+  color: var(--rp-ink);
+  font-family: var(--recruiter-font-ui);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--rp-hairline);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.rp-button-secondary:hover {
+  background-color: var(--rp-surface-hover);
+  border-color: var(--rp-orange);
+}
+
+/* Transcript Row Feed */
+.rp-transcript-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rp-hairline);
+  transition: background-color 0.15s ease;
+}
+
+.rp-transcript-row:hover {
+  background-color: rgba(255, 129, 0, 0.03);
+}
+
+/* Match Score Bar */
+.rp-match-bar-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--rp-hairline);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.rp-match-bar-fill {
+  height: 100%;
+  background-color: var(--rp-orange);
+  border-radius: 3px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Category Accent Ticks */
+.rp-tick-frontend { border-top: 3px solid #3B82F6; }
+.rp-tick-backend { border-top: 3px solid #10B981; }
+.rp-tick-data { border-top: 3px solid #8B5CF6; }
+.rp-tick-ai { border-top: 3px solid var(--rp-orange); }
+
+/* Ledger Calendar Slot */
+.rp-calendar-slot {
+  border: 1px dashed var(--rp-hairline);
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: var(--rp-surface);
+  transition: all 0.2s ease;
+}
+
+.rp-calendar-slot.active {
+  border-style: solid;
+  border-color: var(--rp-orange);
+  background-color: rgba(255, 129, 0, 0.05);
+}
+
+/* Navigation Sidebar Links */
+.rp-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  color: var(--rp-muted);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rp-nav-item:hover {
+  color: var(--rp-ink);
+  background-color: var(--rp-surface);
+}
+
+.rp-nav-item.active {
+  color: var(--rp-orange);
+  background-color: var(--rp-surface);
+  font-weight: 600;
+  border-left: 3px solid var(--rp-orange);
+}
