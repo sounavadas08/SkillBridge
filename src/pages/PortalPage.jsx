@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DashboardView } from '../components/login';
 import { useToast } from '../context/ToastContext';
 import { ROUTES, navigateTo, getCurrentUser, setCurrentUser, clearCurrentUser } from '../utils/navigation';
+import { useSafeClerk } from '../utils/clerkAuth';
 import '../App.css';
 
 const DEFAULT_STUDENT_USER = {
@@ -17,11 +18,40 @@ const DEFAULT_STUDENT_USER = {
 };
 
 export default function PortalPage() {
+  const { isClerkAvailable, isLoaded: isClerkLoaded, isSignedIn: isClerkSignedIn, user: clerkUser, clerk } = useSafeClerk();
   const [currentUser, setLocalUser] = useState(() => {
     const saved = getCurrentUser();
     return saved || DEFAULT_STUDENT_USER;
   });
   const { showToast } = useToast();
+
+  // Sync Clerk authenticated profile into dashboard user state
+  useEffect(() => {
+    if (isClerkAvailable && isClerkLoaded && isClerkSignedIn && clerkUser) {
+      const primaryEmail = clerkUser.primaryEmailAddress?.emailAddress || clerkUser.emailAddresses?.[0]?.emailAddress || '';
+      const fullName = clerkUser.fullName || `${clerkUser.firstName || ''} ${clerkUser.lastName || ''}`.trim() || primaryEmail.split('@')[0];
+      const avatarUrl = clerkUser.imageUrl || '';
+      const userRole = clerkUser.publicMetadata?.role || clerkUser.unsafeMetadata?.role || 'student';
+
+      const clerkSyncedProfile = {
+        id: clerkUser.id,
+        name: fullName,
+        email: primaryEmail,
+        role: userRole,
+        avatar: avatarUrl,
+        department: clerkUser.unsafeMetadata?.department || 'Computer Science Major',
+        organization: clerkUser.unsafeMetadata?.organization || 'Tech University',
+        grad_year: clerkUser.unsafeMetadata?.grad_year || '2026',
+        specialization: clerkUser.unsafeMetadata?.specialization || 'Software Engineering & AI Systems',
+        bio: clerkUser.unsafeMetadata?.bio || 'Verified Clerk SSO Account',
+        provider: 'clerk',
+        createdAt: clerkUser.createdAt ? new Date(clerkUser.createdAt).toLocaleDateString() : 'Recent'
+      };
+
+      setLocalUser(clerkSyncedProfile);
+      setCurrentUser(clerkSyncedProfile);
+    }
+  }, [isClerkAvailable, isClerkLoaded, isClerkSignedIn, clerkUser]);
 
   useEffect(() => {
     const syncProfileFromBackend = async () => {
@@ -42,8 +72,10 @@ export default function PortalPage() {
         // Backend offline
       }
     };
-    syncProfileFromBackend();
-  }, []);
+    if (!isClerkSignedIn) {
+      syncProfileFromBackend();
+    }
+  }, [isClerkSignedIn]);
 
   const handleUpdateUser = async (updatedData) => {
     const merged = { ...(currentUser || {}), ...updatedData };
@@ -61,7 +93,14 @@ export default function PortalPage() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    if (clerk && clerk.signOut) {
+      try {
+        await clerk.signOut();
+      } catch (e) {
+        console.warn('Clerk sign out error:', e);
+      }
+    }
     clearCurrentUser();
     showToast('You have been signed out successfully.', 'info');
     navigateTo(ROUTES.HOME);
@@ -82,3 +121,4 @@ export default function PortalPage() {
     </div>
   );
 }
+

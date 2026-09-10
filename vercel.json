@@ -1,0 +1,13 @@
+{
+  "framework": "vite",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/onboarding", "destination": "/onboarding.html" },
+    { "source": "/portal", "destination": "/portal.html" },
+    { "source": "/(.*)", "destination": "/$1" }
+  ]
+}
+

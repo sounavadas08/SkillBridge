@@ -6,4 +6,7 @@ dist/
 *.db
 backend/venv/
 backend/.env
+.env
+.env.*
+
 

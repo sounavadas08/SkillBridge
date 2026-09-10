@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LoginView } from '../components/login';
 import { useToast } from '../context/ToastContext';
 import { ROUTES, navigateTo, setCurrentUser } from '../utils/navigation';
+import { useSafeClerk } from '../utils/clerkAuth';
 import '../App.css';
 
 export default function LoginPage() {
   const { showToast } = useToast();
+  const { isClerkAvailable, isLoaded, isSignedIn, user } = useSafeClerk();
+
+  useEffect(() => {
+    if (isClerkAvailable && isLoaded && isSignedIn && user) {
+      showToast(`Signed in as ${user.primaryEmailAddress?.emailAddress || 'Clerk User'}`, 'success');
+      navigateTo(ROUTES.PORTAL);
+    }
+  }, [isClerkAvailable, isLoaded, isSignedIn, user]);
 
   const handleLoginSuccess = (userData) => {
     setCurrentUser(userData);
@@ -31,3 +40,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
