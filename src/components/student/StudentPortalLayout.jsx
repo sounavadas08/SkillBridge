@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   LayoutDashboard, 
   UserCircle2, 
@@ -18,6 +18,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { getPortalTab, setPortalTab } from '../../utils/navigation';
 import { CommandCenterView } from './views/CommandCenterView';
 import { SkillVaultView } from './views/SkillVaultView';
 import { SkillRadarView } from './views/SkillRadarView';
@@ -42,10 +43,29 @@ const NAV_ITEMS = [
 
 export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUser }) {
   const [collapsed, setCollapsed] = useState(false);
-  const [activeTab, setActiveTab] = useState('command-center');
+  const [activeTab, setActiveTab] = useState(() => getPortalTab('command-center'));
   const [showMentorDrawer, setShowMentorDrawer] = useState(false);
 
   const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    const handleHashOrPop = () => {
+      const currentHashTab = getPortalTab('command-center');
+      setActiveTab(currentHashTab);
+    };
+
+    window.addEventListener('hashchange', handleHashOrPop);
+    window.addEventListener('popstate', handleHashOrPop);
+    return () => {
+      window.removeEventListener('hashchange', handleHashOrPop);
+      window.removeEventListener('popstate', handleHashOrPop);
+    };
+  }, []);
+
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setPortalTab(tabId);
+  };
 
   return (
     <div className="student-portal-container flex h-screen w-full overflow-hidden bg-background text-foreground">
@@ -55,7 +75,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
         className="student-sidebar flex flex-col border-r border-border bg-card relative shrink-0 transition-all duration-300 z-20"
       >
         <div className="h-16 flex items-center px-4 border-b border-border shrink-0 justify-between">
-          <div className="flex items-center gap-3 overflow-hidden cursor-pointer" onClick={() => setActiveTab('command-center')}>
+          <div className="flex items-center gap-3 overflow-hidden cursor-pointer" onClick={() => handleTabChange('command-center')}>
             <GraduationCap className="size-8 text-primary shrink-0" />
             {!collapsed && (
               <span className="font-semibold text-lg tracking-tight whitespace-nowrap">
@@ -80,7 +100,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id)}
+                onClick={() => handleTabChange(item.id)}
                 className={`student-nav-item ${isActive ? 'active' : ''} ${collapsed ? 'justify-center px-0' : ''}`}
                 title={collapsed ? item.label : undefined}
               >
@@ -136,8 +156,8 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
       {/* Main Render Area */}
       <main className="student-main-content flex-1 overflow-y-auto">
         <div className="student-view-wrapper">
-          {activeTab === 'command-center' && <CommandCenterView user={user} onNavigateSection={(tab) => setActiveTab(tab)} />}
-          {activeTab === 'ai-mentor' && <AiMentorView user={user} onNavigateSection={(tab) => setActiveTab(tab)} />}
+          {activeTab === 'command-center' && <CommandCenterView user={user} onNavigateSection={handleTabChange} />}
+          {activeTab === 'ai-mentor' && <AiMentorView user={user} onNavigateSection={handleTabChange} />}
           {activeTab === 'skillvault' && <SkillVaultView user={user} onUpdateUser={onUpdateUser} />}
           {activeTab === 'radar' && <SkillRadarView />}
           {activeTab === 'resume' && <AiResumeView user={user} />}
@@ -152,7 +172,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
         <AiMentorDrawer 
           user={user} 
           onClose={() => setShowMentorDrawer(false)} 
-          onNavigateSection={(tab) => { setActiveTab(tab); setShowMentorDrawer(false); }} 
+          onNavigateSection={(tab) => { handleTabChange(tab); setShowMentorDrawer(false); }} 
         />
       )}
     </div>
