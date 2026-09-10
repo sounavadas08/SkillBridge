@@ -614,7 +614,7 @@ export function AiResumeView({ user }) {
                 {/* Print / Download PDF Button */}
                 <button
                   onClick={handleDownloadPdf}
-                  className="flex items-center gap-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg shadow-sm transition-all shrink-0"
+                  className="flex items-center gap-1.5 text-xs font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-3 py-1.5 rounded-lg shadow-sm transition-all shrink-0"
                   title="Download / Print Interview PDF"
                 >
                   <Printer size={14} /> Download PDF
