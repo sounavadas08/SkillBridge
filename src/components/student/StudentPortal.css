@@ -102,6 +102,248 @@
   margin: 0 auto;
 }
 
+/* ==========================================================================
+   Apple iOS Liquid Glass Design for Student Portal Headers
+   ========================================================================== */
+
+.student-sidebar-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.student-portal-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 252, 252, 0.68) 100%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  border-bottom: 1px solid rgba(220, 20, 60, 0.12);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), 0 8px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.student-portal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 20%, rgba(255, 129, 0, 0.45) 50%, rgba(255, 255, 255, 0.95) 80%, transparent 100%);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .student-portal-header,
+.dark .student-portal-header {
+  background: linear-gradient(180deg, rgba(16, 7, 9, 0.84) 0%, rgba(6, 3, 4, 0.72) 100%);
+  border-bottom: 1px solid rgba(225, 29, 72, 0.22);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 0 rgba(225, 29, 72, 0.15), 0 12px 36px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .student-portal-header::before,
+.dark .student-portal-header::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(225, 29, 72, 0.5) 20%, rgba(255, 255, 255, 0.3) 50%, rgba(184, 90, 18, 0.5) 80%, transparent 100%);
+}
+
+.student-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.student-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Apple iOS Pill Badge */
+.ios-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  background: rgba(220, 20, 60, 0.08);
+  border: 1px solid rgba(220, 20, 60, 0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 8px rgba(220, 20, 60, 0.06);
+}
+
+[data-theme="dark"] .ios-pill-badge,
+.dark .ios-pill-badge {
+  background: rgba(225, 29, 72, 0.16);
+  border-color: rgba(225, 29, 72, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.ios-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.ios-badge-text {
+  font-size: 0.825rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.ios-header-divider {
+  height: 16px;
+  width: 1px;
+  background: var(--border);
+}
+
+.ios-portal-title {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+
+/* Apple iOS Glass Action Pill Buttons */
+.ios-glass-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.04);
+  color: #000000;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .ios-glass-action-btn,
+.dark .ios-glass-action-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #FFFFFF;
+}
+
+.ios-glass-action-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 12px var(--crimson-glow);
+}
+
+.ios-glass-action-btn.theme-btn {
+  padding: 7px;
+  border-radius: 9999px;
+}
+
+/* Profile Chip */
+.ios-profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 9999px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(220, 20, 60, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .ios-profile-chip,
+.dark .ios-profile-chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(225, 29, 72, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ios-profile-chip:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.ios-profile-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--primary);
+}
+
+.ios-profile-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+/* Apple iOS Liquid Glass Card for Section / View Headers */
+.student-view-wrapper > div > header,
+.portal-liquid-header {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 252, 252, 0.62) 50%, rgba(255, 245, 240, 0.58) 100%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(220, 20, 60, 0.14) !important;
+  border-radius: 20px !important;
+  padding: 1.5rem 1.75rem !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), 0 8px 32px 0 rgba(220, 20, 60, 0.04) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="dark"] .student-view-wrapper > div > header,
+.dark .student-view-wrapper > div > header,
+[data-theme="dark"] .portal-liquid-header,
+.dark .portal-liquid-header {
+  background: linear-gradient(135deg, rgba(18, 8, 10, 0.82) 0%, rgba(8, 4, 5, 0.70) 50%, rgba(26, 9, 14, 0.75) 100%) !important;
+  border: 1px solid rgba(225, 29, 72, 0.22) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 0 rgba(225, 29, 72, 0.15), 0 12px 36px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Apple iOS Frosted Glass Pill Control */
+.ios-glass-pill {
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(220, 20, 60, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.04);
+  color: #000000;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .ios-glass-pill,
+.dark .ios-glass-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(225, 29, 72, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #FFFFFF;
+}
+
+.ios-glass-pill:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 12px var(--crimson-glow);
+}
+
 /* AI Mentor Drawer */
 .mentor-drawer {
   position: fixed;

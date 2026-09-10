@@ -67,6 +67,8 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
     setPortalTab(tabId);
   };
 
+  const currentTabItem = NAV_ITEMS.find((item) => item.id === activeTab);
+
   return (
     <div className="student-portal-container flex h-screen w-full overflow-hidden bg-background text-foreground">
       {/* Sidebar Navigation */}
@@ -74,7 +76,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
         style={{ width: collapsed ? '76px' : '270px' }}
         className="student-sidebar flex flex-col border-r border-border bg-card relative shrink-0 transition-all duration-300 z-20"
       >
-        <div className="h-16 flex items-center px-4 border-b border-border shrink-0 justify-between">
+        <div className="student-sidebar-header h-16 flex items-center px-4 shrink-0 justify-between">
           <div className="flex items-center gap-3 overflow-hidden cursor-pointer" onClick={() => handleTabChange('command-center')}>
             <GraduationCap className="size-8 text-primary shrink-0" />
             {!collapsed && (
@@ -127,7 +129,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
             className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-muted-foreground hover:bg-muted hover:text-foreground text-sm font-medium ${collapsed ? 'justify-center' : ''}`}
             title={collapsed ? (theme === 'dark' ? 'Light Mode' : 'Dark Mode') : undefined}
           >
-            {theme === 'dark' ? <Sun size={18} className="shrink-0 text-amber-400" /> : <Moon size={18} className="shrink-0" />}
+            {theme === 'dark' ? <Sun size={18} className="shrink-0 text-amber-400" /> : <Moon size={18} />}
             {!collapsed && <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
           </button>
 
@@ -153,19 +155,68 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
         </div>
       </aside>
 
-      {/* Main Render Area */}
-      <main className="student-main-content flex-1 overflow-y-auto">
-        <div className="student-view-wrapper">
-          {activeTab === 'command-center' && <CommandCenterView user={user} onNavigateSection={handleTabChange} />}
-          {activeTab === 'ai-mentor' && <AiMentorView user={user} onNavigateSection={handleTabChange} />}
-          {activeTab === 'skillvault' && <SkillVaultView user={user} onUpdateUser={onUpdateUser} />}
-          {activeTab === 'radar' && <SkillRadarView />}
-          {activeTab === 'resume' && <AiResumeView user={user} />}
-          {activeTab === 'opportunities' && <OpportunitiesView />}
-          {activeTab === 'mock-interviews' && <MockInterviewsView />}
-          {activeTab === 'trends' && <IndustryTrendsView />}
-        </div>
-      </main>
+      {/* Main Content Area with Apple iOS Liquid Glass Top Header */}
+      <div className="student-main-container flex-1 flex flex-col h-screen overflow-hidden">
+        {/* Apple iOS Liquid Glass Header Bar */}
+        <header className="student-portal-header shrink-0">
+          <div className="student-header-left">
+            <div className="ios-pill-badge">
+              <span className="ios-badge-dot" />
+              <span className="ios-badge-text">{currentTabItem?.label || 'Command Center'}</span>
+            </div>
+            <div className="ios-header-divider" />
+            <span className="ios-portal-title">SkillBridge Portal</span>
+          </div>
+
+          <div className="student-header-right">
+            <button
+              onClick={() => setShowMentorDrawer(true)}
+              className="ios-glass-action-btn mentor-btn"
+              title="Quick AI Mentor"
+            >
+              <MessageSquareText size={15} />
+              <span className="hidden sm:inline">AI Mentor</span>
+            </button>
+
+            <button
+              onClick={toggleTheme}
+              className="ios-glass-action-btn theme-btn"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} />}
+            </button>
+
+            {/* Profile Chip */}
+            <div 
+              className="ios-profile-chip" 
+              onClick={() => handleTabChange('skillvault')} 
+              title="View SkillVault Profile"
+            >
+              <img 
+                src={user?.avatar || "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=200&h=200&fit=crop&auto=format"} 
+                alt={user?.name || "Student"} 
+                className="ios-profile-avatar"
+              />
+              <span className="ios-profile-name hidden md:inline">{user?.name || user?.email?.split('@')[0] || 'Alex Chen'}</span>
+            </div>
+          </div>
+        </header>
+
+        {/* Main Render Area */}
+        <main className="student-main-content flex-1 overflow-y-auto">
+          <div className="student-view-wrapper">
+            {activeTab === 'command-center' && <CommandCenterView user={user} onNavigateSection={handleTabChange} />}
+            {activeTab === 'ai-mentor' && <AiMentorView user={user} onNavigateSection={handleTabChange} />}
+            {activeTab === 'skillvault' && <SkillVaultView user={user} onUpdateUser={onUpdateUser} />}
+            {activeTab === 'radar' && <SkillRadarView />}
+            {activeTab === 'resume' && <AiResumeView user={user} />}
+            {activeTab === 'opportunities' && <OpportunitiesView />}
+            {activeTab === 'mock-interviews' && <MockInterviewsView />}
+            {activeTab === 'trends' && <IndustryTrendsView />}
+          </div>
+        </main>
+      </div>
 
       {/* AI Mentor Drawer Overlay */}
       {showMentorDrawer && (

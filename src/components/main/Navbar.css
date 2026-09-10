@@ -2,21 +2,43 @@
    Navbar Component Styles
    ========================================================================== */
 
+/* ==========================================================================
+   Apple iOS Liquid Glass Navbar Component Styles
+   ========================================================================== */
+
 .navbar-header {
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(252, 252, 252, 0.94);
-  border-bottom: 1px solid var(--border-subtle);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  backdrop-filter: blur(12px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 252, 252, 0.68) 100%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  border-bottom: 1px solid rgba(220, 20, 60, 0.12);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 25%, rgba(255, 129, 0, 0.45) 50%, rgba(255, 255, 255, 0.95) 75%, transparent 100%);
+  pointer-events: none;
 }
 
 [data-theme="dark"] .navbar-header {
-  background-color: rgba(0, 0, 0, 0.92);
-  border-bottom-color: var(--border-subtle);
+  background: linear-gradient(180deg, rgba(16, 7, 9, 0.84) 0%, rgba(6, 3, 4, 0.72) 100%);
+  border-bottom: 1px solid rgba(225, 29, 72, 0.22);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 0 rgba(225, 29, 72, 0.15), 0 12px 36px 0 rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .navbar-header::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(225, 29, 72, 0.5) 25%, rgba(255, 255, 255, 0.35) 50%, rgba(184, 90, 18, 0.5) 75%, transparent 100%);
 }
 
 .navbar-container {
@@ -39,17 +61,17 @@
   width: 36px;
   height: 36px;
   background: linear-gradient(135deg, #DC143C 0%, #FF8100 100%);
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 10px rgba(220, 20, 60, 0.3);
-  transition: transform 0.2s ease;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 2px 10px rgba(220, 20, 60, 0.3);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] .brand-icon {
   background: linear-gradient(135deg, #E11D48 0%, #B85A12 100%);
-  box-shadow: 0 2px 12px rgba(225, 29, 72, 0.4);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 2px 12px rgba(225, 29, 72, 0.4);
 }
 
 .brand-icon span {
@@ -61,7 +83,7 @@
 }
 
 .brand-logo:hover .brand-icon {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .brand-text {
@@ -77,20 +99,33 @@
   color: #FFFFFF;
 }
 
-/* Desktop Navigation */
+/* Desktop Navigation - Apple iOS Liquid Glass Pills */
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 8px;
+  padding: 4px 6px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+[data-theme="dark"] .desktop-nav {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .nav-link {
-  font-size: 0.9375rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #000000;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  padding: 6px 0;
+  padding: 7px 16px;
+  border-radius: 9999px;
+  letter-spacing: -0.01em;
 }
 
 [data-theme="dark"] .nav-link {
@@ -99,35 +134,56 @@
 
 .nav-link:hover {
   color: var(--crimson-red);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="dark"] .nav-link:hover {
   color: #FDA4AF;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* Actions & Buttons */
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
+/* Apple iOS Frosted Glass Theme Toggle */
 .theme-toggle-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-full);
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 10px rgba(0, 0, 0, 0.05);
+  color: #000000;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 4px 14px rgba(0, 0, 0, 0.4);
+  color: #FFFFFF;
 }
 
 .theme-toggle-btn:hover {
   border-color: var(--crimson-red);
-  transform: rotate(15deg);
+  transform: scale(1.06) rotate(15deg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 16px rgba(220, 20, 60, 0.25);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+  border-color: #E11D48;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 18px rgba(225, 29, 72, 0.4);
 }
 
 .theme-icon {
@@ -135,60 +191,72 @@
   height: 18px;
 }
 
+/* Apple iOS Frosted Glass Sign In Pill */
 .nav-btn-signin {
-  font-size: 0.9375rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #000000;
   padding: 8px 18px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background: transparent;
-  transition: all 0.2s ease;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] .nav-btn-signin {
   color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .nav-btn-signin:hover {
   border-color: #DC143C;
   color: #DC143C;
-  background: rgba(220, 20, 60, 0.05);
+  background: rgba(220, 20, 60, 0.08);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 14px rgba(220, 20, 60, 0.18);
 }
 
 [data-theme="dark"] .nav-btn-signin:hover {
   border-color: #E11D48;
   color: #FFFFFF;
-  background: rgba(225, 29, 72, 0.15);
+  background: rgba(225, 29, 72, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(225, 29, 72, 0.35);
 }
 
+/* Apple iOS Liquid Glass CTA Pill */
 .nav-btn-getstarted {
-  font-size: 0.9375rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #ffffff;
   background: linear-gradient(135deg, #DC143C 0%, #FF8100 100%);
   padding: 9px 20px;
-  border-radius: var(--radius-sm);
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 10px rgba(220, 20, 60, 0.25);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 3px 12px rgba(220, 20, 60, 0.3);
 }
 
 .nav-btn-getstarted:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(220, 20, 60, 0.35);
+  filter: brightness(1.08);
+  transform: translateY(-1.5px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 6px 20px rgba(220, 20, 60, 0.45);
 }
 
 [data-theme="dark"] .nav-btn-getstarted {
   background: linear-gradient(135deg, #E11D48 0%, #B85A12 100%);
   color: #FFFFFF;
-  box-shadow: 0 2px 12px rgba(225, 29, 72, 0.35);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 3px 14px rgba(225, 29, 72, 0.4);
 }
 
 [data-theme="dark"] .nav-btn-getstarted:hover {
-  filter: brightness(1.08);
-  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.5);
+  filter: brightness(1.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 22px rgba(225, 29, 72, 0.55);
 }
 
 /* Mobile Navigation */
@@ -196,15 +264,26 @@
   display: none;
   flex-direction: column;
   gap: 5px;
-  width: 32px;
-  height: 32px;
-  padding: 4px;
+  width: 38px;
+  height: 38px;
+  padding: 6px;
   justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .mobile-hamburger {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .mobile-hamburger .bar {
   display: block;
-  width: 100%;
+  width: 18px;
   height: 2px;
   background-color: var(--text-primary);
   border-radius: 2px;
@@ -213,30 +292,57 @@
 
 .mobile-drawer {
   display: none;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(252, 252, 252, 0.85) 100%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  backdrop-filter: blur(28px) saturate(190%);
+  border-bottom: 1px solid rgba(220, 20, 60, 0.12);
   padding: 20px 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .mobile-drawer {
+  background: linear-gradient(180deg, rgba(16, 7, 9, 0.92) 0%, rgba(6, 3, 4, 0.88) 100%);
+  border-bottom-color: rgba(225, 29, 72, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 16px 36px rgba(0, 0, 0, 0.7);
 }
 
 .mobile-nav {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .mobile-link {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .mobile-link {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-link:hover {
+  background: rgba(220, 20, 60, 0.08);
+  color: var(--crimson-red);
+}
+
+[data-theme="dark"] .mobile-link:hover {
+  background: rgba(225, 29, 72, 0.18);
+  color: #FDA4AF;
 }
 
 .mobile-auth-actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .w-full {
@@ -259,3 +365,4 @@
     display: block;
   }
 }
+

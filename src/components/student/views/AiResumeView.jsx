@@ -325,10 +325,10 @@ export function AiResumeView({ user }) {
   return (
     <div className="space-y-6 pb-12 transition-all duration-300">
       {/* Header */}
-      <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
+      <header className="portal-liquid-header flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+            <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20 backdrop-blur-md shadow-xs">
               <Sparkles size={24} />
             </div>
             <h1 className="text-3xl font-bold tracking-tight">Smart CV Architect</h1>
@@ -340,7 +340,7 @@ export function AiResumeView({ user }) {
 
         <button
           onClick={handleFillSampleData}
-          className="flex items-center gap-2 text-xs font-medium bg-muted hover:bg-muted/80 text-foreground px-3.5 py-2 rounded-lg border border-border transition-colors shrink-0"
+          className="ios-glass-pill flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all shrink-0"
         >
           <RotateCcw size={14} /> Fill Sample Data
         </button>
