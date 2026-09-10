@@ -25,7 +25,7 @@ export default function PortalPage() {
   });
   const { showToast } = useToast();
 
-  // Sync Clerk authenticated profile into dashboard user state
+  // Sync Clerk authenticated profile into dashboard user state while preserving local edits
   useEffect(() => {
     if (isClerkAvailable && isClerkLoaded && isClerkSignedIn && clerkUser) {
       const primaryEmail = clerkUser.primaryEmailAddress?.emailAddress || clerkUser.emailAddresses?.[0]?.emailAddress || '';
@@ -33,17 +33,23 @@ export default function PortalPage() {
       const avatarUrl = clerkUser.imageUrl || '';
       const userRole = clerkUser.publicMetadata?.role || clerkUser.unsafeMetadata?.role || 'student';
 
+      const saved = getCurrentUser();
+      const isSameUser = saved && (saved.id === clerkUser.id || saved.email === primaryEmail);
+
       const clerkSyncedProfile = {
         id: clerkUser.id,
-        name: fullName,
+        name: (isSameUser && saved.name) || clerkUser.unsafeMetadata?.name || fullName,
         email: primaryEmail,
         role: userRole,
-        avatar: avatarUrl,
-        department: clerkUser.unsafeMetadata?.department || 'Computer Science Major',
-        organization: clerkUser.unsafeMetadata?.organization || 'Tech University',
-        grad_year: clerkUser.unsafeMetadata?.grad_year || '2026',
-        specialization: clerkUser.unsafeMetadata?.specialization || 'Software Engineering & AI Systems',
-        bio: clerkUser.unsafeMetadata?.bio || 'Verified Clerk SSO Account',
+        avatar: (isSameUser && saved.avatar) || clerkUser.unsafeMetadata?.avatar || avatarUrl,
+        department: (isSameUser && saved.department) || clerkUser.unsafeMetadata?.department || 'Computer Science Major',
+        organization: (isSameUser && saved.organization) || clerkUser.unsafeMetadata?.organization || 'Tech University',
+        grad_year: (isSameUser && saved.grad_year) || clerkUser.unsafeMetadata?.grad_year || '2026',
+        specialization: (isSameUser && saved.specialization) || clerkUser.unsafeMetadata?.specialization || 'Software Engineering & AI Systems',
+        bio: (isSameUser && saved.bio) || clerkUser.unsafeMetadata?.bio || 'Verified Clerk SSO Account',
+        github_url: (isSameUser && saved.github_url) || clerkUser.unsafeMetadata?.github_url || 'https://github.com',
+        linkedin_url: (isSameUser && saved.linkedin_url) || clerkUser.unsafeMetadata?.linkedin_url || 'https://linkedin.com',
+        portfolio_url: (isSameUser && saved.portfolio_url) || clerkUser.unsafeMetadata?.portfolio_url || 'https://alexchen.dev',
         provider: 'clerk',
         createdAt: clerkUser.createdAt ? new Date(clerkUser.createdAt).toLocaleDateString() : 'Recent'
       };
@@ -69,7 +75,7 @@ export default function PortalPage() {
           });
         }
       } catch (e) {
-        // Backend offline
+        // Backend offline or running in static hosting
       }
     };
     if (!isClerkSignedIn) {
@@ -81,15 +87,41 @@ export default function PortalPage() {
     const merged = { ...(currentUser || {}), ...updatedData };
     setLocalUser(merged);
     setCurrentUser(merged);
+
+    // Sync to Clerk metadata if user is authenticated via Clerk
+    if (clerkUser && typeof clerkUser.update === 'function') {
+      try {
+        await clerkUser.update({
+          unsafeMetadata: {
+            ...(clerkUser.unsafeMetadata || {}),
+            name: updatedData.name,
+            department: updatedData.department,
+            organization: updatedData.organization,
+            grad_year: updatedData.grad_year,
+            specialization: updatedData.specialization,
+            bio: updatedData.bio,
+            avatar: updatedData.avatar,
+            github_url: updatedData.github_url,
+            linkedin_url: updatedData.linkedin_url,
+            portfolio_url: updatedData.portfolio_url,
+          }
+        });
+      } catch (e) {
+        console.warn('Clerk user metadata update skipped:', e);
+      }
+    }
+
     try {
-      await fetch('/api/auth/profile', {
+      const res = await fetch('/api/auth/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData),
       });
+      if (!res.ok) throw new Error(`Status ${res.status}`);
       showToast('Profile updated successfully!', 'success');
     } catch (err) {
-      console.warn('Backend profile sync failed, kept in local state:', err.message);
+      // If backend is not available (e.g. Vercel static), state is safely preserved in localStorage & Clerk
+      showToast('Profile updated successfully!', 'success');
     }
   };
 

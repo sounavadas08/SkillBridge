@@ -9,7 +9,8 @@ import {
   Sparkles, 
   RotateCcw,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  FileText
 } from 'lucide-react';
 
 const GithubIcon = ({ size = 16, className = "" }) => (

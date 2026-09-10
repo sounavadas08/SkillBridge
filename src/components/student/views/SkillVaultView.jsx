@@ -91,7 +91,6 @@ export function SkillVaultView({ user, onUpdateUser }) {
   const handleSaveProfile = async (formData) => {
     if (onUpdateUser) {
       await onUpdateUser({ ...user, ...formData });
-      showToast('Profile details updated successfully!', 'success');
     }
   };
 
