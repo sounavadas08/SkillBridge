@@ -255,25 +255,23 @@ export async function sendMentorMessage({ user, conversationHistory, newMessage 
 
   let responseText = '';
 
-  // 1. Try Gemini API if key is present
-  if (apiKey) {
+  // 1. Primary Engine: SkillBridge FastAPI Backend with Cloudflare Workers AI
+  try {
+    responseText = await callBackendCloudflareAi({ user, conversationHistory, newMessage });
+  } catch (err) {
+    console.warn("Backend Cloudflare AI call failed, checking alternatives:", err.message);
+  }
+
+  // 2. Optional user Gemini API key fallback
+  if (!responseText && apiKey) {
     try {
       responseText = await callGeminiApi({ apiKey, systemContextPrompt, conversationHistory, newMessage });
     } catch (err) {
-      console.warn("Gemini API call failed, falling back to Puter Live AI Engine:", err.message);
+      console.warn("Gemini API call failed:", err.message);
     }
   }
 
-  // 2. Try Puter.js Live LLM Engine
-  if (!responseText) {
-    try {
-      responseText = await callPuterAi({ systemContextPrompt, conversationHistory, newMessage });
-    } catch (err) {
-      console.warn("Puter AI Engine unavailable, using Dynamic Knowledge Synthesizer:", err.message);
-    }
-  }
-
-  // 3. Dynamic Knowledge Synthesizer fallback
+  // 3. Dynamic Knowledge Synthesizer fallback if offline
   if (!responseText) {
     await new Promise(res => setTimeout(res, 600));
     responseText = generateDynamicSynthesizerResponse({ user, promptText: newMessage });
@@ -288,7 +286,7 @@ export async function sendMentorMessage({ user, conversationHistory, newMessage 
 }
 
 /**
- * Direct HTTP API call to Google Gemini API
+ * Direct HTTP API call to Google Gemini API (optional user key)
  */
 async function callGeminiApi({ apiKey, systemContextPrompt, conversationHistory, newMessage }) {
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
@@ -342,38 +340,42 @@ async function callGeminiApi({ apiKey, systemContextPrompt, conversationHistory,
 }
 
 /**
- * Calls Puter.js client-side AI engine (Free, unlimited live LLM)
+ * Calls SkillBridge FastAPI Backend with Cloudflare Workers AI
  */
-async function callPuterAi({ systemContextPrompt, conversationHistory, newMessage }) {
-  if (typeof window === 'undefined' || !window.puter?.ai?.chat) {
-    throw new Error('Puter AI engine not loaded in window scope');
+async function callBackendCloudflareAi({ user, conversationHistory, newMessage }) {
+  const formattedMessages = conversationHistory.map(msg => ({
+    role: msg.sender === 'user' ? 'user' : 'assistant',
+    content: msg.text
+  }));
+  formattedMessages.push({ role: 'user', content: newMessage });
+
+  const payload = {
+    messages: formattedMessages,
+    student_profile: {
+      name: user?.name || user?.email?.split('@')[0] || 'Alex Chen',
+      major: user?.major || 'B.S. in Computer Science',
+      skills: user?.skills || ['React', 'Node.js', 'Python'],
+      target_role: user?.targetRole || 'Cloud Infrastructure Engineer'
+    }
+  };
+
+  const response = await fetch('/api/ai/mentor/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Backend AI returned HTTP ${response.status}: ${errText}`);
   }
 
-  const fullPrompt = `${systemContextPrompt}
-
-Task: Respond to the student's question directly, precisely, and constructively.
-Format your answer cleanly using Markdown (use bold text, bullet points, and code blocks where applicable).
-
-Student Question:
-"${newMessage}"`;
-
-  const response = await window.puter.ai.chat(fullPrompt, { model: 'gpt-4o-mini' });
-
-  if (typeof response === 'string' && response.trim()) {
-    return response.trim();
-  }
-  if (response?.text && typeof response.text === 'string') {
-    return response.text.trim();
-  }
-  if (response?.message?.content) {
-    return response.message.content.trim();
-  }
-  if (typeof response === 'object' && response.toString) {
-    const str = response.toString();
-    if (str && str !== '[object Object]') return str;
+  const data = await response.json();
+  if (data?.reply && typeof data.reply === 'string') {
+    return data.reply.trim();
   }
 
-  throw new Error('Invalid or empty response from Puter AI engine');
+  throw new Error('Invalid or empty response from Backend Cloudflare AI');
 }
 
 /**

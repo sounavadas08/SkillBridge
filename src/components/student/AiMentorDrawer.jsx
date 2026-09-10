@@ -189,7 +189,7 @@ export function AiMentorDrawer({ user, onClose, onNavigateSection }) {
             <div className="flex items-center gap-1.5">
               <h3 className="font-semibold text-sm">SkillBridge AI Mentor</h3>
               <span className="px-1.5 py-0.2 bg-primary/10 text-primary text-[9px] font-medium rounded-full">
-                {activeKey ? 'Live Gemini AI' : 'Smart Offline'}
+                Cloudflare AI
               </span>
             </div>
             <p className="text-[10px] text-muted-foreground">Context-Aware Career Guide</p>

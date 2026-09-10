@@ -89,7 +89,7 @@ export function AiMentorView({ user, onNavigateSection }) {
         {
           id: Date.now() + 1,
           sender: 'ai',
-          text: `⚠️ *Connection issue encountered.* Please check your network or Gemini API key settings.`,
+          text: ` *Connection issue encountered.* Please check your network or Gemini API key settings.`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }
       ]);
@@ -186,7 +186,7 @@ export function AiMentorView({ user, onNavigateSection }) {
                 <Sparkles size={13} /> AI Career Coach
               </span>
               <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-medium border border-emerald-500/20">
-                {activeKey ? 'Live Gemini Engine' : 'Smart Offline Fallback Mode'}
+                Live Cloudflare AI (Llama 3.1)
               </span>
             </div>
             <h1 className="text-3xl font-semibold tracking-tight">AI Mentor Studio</h1>
