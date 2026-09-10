@@ -5,13 +5,16 @@ import '../index.css';
 import '../utils/liquidGlass3D';
 import { ThemeProvider } from '../context/ThemeContext';
 import { ToastProvider } from '../context/ToastContext';
+import { SkillBridgeClerkProvider } from '../utils/clerkAuth';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <ToastProvider>
-        <PortalPage />
-      </ToastProvider>
-    </ThemeProvider>
+    <SkillBridgeClerkProvider>
+      <ThemeProvider>
+        <ToastProvider>
+          <PortalPage />
+        </ToastProvider>
+      </ThemeProvider>
+    </SkillBridgeClerkProvider>
   </React.StrictMode>
 );

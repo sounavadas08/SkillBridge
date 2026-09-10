@@ -59,13 +59,20 @@ function ClerkInnerBridge({ children }) {
   );
 }
 
-export function SkillBridgeClerkProvider({ publishableKey, children }) {
+export const DEFAULT_CLERK_KEY = 'pk_test_aW50ZXJuYWwtbWFrby01MTY3LmNsZXJrLmFjY291bnRzLmRldiQ';
+
+export const CLERK_PUBLISHABLE_KEY =
+  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_CLERK_PUBLISHABLE_KEY) ||
+  DEFAULT_CLERK_KEY;
+
+export function SkillBridgeClerkProvider({ publishableKey = CLERK_PUBLISHABLE_KEY, children }) {
+  const resolvedKey = (publishableKey || CLERK_PUBLISHABLE_KEY || '').trim();
   const isValidKey = Boolean(
-    publishableKey &&
-    typeof publishableKey === 'string' &&
-    publishableKey.trim().startsWith('pk_') &&
-    !publishableKey.includes('sample') &&
-    !publishableKey.includes('replace_with_yours')
+    resolvedKey &&
+    typeof resolvedKey === 'string' &&
+    resolvedKey.startsWith('pk_') &&
+    !resolvedKey.includes('sample') &&
+    !resolvedKey.includes('replace_with_yours')
   );
 
   if (!isValidKey) {
@@ -85,7 +92,7 @@ export function SkillBridgeClerkProvider({ publishableKey, children }) {
 
   return (
     <ClerkErrorBoundary>
-      <ClerkProvider publishableKey={publishableKey.trim()}>
+      <ClerkProvider publishableKey={resolvedKey}>
         <ClerkInnerBridge>{children}</ClerkInnerBridge>
       </ClerkProvider>
     </ClerkErrorBoundary>

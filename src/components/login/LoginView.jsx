@@ -88,6 +88,10 @@ export default function LoginView({ onLogin, onNewUser, onBackHome }) {
           <div className="clerk-auth-container" style={{ margin: '1rem 0' }}>
             <SignIn
               routing="hash"
+              fallbackRedirectUrl="/portal.html"
+              forceRedirectUrl="/portal.html"
+              signUpFallbackRedirectUrl="/onboarding.html"
+              signUpForceRedirectUrl="/onboarding.html"
               appearance={{
                 elements: {
                   card: { background: 'transparent', boxShadow: 'none', padding: 0 },

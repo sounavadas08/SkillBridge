@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ClerkProvider, AuthenticateWithRedirectCallback } from '@clerk/clerk-react';
+import { CLERK_PUBLISHABLE_KEY } from '../utils/clerkAuth';
 import '../index.css';
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-
 function SSOCallbackPage() {
-  // Clerk's built-in component reads the OAuth tokens from the URL,
-  // finalises the session, then redirects to redirectUrlComplete.
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
       <div style={{
         display: 'flex',
         alignItems: 'center',
