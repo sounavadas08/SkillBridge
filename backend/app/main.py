@@ -25,3 +25,7 @@ async def health_check():
         "service": "SkillBridge API",
         "model": settings.cloudflare_model
     }
+
+from app.routers import ai
+app.include_router(ai.router)
+
