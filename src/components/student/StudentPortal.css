@@ -3,28 +3,30 @@
    ========================================================================== */
 
 .student-portal-container {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
+  --background: #FCFCFC;
+  --foreground: #000000;
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+  --primary: #DC143C;
+  --primary-gradient: linear-gradient(135deg, #DC143C 0%, #FF8100 100%);
+  --primary-foreground: #FFFFFF;
+  --muted: #FFF8F6;
+  --muted-foreground: #4B5563;
+  --border: rgba(220, 20, 60, 0.14);
 }
 
 [data-theme='dark'] .student-portal-container,
 .dark .student-portal-container {
-  --background: #090d16;
-  --foreground: #f3f4f6;
-  --card: #111827;
-  --card-foreground: #f3f4f6;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --muted: #1f2937;
-  --muted-foreground: #9ca3af;
-  --border: #1f2937;
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --card: #0A0606;
+  --card-foreground: #FFFFFF;
+  --primary: #E11D48;
+  --primary-gradient: linear-gradient(135deg, #E11D48 0%, #B85A12 100%);
+  --primary-foreground: #FFFFFF;
+  --muted: #140D0A;
+  --muted-foreground: #9CA3AF;
+  --border: rgba(225, 29, 72, 0.25);
 }
 
 /* Base Portal Container */
@@ -69,15 +71,21 @@
 }
 
 .student-nav-item:hover {
-  background: rgba(37, 99, 235, 0.08);
+  background: rgba(220, 20, 60, 0.08);
   color: var(--primary);
 }
 
 .student-nav-item.active {
-  background: rgba(37, 99, 235, 0.12);
-  color: var(--primary);
-  border-color: rgba(37, 99, 235, 0.3);
-  font-weight: 600;
+  background: linear-gradient(135deg, rgba(220, 20, 60, 0.12) 0%, rgba(255, 129, 0, 0.12) 100%);
+  color: #DC143C;
+  border-color: rgba(220, 20, 60, 0.3);
+  font-weight: 700;
+}
+
+[data-theme='dark'] .student-nav-item.active {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.2) 0%, rgba(184, 90, 18, 0.2) 100%);
+  color: #FFFFFF;
+  border-color: rgba(225, 29, 72, 0.45);
 }
 
 /* Main Content Wrapper */
@@ -103,7 +111,7 @@
   width: 380px;
   background: var(--card);
   border-left: 1px solid var(--border);
-  box-shadow: -4px 0 25px rgba(0, 0, 0, 0.15);
+  box-shadow: -4px 0 25px rgba(0, 0, 0, 0.2);
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -117,16 +125,21 @@
 .student-portal-container .border-border { border-color: var(--border) !important; }
 .student-portal-container .bg-muted { background-color: var(--muted) !important; }
 .student-portal-container .text-muted-foreground { color: var(--muted-foreground) !important; }
-.student-portal-container .bg-primary { background-color: var(--primary) !important; }
+.student-portal-container .bg-primary { 
+  background: var(--primary-gradient) !important; 
+  color: #FFFFFF !important;
+}
 .student-portal-container .text-primary { color: var(--primary) !important; }
 .student-portal-container .text-primary-foreground { color: var(--primary-foreground) !important; }
 
-.student-portal-container .bg-primary\/10 { background-color: rgba(37, 99, 235, 0.1) !important; }
-.student-portal-container .bg-primary\/5 { background-color: rgba(37, 99, 235, 0.05) !important; }
-.student-portal-container .border-primary\/20 { border-color: rgba(37, 99, 235, 0.2) !important; }
-.student-portal-container .border-primary\/40 { border-color: rgba(37, 99, 235, 0.4) !important; }
-.student-portal-container .hover\:border-primary\/50:hover { border-color: rgba(37, 99, 235, 0.5) !important; }
-.student-portal-container .hover\:bg-primary\/90:hover { background-color: rgba(37, 99, 235, 0.9) !important; }
+.student-portal-container .bg-primary\/10 { background-color: rgba(220, 20, 60, 0.1) !important; }
+.student-portal-container .bg-primary\/5 { background-color: rgba(220, 20, 60, 0.05) !important; }
+.student-portal-container .border-primary\/20 { border-color: rgba(220, 20, 60, 0.2) !important; }
+.student-portal-container .border-primary\/40 { border-color: rgba(220, 20, 60, 0.4) !important; }
+.student-portal-container .hover\:border-primary\/50:hover { border-color: rgba(220, 20, 60, 0.5) !important; }
+.student-portal-container .hover\:bg-primary\/90:hover { 
+  opacity: 0.92 !important;
+}
 
 /* Dimension Utilities */
 .student-portal-container .size-2 { width: 0.5rem; height: 0.5rem; }

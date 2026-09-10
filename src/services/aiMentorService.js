@@ -279,7 +279,7 @@ export async function sendMentorMessage({ user, conversationHistory, newMessage 
 
   // Append benchmark notification if a role was detected
   if (detectedRole) {
-    responseText += `\n\n🎯 **New Target Benchmark Added!**\n*${detectedRole.roleTitle}* is now available in your **Skill-Gap Radar** target role benchmark options!`;
+    responseText += `\n\n**New Target Benchmark Added!**\n*${detectedRole.roleTitle}* is now available in your **Skill-Gap Radar** target role benchmark options!`;
   }
 
   return responseText;
@@ -389,15 +389,15 @@ function generateDynamicSynthesizerResponse({ user, promptText }) {
 
   // 1. Greetings & Conversational
   if (lower.match(/^(hi|hello|hey|greetings|who are you|what can you do)/i)) {
-    return `Hello **${name}**! 👋 I am your **SkillBridge AI Mentor**.
+    return `Hello **${name}**! I am your **SkillBridge AI Mentor**.
 
 I am connected to your verified skills (React, Node.js, JavaScript) and your current target role.
 
 **How I can assist you right now**:
-- 🚀 **Technical Concepts**: Ask me to explain any technology, framework, algorithm, or system design concept.
-- 🎯 **Skill-Gap Strategy**: Identify exact missing competencies to target.
-- 📝 **Resume & Portfolio**: Review project bullets or suggest high-impact architecture ideas.
-- 🎙️ **Interview Preparation**: Practice technical or behavioral interview questions.
+- **Technical Concepts**: Ask me to explain any technology, framework, algorithm, or system design concept.
+- **Skill-Gap Strategy**: Identify exact missing competencies to target.
+- **Resume & Portfolio**: Review project bullets or suggest high-impact architecture ideas.
+- **Interview Preparation**: Practice technical or behavioral interview questions.
 
 What topic or question would you like to dive into?`;
   }
@@ -406,7 +406,7 @@ What topic or question would you like to dive into?`;
   const techMatch = query.match(/(?:what is|explain|how does|difference between|how to use|define|tell me about|understand)\s+(.+)/i);
   if (techMatch || lower.includes('react') || lower.includes('javascript') || lower.includes('typescript') || lower.includes('node') || lower.includes('docker') || lower.includes('redux') || lower.includes('sql') || lower.includes('api') || lower.includes('java') || lower.includes('python')) {
     const topic = techMatch ? techMatch[1].replace(/\?$/, '').trim() : query;
-    return `### 📘 Technical Breakdown: ${topic}
+    return `### Technical Breakdown: ${topic}
 
 Here is a clear, structured guide to understanding **${topic}**:
 
@@ -414,9 +414,9 @@ Here is a clear, structured guide to understanding **${topic}**:
 **${topic}** is a critical software engineering concept. In modern web development, understanding its core principles helps build scalable, maintainable applications.
 
 #### 2. Key Architecture & Principles
-- ⚡ **Efficiency**: Reduces unnecessary computational overhead and improves performance.
-- 🔒 **Reliability**: Promotes clean separation of concerns and maintainable code architecture.
-- 🛠️ **Developer Experience**: Standardizes patterns across engineering teams.
+- **Efficiency**: Reduces unnecessary computational overhead and improves performance.
+- **Reliability**: Promotes clean separation of concerns and maintainable code architecture.
+- **Developer Experience**: Standardizes patterns across engineering teams.
 
 #### 3. Practical Code Example
 \`\`\`javascript
@@ -435,45 +435,45 @@ Would you like to explore advanced usage patterns or mock interview questions re
 
   // 3. Roadmap / 30-Day Plan Queries
   if (lower.includes('roadmap') || lower.includes('30-day') || lower.includes('plan') || lower.includes('schedule')) {
-    return `### 🚀 30-Day Career Transition Roadmap for ${name}
+    return `### 30-Day Career Transition Roadmap for ${name}
 
 Here is your customized step-by-step milestone plan:
 
-#### 📅 Week 1: Master Type Safety & TypeScript Generics
+#### Week 1: Master Type Safety & TypeScript Generics
 - **Goal**: Upgrade JavaScript fundamentals to static typing.
 - **Action**: Build 3 custom generic utility types and refactor a React hook.
 
-#### 📅 Week 2: Security & Authentication Systems
+#### Week 2: Security & Authentication Systems
 - **Goal**: Close your gap in **System Security & Auth**.
 - **Action**: Implement JWT authentication, OAuth 2.0 flow, and HTTP-only cookies in Node.js/Express.
 
-#### 📅 Week 3: Containerization & Cloud Deployment
+#### Week 3: Containerization & Cloud Deployment
 - **Goal**: Address your **Docker & Deployment** gap.
 - **Action**: Create a \`docker-compose.yml\` file for a React + Express + DB stack and deploy it online.
 
-#### 📅 Week 4: Automated Testing & Portfolio Polish
+#### Week 4: Automated Testing & Portfolio Polish
 - **Goal**: Achieve production readiness.
 - **Action**: Write unit & integration tests using Jest and Playwright. Publish portfolio repository to GitHub!`;
   }
 
   // 4. Resume & Bullet Point Queries
   if (lower.includes('resume') || lower.includes('bullet') || lower.includes('rewrite') || lower.includes('cv')) {
-    return `### 📝 Quantified Resume Bullet Transformations for ${name}
+    return `### Quantified Resume Bullet Transformations for ${name}
 
 Here is how to rewrite your project descriptions into **impact-driven achievements**:
 
-❌ **Weak**: *"Created a frontend application using React and Tailwind CSS."*
-✅ **Strong**: *"Engineered a responsive React & Tailwind dashboard serving 1,200+ active users, improving FCP load times by 38%."*
+**Before (Unquantified)**: *"Created a frontend application using React and Tailwind CSS."*
+**After (High-Impact)**: *"Engineered a responsive React & Tailwind dashboard serving 1,200+ active users, improving FCP load times by 38%."*
 
-❌ **Weak**: *"Handled user authentication and APIs."*
-✅ **Strong**: *"Architected secure JWT & OAuth2 auth pipelines in Node.js, eliminating unauthorized token vulnerabilities."*
+**Before (Unquantified)**: *"Handled user authentication and APIs."*
+**After (High-Impact)**: *"Architected secure JWT & OAuth2 auth pipelines in Node.js, eliminating unauthorized token vulnerabilities."*
 
-💡 **Pro Tip**: Use the **AI Resume Architect** tab in the student portal sidebar to run an automated ATS scan on your resume!`;
+**Pro Tip**: Use the **AI Resume Architect** tab in the student portal sidebar to run an automated ATS scan on your resume!`;
   }
 
   // 5. Interview Prep Queries
   if (lower.includes('interview') || lower.includes('question') || lower.includes('mock') || lower.includes('prep')) {
-    return `### 🎙️ Technical Interview Preparation for ${name}
+    return `### Technical Interview Preparation for ${name}
 
 Here are 3 high-frequency technical interview questions tailored to your profile:
 
@@ -486,19 +486,19 @@ Here are 3 high-frequency technical interview questions tailored to your profile
 #### 3. "How do you protect a web application from XSS and CSRF attacks?"
 - **Key Points**: Input sanitization, HTTP-only SameSite cookies, and Content Security Policy (CSP) headers.
 
-👉 Want to practice live? Head over to the **Mock Interviews** tab!`;
+Want to practice live? Head over to the **Mock Interviews** tab!`;
   }
 
   // 6. Generic Fallback specifically acknowledging the user's prompt text
-  return `### 💡 Analysis of "${query}"
+  return `### Analysis of "${query}"
 
 Thank you for your question, **${name}**! 
 
 To address **"${query}"** in the context of your target **Full-Stack Engineer** career:
 
-1. 🎯 **Immediate Action**: Focus on connecting your current skills in **React & Node.js** with missing competencies like **TypeScript** and **System Security**.
-2. 📚 **Learning Resource**: Check your **Skill-Gap Radar** tab to track benchmark metrics against industry standards.
-3. 🛠️ **Portfolio Implementation**: Try building a hands-on project module incorporating this topic.
+1. **Immediate Action**: Focus on connecting your current skills in **React & Node.js** with missing competencies like **TypeScript** and **System Security**.
+2. **Learning Resource**: Check your **Skill-Gap Radar** tab to track benchmark metrics against industry standards.
+3. **Portfolio Implementation**: Try building a hands-on project module incorporating this topic.
 
 How else can I help refine your career plan or technical knowledge on this subject?`;
 }

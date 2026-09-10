@@ -142,6 +142,30 @@ export default function LoginView({ onLogin, onNewUser, onBackHome }) {
           >
             Sign In
           </button>
+
+          <div className="auth-quick-demo">
+            <span>Quick fill:</span>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('alex.chen@university.edu');
+                setPassword('student123');
+              }}
+              className="btn-demo-chip"
+            >
+              Student Demo
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('recruiter@techventures.io');
+                setPassword('recruiter123');
+              }}
+              className="btn-demo-chip"
+            >
+              Recruiter Demo
+            </button>
+          </div>
         </form>
 
         {/* Switch to Onboarding */}

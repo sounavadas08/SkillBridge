@@ -63,9 +63,9 @@ export function AiResumeView({ user }) {
             </div>
             <div className="p-4 bg-muted/60 border border-border rounded-lg text-xs space-y-2 text-muted-foreground">
               <p className="font-medium text-foreground">ATS Optimization Checklist:</p>
-              <p>✓ Action verb bullet points</p>
-              <p>✓ SkillVault verified badges</p>
-              <p>✓ High match score format</p>
+              <p className="flex items-center gap-1.5"><CheckCircle size={13} className="text-primary shrink-0" /> Action verb bullet points</p>
+              <p className="flex items-center gap-1.5"><CheckCircle size={13} className="text-primary shrink-0" /> SkillVault verified badges</p>
+              <p className="flex items-center gap-1.5"><CheckCircle size={13} className="text-primary shrink-0" /> High match score format</p>
             </div>
           </div>
 

@@ -3,16 +3,16 @@
    ========================================================================== */
 
 .footer-bar {
-  background-color: #081d36;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--bg-card-subtle);
+  border-top: 1px solid var(--border-subtle);
   padding: 34px 0;
   text-align: center;
   transition: background-color 0.3s ease;
 }
 
 [data-theme="dark"] .footer-bar {
-  background-color: #050f1d;
-  border-top-color: rgba(255, 255, 255, 0.05);
+  background-color: #000000;
+  border-top-color: var(--border-subtle);
 }
 
 .footer-container {
@@ -24,10 +24,11 @@
 .footer-copyright {
   font-family: var(--font-sans);
   font-size: 0.875rem;
-  color: #94a3b8;
+  color: #000000;
+  font-weight: 500;
   letter-spacing: 0.01em;
 }
 
 [data-theme="dark"] .footer-copyright {
-  color: #64748b;
+  color: #9CA3AF;
 }

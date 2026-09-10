@@ -125,10 +125,10 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
           <button 
             onClick={toggleTheme}
             className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-muted-foreground hover:bg-muted hover:text-foreground text-sm font-medium ${collapsed ? 'justify-center' : ''}`}
-            title={collapsed ? `Theme (${theme})` : undefined}
+            title={collapsed ? (theme === 'dark' ? 'Light Mode' : 'Dark Mode') : undefined}
           >
             {theme === 'dark' ? <Sun size={18} className="shrink-0 text-amber-400" /> : <Moon size={18} className="shrink-0" />}
-            {!collapsed && <span>Theme ({theme})</span>}
+            {!collapsed && <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
           </button>
 
           <button 

@@ -46,8 +46,8 @@ export default function RadarChart({ competencies }) {
         <defs>
           {/* Subtle gradient fill for your profile */}
           <radialGradient id="radarProfileGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0.15" />
+            <stop offset="0%" stopColor="var(--crimson-red)" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="var(--amber-orange)" stopOpacity="0.12" />
           </radialGradient>
         </defs>
 
@@ -91,17 +91,17 @@ export default function RadarChart({ competencies }) {
         <polygon
           points={benchmarkPoints}
           fill="none"
-          stroke="#475569"
+          stroke="#94a3b8"
           strokeWidth="1.75"
           strokeDasharray="4 4"
           className="benchmark-polygon"
         />
 
-        {/* 4. User Profile Polygon (Translucent mint fill + solid stroke) */}
+        {/* 4. User Profile Polygon */}
         <polygon
           points={profilePoints}
           fill="url(#radarProfileGrad)"
-          stroke="#0d9488"
+          stroke="var(--crimson-red)"
           strokeWidth="2.2"
           className="profile-polygon"
         />
@@ -115,7 +115,7 @@ export default function RadarChart({ competencies }) {
               cx={x}
               cy={y}
               r="3.5"
-              fill="#0d9488"
+              fill="var(--crimson-red)"
               stroke="#ffffff"
               strokeWidth="1.5"
             />

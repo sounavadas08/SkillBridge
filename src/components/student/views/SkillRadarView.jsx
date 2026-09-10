@@ -92,7 +92,7 @@ export function SkillRadarView() {
             >
               {Object.keys(allRoles).map(roleKey => (
                 <option key={roleKey} value={roleKey}>
-                  {roleKey} {DEFAULT_ROLE_GAPS[roleKey] ? '' : '✨ (AI Added)'}
+                  {roleKey} {DEFAULT_ROLE_GAPS[roleKey] ? '' : '(AI Added)'}
                 </option>
               ))}
             </select>

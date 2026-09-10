@@ -15,16 +15,15 @@
 .table-responsive-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   overflow-x: auto;
-  box-shadow: 0 4px 18px -2px rgba(12, 47, 85, 0.05);
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
 
 [data-theme="dark"] .table-responsive-card {
   background-color: var(--bg-card);
   border-color: var(--border-card);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
 }
 
 .pipeline-table {
@@ -45,13 +44,13 @@
   font-family: var(--font-mono);
   font-size: 0.725rem;
   font-weight: 700;
-  color: var(--navy-600);
+  color: var(--text-primary);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 [data-theme="dark"] .pipeline-table th {
-  color: #94a3b8;
+  color: #FFFFFF;
 }
 
 /* Rows */
@@ -65,11 +64,11 @@
 }
 
 .pipeline-row:hover {
-  background-color: rgba(45, 212, 191, 0.025);
+  background-color: rgba(220, 20, 60, 0.03);
 }
 
 [data-theme="dark"] .pipeline-row:hover {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(225, 29, 72, 0.06);
 }
 
 .pipeline-table td {
@@ -80,12 +79,12 @@
 
 .td-role {
   font-weight: 700;
-  color: var(--navy-800);
+  color: var(--text-primary);
   font-size: 0.95rem;
 }
 
 [data-theme="dark"] .td-role {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .td-company {
@@ -109,24 +108,20 @@
 
 .confidence-bar-track {
   flex: 1;
-  height: 4px;
-  background-color: var(--navy-100);
+  height: 5px;
+  background-color: rgba(220, 20, 60, 0.1);
   border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 [data-theme="dark"] .confidence-bar-track {
-  background-color: var(--border-subtle);
+  background-color: rgba(225, 29, 72, 0.18);
 }
 
 .confidence-bar-fill {
   height: 100%;
-  background-color: #0d9488;
+  background: var(--gradient-primary);
   border-radius: var(--radius-full);
-}
-
-[data-theme="dark"] .confidence-bar-fill {
-  background-color: var(--teal-accent);
 }
 
 .confidence-percent {

@@ -21,24 +21,24 @@
 .job-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   padding: 28px 26px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 16px -2px rgba(12, 47, 85, 0.05);
+  box-shadow: var(--shadow-sm);
   transition: all 0.25s ease;
 }
 
 [data-theme="dark"] .job-card {
   background-color: var(--bg-card);
   border-color: var(--border-card);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-sm);
 }
 
 .job-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(45, 212, 191, 0.5);
-  box-shadow: 0 10px 25px -4px rgba(12, 47, 85, 0.1);
+  border-color: var(--crimson-red);
+  box-shadow: var(--shadow-md);
 }
 
 /* Card Header Meta */
@@ -61,15 +61,17 @@
   font-family: var(--font-mono);
   font-size: 0.725rem;
   font-weight: 700;
-  color: #0d9488;
-  background-color: #ccfbf1;
+  color: var(--crimson-red);
+  background-color: var(--bg-card-subtle);
+  border: 1px solid rgba(220, 20, 60, 0.25);
   padding: 4px 10px;
   border-radius: var(--radius-full);
 }
 
 [data-theme="dark"] .match-pill {
-  background-color: rgba(45, 212, 191, 0.15);
-  color: var(--teal-accent);
+  background-color: rgba(225, 29, 72, 0.15);
+  color: #FDA4AF;
+  border-color: rgba(225, 29, 72, 0.35);
 }
 
 /* Role & Company */
@@ -81,13 +83,9 @@
   font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--navy-800);
+  color: var(--text-primary);
   margin-bottom: 4px;
   transition: color 0.3s ease;
-}
-
-[data-theme="dark"] .job-role {
-  color: #ffffff;
 }
 
 .job-company {
@@ -106,25 +104,21 @@
 
 .match-progress-track {
   flex: 1;
-  height: 5px;
-  background-color: var(--navy-100);
+  height: 6px;
+  background-color: rgba(220, 20, 60, 0.1);
   border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 [data-theme="dark"] .match-progress-track {
-  background-color: var(--border-subtle);
+  background-color: rgba(225, 29, 72, 0.18);
 }
 
 .match-progress-fill {
   height: 100%;
-  background-color: #0d9488;
+  background: var(--gradient-primary);
   border-radius: var(--radius-full);
   transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-[data-theme="dark"] .match-progress-fill {
-  background-color: var(--teal-accent);
 }
 
 .match-percent-label {
@@ -152,9 +146,9 @@
 
 .skill-chip {
   font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background-color: var(--navy-50);
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: var(--bg-card-subtle);
   border: 1px solid var(--border-subtle);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
@@ -163,14 +157,14 @@
 [data-theme="dark"] .skill-chip {
   background-color: var(--bg-card-subtle);
   border-color: var(--border-subtle);
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 /* Apply button */
 .btn-apply {
   margin-top: auto;
   width: 100%;
-  background-color: var(--navy-800);
+  background: var(--gradient-primary);
   color: #ffffff;
   font-weight: 600;
   font-size: 0.925rem;
@@ -178,28 +172,20 @@
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
   text-align: center;
+  box-shadow: 0 3px 12px var(--crimson-glow);
 }
 
 .btn-apply:hover {
-  background-color: var(--navy-700);
+  background: var(--gradient-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(12, 47, 85, 0.2);
-}
-
-[data-theme="dark"] .btn-apply {
-  background-color: var(--teal-accent);
-  color: var(--navy-900);
-}
-
-[data-theme="dark"] .btn-apply:hover {
-  background-color: #26c2ad;
-  box-shadow: 0 4px 14px rgba(45, 212, 191, 0.3);
+  box-shadow: 0 6px 18px var(--crimson-glow);
 }
 
 .btn-apply.applied {
-  background-color: #0d9488;
-  color: #ffffff;
+  background: #16a34a !important;
+  color: #ffffff !important;
   cursor: default;
+  box-shadow: none;
 }
 
 @media (max-width: 960px) {

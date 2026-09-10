@@ -4,9 +4,14 @@
 
 .cta-section {
   padding: 100px 0 120px;
-  background-color: var(--bg-page);
+  background: linear-gradient(180deg, var(--bg-page) 0%, var(--bg-card-subtle) 100%);
   text-align: center;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="dark"] .cta-section {
+  background: linear-gradient(180deg, #000000 0%, #150608 100%);
 }
 
 .cta-container {
@@ -19,8 +24,8 @@
 .cta-title {
   font-family: var(--font-serif);
   font-size: clamp(2.5rem, 4.5vw, 3.5rem);
-  font-weight: 600;
-  color: var(--navy-800);
+  font-weight: 700;
+  color: var(--text-primary);
   line-height: 1.18;
   letter-spacing: -0.015em;
   margin-bottom: 20px;
@@ -28,13 +33,22 @@
 }
 
 [data-theme="dark"] .cta-title {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .cta-title-italic {
   font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 700;
+  background: linear-gradient(135deg, #DC143C 0%, #FF8100 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .cta-title-italic {
+  background: linear-gradient(135deg, #E11D48 0%, #B85A12 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .cta-subtitle {
@@ -43,6 +57,7 @@
   line-height: 1.6;
   margin-bottom: 36px;
   max-width: 580px;
+  font-weight: 500;
 }
 
 .cta-buttons-row {
@@ -54,57 +69,49 @@
 }
 
 .btn-student-signup {
-  background-color: var(--navy-800);
+  background: var(--gradient-primary);
   color: #ffffff;
   font-weight: 600;
   font-size: 0.95rem;
   padding: 13px 28px;
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(12, 47, 85, 0.2);
+  box-shadow: 0 4px 16px var(--crimson-glow);
 }
 
 .btn-student-signup:hover {
-  background-color: var(--navy-700);
+  background: var(--gradient-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(12, 47, 85, 0.3);
-}
-
-[data-theme="dark"] .btn-student-signup {
-  background-color: var(--teal-accent);
-  color: var(--navy-900);
-}
-
-[data-theme="dark"] .btn-student-signup:hover {
-  background-color: #26c2ad;
-  box-shadow: 0 6px 20px rgba(45, 212, 191, 0.3);
+  box-shadow: 0 6px 22px var(--crimson-glow);
 }
 
 .btn-university-portal {
   background-color: var(--bg-card);
-  color: var(--navy-800);
-  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 600;
   font-size: 0.95rem;
   padding: 13px 28px;
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-university-portal:hover {
-  border-color: var(--navy-800);
-  background-color: rgba(12, 47, 85, 0.04);
+  border-color: var(--crimson-red);
+  color: var(--crimson-red);
+  background-color: rgba(220, 20, 60, 0.05);
   transform: translateY(-2px);
 }
 
 [data-theme="dark"] .btn-university-portal {
   color: #ffffff;
-  border-color: var(--border-subtle);
-  background-color: var(--bg-card);
+  border-color: rgba(255, 255, 255, 0.28);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 [data-theme="dark"] .btn-university-portal:hover {
-  border-color: var(--teal-accent);
-  background-color: rgba(45, 212, 191, 0.06);
+  border-color: #ffffff;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.14);
 }

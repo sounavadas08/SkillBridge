@@ -33,6 +33,7 @@
 
 [data-theme="dark"] .role-pills-selector {
   background-color: var(--bg-card-subtle);
+  border-color: var(--border-card);
 }
 
 .role-pill {
@@ -49,14 +50,14 @@
 }
 
 .role-pill.active {
-  background-color: var(--navy-800);
+  background: var(--gradient-primary);
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(12, 47, 85, 0.2);
+  box-shadow: 0 2px 8px var(--crimson-glow);
 }
 
 [data-theme="dark"] .role-pill.active {
-  background-color: var(--teal-accent);
-  color: var(--navy-900);
+  background: var(--gradient-primary);
+  color: #ffffff;
 }
 
 /* 2-Column Layout */
@@ -71,9 +72,9 @@
 .radar-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   padding: 24px 20px;
-  box-shadow: 0 4px 18px -2px rgba(12, 47, 85, 0.05);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,7 +85,6 @@
 [data-theme="dark"] .radar-card {
   background-color: var(--bg-card);
   border-color: var(--border-card);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
 }
 
 .radar-chart-container {
@@ -105,16 +105,16 @@
   font-family: var(--font-sans);
   font-size: 0.725rem;
   font-weight: 600;
-  fill: var(--text-secondary);
+  fill: var(--text-primary);
   transition: fill 0.3s ease;
 }
 
 [data-theme="dark"] .radar-label {
-  fill: #94a3b8;
+  fill: #FFFFFF;
 }
 
 .profile-polygon {
-  filter: drop-shadow(0 2px 6px rgba(45, 212, 191, 0.25));
+  filter: drop-shadow(0 2px 6px var(--crimson-glow));
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -145,18 +145,14 @@
 }
 
 .profile-line {
-  background-color: #0d9488;
-}
-
-[data-theme="dark"] .profile-line {
-  background-color: var(--teal-accent);
+  background: var(--gradient-primary);
 }
 
 .benchmark-line {
   background: repeating-linear-gradient(
     90deg,
-    #64748b 0,
-    #64748b 4px,
+    #9ca3af 0,
+    #9ca3af 4px,
     transparent 4px,
     transparent 8px
   );
@@ -181,9 +177,9 @@
 .competency-gaps-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   padding: 24px 22px;
-  box-shadow: 0 4px 18px -2px rgba(12, 47, 85, 0.05);
+  box-shadow: var(--shadow-sm);
   flex: 1;
   transition: all 0.3s ease;
 }
@@ -191,7 +187,6 @@
 [data-theme="dark"] .competency-gaps-card {
   background-color: var(--bg-card);
   border-color: var(--border-card);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
 }
 
 .card-micro-tag {
@@ -234,30 +229,26 @@
 }
 
 .gap-high {
-  color: #ea580c;
+  color: var(--crimson-red);
 }
 
 .gap-med {
-  color: #d97706;
+  color: var(--amber-orange);
 }
 
 .gap-low {
-  color: #0d9488;
-}
-
-[data-theme="dark"] .gap-low {
-  color: var(--teal-accent);
+  color: #16a34a;
 }
 
 .gap-track {
-  height: 4px;
-  background-color: var(--navy-100);
+  height: 5px;
+  background-color: rgba(220, 20, 60, 0.08);
   border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 [data-theme="dark"] .gap-track {
-  background-color: var(--border-subtle);
+  background-color: rgba(225, 29, 72, 0.18);
 }
 
 .gap-fill {
@@ -267,34 +258,31 @@
 }
 
 .fill-orange {
-  background-color: #ea580c;
+  background-color: var(--crimson-red);
 }
 
 .fill-amber {
-  background-color: #f59e0b;
+  background-color: var(--amber-orange);
 }
 
 .fill-teal {
-  background-color: #0d9488;
-}
-
-[data-theme="dark"] .fill-teal {
-  background-color: var(--teal-accent);
+  background: var(--gradient-primary);
 }
 
 /* Overall Readiness Card */
 .overall-readiness-card {
-  background-color: var(--navy-800);
-  border-radius: var(--radius-sm);
+  background: var(--gradient-primary);
+  border-radius: var(--radius-md);
   padding: 24px 22px;
   color: #ffffff;
-  box-shadow: 0 6px 20px -2px rgba(12, 47, 85, 0.25);
+  box-shadow: 0 6px 20px var(--crimson-glow);
   transition: all 0.3s ease;
 }
 
 [data-theme="dark"] .overall-readiness-card {
-  background-color: #0a2038;
-  border: 1px solid var(--border-card);
+  background: linear-gradient(135deg, #18090C 0%, #200D08 100%);
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .readiness-tag {
@@ -302,7 +290,8 @@
   font-family: var(--font-mono);
   font-size: 0.725rem;
   font-weight: 700;
-  color: var(--teal-accent);
+  color: #ffffff;
+  opacity: 0.9;
   letter-spacing: 0.1em;
   margin-bottom: 6px;
 }
@@ -318,7 +307,8 @@
 
 .readiness-subtext {
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #ffffff;
+  opacity: 0.85;
   font-weight: 400;
 }
 

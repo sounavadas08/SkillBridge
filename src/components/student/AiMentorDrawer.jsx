@@ -30,7 +30,7 @@ export function AiMentorDrawer({ user, onClose, onNavigateSection }) {
       {
         id: 1,
         sender: 'ai',
-        text: `Hi **${userName}**! 👋 I'm your **SkillBridge AI Mentor**. I'm connected to your verified skills, target role, and skill-gap radar.\n\nHow can I help accelerate your career today? Pick a quick option below or ask me anything!`
+        text: `Hi **${userName}**! I'm your **SkillBridge AI Mentor**. I'm connected to your verified skills, target role, and skill-gap radar.\n\nHow can I help accelerate your career today? Pick a quick option below or ask me anything!`
       }
     ];
   });
@@ -89,7 +89,7 @@ export function AiMentorDrawer({ user, onClose, onNavigateSection }) {
         {
           id: Date.now() + 1,
           sender: 'ai',
-          text: `⚠️ *An error occurred while connecting to the AI Mentor service.* Please try again or check your API key settings.`,
+          text: `*An error occurred while connecting to the AI Mentor service.* Please try again or check your API key settings.`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }
       ]);

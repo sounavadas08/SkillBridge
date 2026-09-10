@@ -14,8 +14,8 @@
   grid-template-columns: repeat(4, 1fr);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  box-shadow: 0 10px 30px -4px rgba(12, 47, 85, 0.08);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: all 0.3s ease;
 }
@@ -23,7 +23,7 @@
 [data-theme="dark"] .stats-card {
   background-color: var(--bg-card);
   border-color: var(--border-card);
-  box-shadow: 0 10px 35px -4px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-md);
 }
 
 .stat-column {
@@ -48,14 +48,18 @@
 }
 
 .stat-column:hover {
-  background-color: rgba(45, 212, 191, 0.03);
+  background-color: rgba(220, 20, 60, 0.04);
+}
+
+[data-theme="dark"] .stat-column:hover {
+  background-color: rgba(225, 29, 72, 0.08);
 }
 
 .stat-number {
   font-family: var(--font-sans);
   font-size: 2.25rem;
   font-weight: 800;
-  color: var(--navy-800);
+  color: var(--text-primary);
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin-bottom: 8px;
@@ -63,7 +67,7 @@
 }
 
 [data-theme="dark"] .stat-number {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .stat-label {

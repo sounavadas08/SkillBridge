@@ -40,37 +40,37 @@ Always tailor your guidance specifically for ${name}'s goal of becoming a top-ti
 export const QUICK_ACTIONS = [
   {
     id: 'skill-gap-plan',
-    title: '🎯 Skill Gap Strategy',
+    title: 'Skill Gap Strategy',
     badge: 'Popular',
     prompt: 'Based on my current skill profile and gaps, what are the top 3 high-impact skills I should focus on learning this month?'
   },
   {
     id: 'career-roadmap',
-    title: '🚀 30-Day Learning Plan',
+    title: '30-Day Learning Plan',
     badge: 'Roadmap',
     prompt: 'Generate a step-by-step 30-day learning roadmap to help me transition into a Full-Stack Software Engineer.'
   },
   {
     id: 'resume-review',
-    title: '📝 Resume Bullets Advice',
+    title: 'Resume Bullets Advice',
     badge: 'Career',
     prompt: 'How can I rewrite my React and JavaScript project bullets to sound more quantitative and impactful for recruiters?'
   },
   {
     id: 'mock-interview',
-    title: '🎙️ React & JS Interview Qs',
+    title: 'React & JS Interview Qs',
     badge: 'Prep',
     prompt: 'Give me 3 commonly asked technical interview questions for a Junior Frontend role, along with how to structure winning answers.'
   },
   {
     id: 'explore-role',
-    title: '🌐 Explore DevOps Role',
+    title: 'Explore DevOps Role',
     badge: 'Benchmark',
     prompt: 'Tell me about becoming a DevOps Engineer and add it to my Skill-Gap Radar benchmarks.'
   },
   {
     id: 'portfolio-idea',
-    title: '💡 High-Impact Project Idea',
+    title: 'High-Impact Project Idea',
     badge: 'Portfolio',
     prompt: 'Suggest a unique, production-grade portfolio project idea that demonstrates full-stack skills and security best practices.'
   }

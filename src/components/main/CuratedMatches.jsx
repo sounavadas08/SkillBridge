@@ -72,7 +72,7 @@ export default function CuratedMatches() {
                   className={`btn-apply ${isApplied ? 'applied' : ''}`}
                   onClick={() => handleApply(job)}
                 >
-                  {isApplied ? 'Application Submitted ✓' : 'Apply Now'}
+                  {isApplied ? 'Application Submitted' : 'Apply Now'}
                 </button>
               </div>
             );

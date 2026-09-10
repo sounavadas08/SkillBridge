@@ -34,7 +34,7 @@ export function AiMentorView({ user, onNavigateSection }) {
       {
         id: 1,
         sender: 'ai',
-        text: `Welcome to your **AI Mentor Studio**, ${userName}! 🚀\n\nI have analyzed your **SkillVault** and **Skill-Gap Radar**. You currently have strong foundations in React and Node.js, with high-priority growth areas in **TypeScript**, **Docker**, and **Security & Auth**.\n\nChoose an action card below or type any question to start building your personalized career path!`
+        text: `Welcome to your **AI Mentor Studio**, ${userName}!\n\nI have analyzed your **SkillVault** and **Skill-Gap Radar**. You currently have strong foundations in React and Node.js, with high-priority growth areas in **TypeScript**, **Docker**, and **Security & Auth**.\n\nChoose an action card below or type any question to start building your personalized career path!`
       }
     ];
   });
