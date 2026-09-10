@@ -166,6 +166,9 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light dark;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;           /* Eliminate scroll bounce jank */
+  scroll-padding-top: 80px;             /* So anchor links don't hide under sticky header */
 }
 
 body {
@@ -176,8 +179,63 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Promote body to its own GPU composite layer for smooth momentum scroll */
+  transform: translateZ(0);
+  transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ==========================================================================
+   Apple iOS / macOS Translucent Liquid Glass Scrollbars & Motion
+   ========================================================================== */
+
+:root {
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.14);
+  border-radius: 9999px;
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(220, 20, 60, 0.45);
+  background-clip: padding-box;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 72, 0.55);
+  background-clip: padding-box;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.14) transparent;
+}
+
+[data-theme="dark"] * {
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+
 
 a {
   color: inherit;
@@ -345,7 +403,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   Apple iOS Liquid Glass Utilities
+   Apple iOS / VisionOS 3D Liquid Glass Utilities & Physics
    ========================================================================== */
 
 .ios-liquid-glass,
@@ -356,7 +414,7 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(28px) saturate(190%) contrast(102%);
   border-bottom: 1px solid rgba(220, 20, 60, 0.12);
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), 0 8px 32px 0 rgba(0, 0, 0, 0.04);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s var(--ease-spring);
 }
 
 [data-theme="dark"] .ios-liquid-glass,
@@ -366,20 +424,265 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 0 rgba(225, 29, 72, 0.15), 0 12px 36px 0 rgba(0, 0, 0, 0.6);
 }
 
-.ios-glass-card {
+/* ==========================================================================
+   Apple iOS Refined Liquid Glass Card Component (Stable & Grounded)
+   ========================================================================== */
+
+.ios-glass-card,
+.tile-3d,
+.card-3d-liquid {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 252, 252, 0.62) 50%, rgba(255, 245, 240, 0.58) 100%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(220, 20, 60, 0.14);
-  border-radius: 20px;
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), 0 8px 32px 0 rgba(220, 20, 60, 0.04);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(252, 252, 252, 0.72) 45%, rgba(255, 245, 240, 0.65) 100%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  box-shadow: 
+    0 4px 20px -4px rgba(0, 0, 0, 0.04),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px 0 rgba(220, 20, 60, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Refractive glass edge */
+  transition: 
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-spring),
+    border-color 0.3s ease;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration for smooth scrolling */
 }
 
-[data-theme="dark"] .ios-glass-card {
-  background: linear-gradient(135deg, rgba(18, 8, 10, 0.82) 0%, rgba(8, 4, 5, 0.70) 50%, rgba(26, 9, 14, 0.75) 100%);
-  border: 1px solid rgba(225, 29, 72, 0.22);
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 0 rgba(225, 29, 72, 0.15), 0 12px 36px 0 rgba(0, 0, 0, 0.6);
+[data-theme="dark"] .ios-glass-card,
+[data-theme="dark"] .tile-3d,
+[data-theme="dark"] .card-3d-liquid {
+  background: linear-gradient(135deg, rgba(16, 7, 9, 0.88) 0%, rgba(10, 5, 6, 0.75) 45%, rgba(26, 9, 14, 0.80) 100%);
+  border: 1px solid rgba(225, 29, 72, 0.15);
+  box-shadow: 
+    0 8px 30px -4px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(225, 29, 72, 0.1),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 2px 0 rgba(184, 90, 18, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Refractive glass edge */
 }
+
+/* Subtle, Refined Interactive Hover (Smooth Pop-Up, Apple Vision Pro style) */
+.ios-glass-card:hover,
+.tile-3d:hover,
+.card-3d-liquid:hover {
+  transform: translate3d(0, -4px, 0) scale(1.015);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 16px 36px -8px rgba(0, 0, 0, 0.1),
+    0 6px 16px -2px rgba(220, 20, 60, 0.08),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 2px 0 rgba(220, 20, 60, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  z-index: 2;
+}
+
+[data-theme="dark"] .ios-glass-card:hover,
+[data-theme="dark"] .tile-3d:hover,
+[data-theme="dark"] .card-3d-liquid:hover {
+  border-color: rgba(225, 29, 72, 0.35);
+  box-shadow: 
+    0 20px 48px -10px rgba(0, 0, 0, 0.85),
+    0 0 32px 2px rgba(225, 29, 72, 0.2),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px 0 rgba(184, 90, 18, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.ios-glass-card:active,
+.tile-3d:active,
+.card-3d-liquid:active {
+  transform: translate3d(0, 0, 0) scale(0.99);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* ==========================================================================
+   Liquid Glass Specular Glare Overlay — Shared across ALL glass card variants
+   Controlled by JS: --glare-x, --glare-y, --glare-opacity
+   ========================================================================== */
+
+.ios-glass-card::after,
+.tile-3d::after,
+.card-3d-liquid::after,
+.architecture-card::after,
+.job-card::after,
+.radar-card::after,
+.competency-gaps-card::after,
+[data-glass-card]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 220px at var(--glare-x, 50%) var(--glare-y, 30%),
+    rgba(255, 255, 255, 0.38) 0%,
+    rgba(255, 255, 255, 0.12) 35%,
+    transparent 65%
+  );
+  opacity: var(--glare-opacity, 0);
+  transition: opacity 0.35s var(--ease-spring);
+  z-index: 1;
+}
+
+/* Make sure card content sits above the glare layer */
+.ios-glass-card > *,
+.tile-3d > *,
+.card-3d-liquid > *,
+.architecture-card > *,
+.job-card > *,
+.radar-card > *,
+.competency-gaps-card > *,
+[data-glass-card] > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Refractive edge ring — subtle prismatic border shimmer on hover */
+.ios-glass-card::before,
+.tile-3d::before,
+.card-3d-liquid::before,
+.architecture-card::before,
+.job-card::before,
+.radar-card::before,
+.competency-gaps-card::before,
+[data-glass-card]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 30%,
+    rgba(220, 20, 60, 0.12) 60%,
+    rgba(255, 129, 0, 0.1) 80%,
+    rgba(255, 255, 255, 0) 100%
+  ) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-spring);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ios-glass-card:hover::before,
+.tile-3d:hover::before,
+.card-3d-liquid:hover::before,
+.architecture-card:hover::before,
+.job-card:hover::before,
+.radar-card:hover::before,
+.competency-gaps-card:hover::before,
+[data-glass-card]:hover::before {
+  opacity: 1;
+}
+
+[data-theme="dark"] .ios-glass-card::before,
+[data-theme="dark"] .tile-3d::before,
+[data-theme="dark"] .card-3d-liquid::before,
+[data-theme="dark"] .architecture-card::before,
+[data-theme="dark"] .job-card::before,
+[data-theme="dark"] .radar-card::before,
+[data-theme="dark"] .competency-gaps-card::before,
+[data-theme="dark"] [data-glass-card]::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.22) 30%,
+    rgba(225, 29, 72, 0.2) 60%,
+    rgba(184, 90, 18, 0.15) 80%,
+    rgba(255, 255, 255, 0) 100%
+  ) border-box;
+}
+
+/* ==========================================================================
+   Apple iOS 3D Liquid Glass Pebble Button
+   ========================================================================== */
+
+.btn-3d-liquid {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  color: #FFFFFF !important;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 4px 14px -2px var(--crimson-glow),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1.5px 1.5px 0 rgba(0, 0, 0, 0.25);
+  transition: 
+    transform 0.3s var(--ease-spring),
+    box-shadow 0.3s var(--ease-spring),
+    background 0.3s ease,
+    border-color 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.btn-3d-liquid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle 180px at var(--glare-x, 50%) var(--glare-y, 25%),
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-spring);
+  pointer-events: none;
+}
+
+.btn-3d-liquid:hover {
+  background: var(--gradient-primary-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 22px -3px var(--crimson-glow),
+    0 2px 8px 0 rgba(255, 129, 0, 0.3),
+    inset 0 2px 1.5px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-3d-liquid:hover::after {
+  opacity: 1;
+}
+
+.btn-3d-liquid:active {
+  transform: translateY(1px) scale(0.98) !important;
+  box-shadow: 
+    0 2px 6px -1px var(--crimson-glow),
+    inset 0 1px 1px 0 rgba(0, 0, 0, 0.3) !important;
+  transition: transform 0.1s ease !important;
+}
+
+[data-theme="dark"] .btn-3d-liquid {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 6px 20px -3px rgba(0, 0, 0, 0.6),
+    0 0 16px rgba(225, 29, 72, 0.35),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1.5px 1.5px 0 rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .btn-3d-liquid:hover {
+  box-shadow: 
+    0 10px 28px -4px rgba(0, 0, 0, 0.8),
+    0 0 24px rgba(225, 29, 72, 0.55),
+    inset 0 2px 1.5px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -2px 2px 0 rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+
 

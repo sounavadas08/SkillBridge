@@ -62,7 +62,7 @@ export function OpportunitiesView() {
           return (
             <div 
               key={job.id} 
-              className="border border-border bg-card rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between hover:border-primary/50 transition-colors shadow-sm group"
+              className="border border-border bg-card rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between shadow-sm group hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
@@ -100,10 +100,10 @@ export function OpportunitiesView() {
                 <button 
                   onClick={() => handleApply(job)}
                   disabled={isApplied}
-                  className={`flex items-center gap-1 text-sm font-medium px-4 py-2 rounded-lg w-full justify-center transition-colors shadow-sm ${
+                  className={`flex items-center gap-1 text-sm font-medium px-4 py-2 rounded-lg w-full justify-center shadow-sm transition-all ${
                     isApplied 
                       ? 'bg-green-500 text-white cursor-default'
-                      : 'bg-foreground text-background hover:bg-primary hover:text-primary-foreground'
+                      : 'btn-3d-liquid'
                   }`}
                 >
                   {isApplied ? (

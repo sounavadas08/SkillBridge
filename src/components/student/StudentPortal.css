@@ -40,16 +40,80 @@
   font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
 }
 
-/* Sidebar Navigation */
+/* Sidebar Navigation — Full Liquid Glass Panel */
 .student-sidebar {
   display: flex;
   flex-direction: column;
-  border-right: 1px solid var(--border);
-  background: var(--card);
   position: relative;
   flex-shrink: 0;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 20;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Liquid glass background */
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(252, 252, 252, 0.78) 60%,
+    rgba(255, 248, 246, 0.85) 100%
+  );
+  -webkit-backdrop-filter: blur(32px) saturate(200%) contrast(104%);
+  backdrop-filter: blur(32px) saturate(200%) contrast(104%);
+
+  /* Right edge: refractive glass border */
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset -1px 0 0 0 rgba(220, 20, 60, 0.08),   /* subtle crimson right inner glow */
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),   /* top highlight */
+    4px 0 24px rgba(0, 0, 0, 0.04);              /* outward depth shadow */
+}
+
+/* Refractive shimmer line on the right edge of the sidebar */
+.student-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.9) 15%,
+    rgba(255, 129, 0, 0.3) 40%,
+    rgba(220, 20, 60, 0.2) 65%,
+    rgba(255, 255, 255, 0.5) 85%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme='dark'] .student-sidebar,
+.dark .student-sidebar {
+  background: linear-gradient(180deg,
+    rgba(16, 7, 9, 0.90) 0%,
+    rgba(10, 5, 6, 0.82) 60%,
+    rgba(26, 9, 14, 0.88) 100%
+  );
+  -webkit-backdrop-filter: blur(32px) saturate(200%) contrast(104%);
+  backdrop-filter: blur(32px) saturate(200%) contrast(104%);
+  border-right: 1px solid rgba(225, 29, 72, 0.18);
+  box-shadow:
+    inset -1px 0 0 0 rgba(225, 29, 72, 0.12),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    4px 0 32px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme='dark'] .student-sidebar::after,
+.dark .student-sidebar::after {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.18) 15%,
+    rgba(225, 29, 72, 0.3) 40%,
+    rgba(184, 90, 18, 0.25) 65%,
+    rgba(255, 255, 255, 0.12) 85%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
 }
 
 .student-nav-item {
@@ -95,6 +159,9 @@
   padding: 2rem;
   background-color: var(--background);
   color: var(--foreground);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 .student-view-wrapper {
@@ -102,14 +169,101 @@
   margin: 0 auto;
 }
 
+/* Sidebar glass footer — transparent to inherit glass from parent */
+.sidebar-glass-footer {
+  background: transparent;
+  border-top: 1px solid rgba(220, 20, 60, 0.1);
+  position: relative;
+}
+
+/* Prismatic shimmer on the top border of the footer */
+.sidebar-glass-footer::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.85) 25%,
+    rgba(255, 129, 0, 0.35) 50%,
+    rgba(255, 255, 255, 0.85) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+[data-theme='dark'] .sidebar-glass-footer,
+.dark .sidebar-glass-footer {
+  border-top: 1px solid rgba(225, 29, 72, 0.18);
+}
+
+[data-theme='dark'] .sidebar-glass-footer::before,
+.dark .sidebar-glass-footer::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(225, 29, 72, 0.35) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(184, 90, 18, 0.35) 75%,
+    transparent 100%
+  );
+}
+
 /* ==========================================================================
-   Apple iOS Liquid Glass Design for Student Portal Headers
+   Apple iOS / VisionOS 3D Liquid Glass Design for Student Portal
    ========================================================================== */
 
+/* Sidebar header — glass with bottom border */
 .student-sidebar-header {
-  border-bottom: 1px solid var(--border);
-  background: var(--card);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 1px solid rgba(220, 20, 60, 0.1);
+  background: transparent; /* inherits glass from .student-sidebar */
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.7),        /* crisp highlight line */
+    0 2px 12px rgba(0, 0, 0, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+/* Prismatic shimmer top line on sidebar header */
+.student-sidebar-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.9) 30%,
+    rgba(255, 129, 0, 0.4) 55%,
+    rgba(255, 255, 255, 0.9) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+[data-theme='dark'] .student-sidebar-header,
+.dark .student-sidebar-header {
+  border-bottom: 1px solid rgba(225, 29, 72, 0.18);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.1),
+    0 2px 16px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .student-sidebar-header::before,
+.dark .student-sidebar-header::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(225, 29, 72, 0.4) 30%,
+    rgba(255, 255, 255, 0.25) 55%,
+    rgba(184, 90, 18, 0.4) 80%,
+    transparent 100%
+  );
 }
 
 .student-portal-header {
@@ -123,35 +277,89 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 252, 252, 0.68) 100%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%);
-  backdrop-filter: blur(28px) saturate(190%) contrast(102%);
-  border-bottom: 1px solid rgba(220, 20, 60, 0.12);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.95), 0 8px 30px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(252, 252, 252, 0.72) 100%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%) contrast(104%);
+  backdrop-filter: blur(32px) saturate(200%) contrast(104%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.98),
+    inset 0 -1px 0 0 rgba(220, 20, 60, 0.1),
+    0 8px 36px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Top prismatic shimmer line */
 .student-portal-header::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 5%;
+  right: 5%;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 20%, rgba(255, 129, 0, 0.45) 50%, rgba(255, 255, 255, 0.95) 80%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.98) 20%,
+    rgba(255, 129, 0, 0.55) 50%,
+    rgba(255, 255, 255, 0.98) 80%,
+    transparent 100%
+  );
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Bottom refractive edge shimmer */
+.student-portal-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(220, 20, 60, 0.2) 25%,
+    rgba(255, 129, 0, 0.25) 50%,
+    rgba(220, 20, 60, 0.2) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 [data-theme="dark"] .student-portal-header,
 .dark .student-portal-header {
-  background: linear-gradient(180deg, rgba(16, 7, 9, 0.84) 0%, rgba(6, 3, 4, 0.72) 100%);
-  border-bottom: 1px solid rgba(225, 29, 72, 0.22);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 0 rgba(225, 29, 72, 0.15), 0 12px 36px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(180deg, rgba(16, 7, 9, 0.90) 0%, rgba(6, 3, 4, 0.78) 100%);
+  border-bottom: 1px solid rgba(225, 29, 72, 0.15);
+  box-shadow:
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 0 rgba(225, 29, 72, 0.18),
+    0 12px 40px rgba(0, 0, 0, 0.65);
 }
 
 [data-theme="dark"] .student-portal-header::before,
 .dark .student-portal-header::before {
-  background: linear-gradient(90deg, transparent 0%, rgba(225, 29, 72, 0.5) 20%, rgba(255, 255, 255, 0.3) 50%, rgba(184, 90, 18, 0.5) 80%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(225, 29, 72, 0.55) 20%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(184, 90, 18, 0.55) 80%,
+    transparent 100%
+  );
+}
+
+[data-theme="dark"] .student-portal-header::after,
+.dark .student-portal-header::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(225, 29, 72, 0.25) 25%,
+    rgba(184, 90, 18, 0.3) 50%,
+    rgba(225, 29, 72, 0.25) 75%,
+    transparent 100%
+  );
 }
 
 .student-header-left {
@@ -231,7 +439,7 @@
   border: 1px solid rgba(255, 255, 255, 0.85);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.04);
   color: #000000;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] .ios-glass-action-btn,
@@ -244,8 +452,8 @@
 
 .ios-glass-action-btn:hover {
   border-color: var(--primary);
-  transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 12px var(--crimson-glow);
+  transform: translate3d(0, -2px, 0) scale(1.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 6px 16px var(--crimson-glow);
 }
 
 .ios-glass-action-btn.theme-btn {
@@ -266,7 +474,7 @@
   backdrop-filter: blur(16px);
   border: 1px solid rgba(220, 20, 60, 0.15);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: all 0.2s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] .ios-profile-chip,
@@ -278,7 +486,7 @@
 
 .ios-profile-chip:hover {
   border-color: var(--primary);
-  transform: translateY(-1px);
+  transform: translate3d(0, -2px, 0) scale(1.02);
 }
 
 .ios-profile-avatar {
@@ -299,24 +507,66 @@
 .student-view-wrapper > div > header,
 .portal-liquid-header {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 252, 252, 0.62) 50%, rgba(255, 245, 240, 0.58) 100%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  border: 1px solid rgba(220, 20, 60, 0.14) !important;
-  border-radius: 20px !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(252, 252, 252, 0.74) 45%, rgba(255, 245, 240, 0.68) 100%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) contrast(104%) !important;
+  backdrop-filter: blur(32px) saturate(200%) contrast(104%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 18px !important;
   padding: 1.5rem 1.75rem !important;
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), 0 8px 32px 0 rgba(220, 20, 60, 0.04) !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 4px 20px -4px rgba(0, 0, 0, 0.04),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.98),
+    inset 0 -1px 2px 0 rgba(220, 20, 60, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35) !important; /* refractive inner ring */
   margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+/* Bottom refractive shimmer line on view headers */
+.student-view-wrapper > div > header::after,
+.portal-liquid-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(220, 20, 60, 0.15) 25%,
+    rgba(255, 129, 0, 0.2) 50%,
+    rgba(220, 20, 60, 0.15) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 [data-theme="dark"] .student-view-wrapper > div > header,
 .dark .student-view-wrapper > div > header,
 [data-theme="dark"] .portal-liquid-header,
 .dark .portal-liquid-header {
-  background: linear-gradient(135deg, rgba(18, 8, 10, 0.82) 0%, rgba(8, 4, 5, 0.70) 50%, rgba(26, 9, 14, 0.75) 100%) !important;
-  border: 1px solid rgba(225, 29, 72, 0.22) !important;
-  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 0 rgba(225, 29, 72, 0.15), 0 12px 36px 0 rgba(0, 0, 0, 0.6) !important;
+  background: linear-gradient(135deg, rgba(16, 7, 9, 0.90) 0%, rgba(10, 5, 6, 0.78) 45%, rgba(26, 9, 14, 0.84) 100%) !important;
+  border: 1px solid rgba(225, 29, 72, 0.15) !important;
+  box-shadow: 
+    0 8px 30px -4px rgba(0, 0, 0, 0.7),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 2px 0 rgba(184, 90, 18, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="dark"] .student-view-wrapper > div > header::after,
+.dark .student-view-wrapper > div > header::after,
+[data-theme="dark"] .portal-liquid-header::after,
+.dark .portal-liquid-header::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(225, 29, 72, 0.2) 25%,
+    rgba(184, 90, 18, 0.25) 50%,
+    rgba(225, 29, 72, 0.2) 75%,
+    transparent 100%
+  );
 }
 
 /* Apple iOS Frosted Glass Pill Control */
@@ -328,6 +578,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.04);
   color: #000000;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] .ios-glass-pill,
@@ -340,8 +591,12 @@
 
 .ios-glass-pill:hover {
   border-color: var(--primary);
-  transform: translateY(-1px);
+  transform: translate3d(0, -1px, 0);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 12px var(--crimson-glow);
+}
+
+.ios-glass-pill:active {
+  transform: translate3d(0, 0, 0);
 }
 
 /* AI Mentor Drawer */
@@ -359,10 +614,79 @@
   flex-direction: column;
 }
 
-/* Tailwind Theme Utility Classes Mappings for Figma Components */
+/* ==========================================================================
+   Refined Liquid Glass Tiles for Cards in Student Portal (Stable & Grounded)
+   ========================================================================== */
+
 .student-portal-container .bg-background { background-color: var(--background) !important; }
 .student-portal-container .text-foreground { color: var(--foreground) !important; }
-.student-portal-container .bg-card { background-color: var(--card) !important; }
+
+/* Refined Stable Liquid Glass Card Style for all Portal Sections & Tiles */
+.student-portal-container .bg-card { 
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(252, 252, 252, 0.74) 45%, rgba(255, 245, 240, 0.65) 100%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%) !important;
+  backdrop-filter: blur(28px) saturate(190%) contrast(102%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 20px -4px rgba(0, 0, 0, 0.04),
+    0 1px 3px 0 rgba(220, 20, 60, 0.03),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px 0 rgba(220, 20, 60, 0.05) !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .student-portal-container .bg-card,
+.dark .student-portal-container .bg-card { 
+  background: linear-gradient(135deg, rgba(16, 7, 9, 0.88) 0%, rgba(10, 5, 6, 0.75) 45%, rgba(26, 9, 14, 0.80) 100%) !important;
+  border: 1px solid rgba(225, 29, 72, 0.22) !important;
+  box-shadow: 
+    0 8px 30px -4px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(225, 29, 72, 0.08),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px 0 rgba(184, 90, 18, 0.15) !important;
+}
+
+/* 3D Inset Refined Form Elements */
+.student-portal-container input,
+.student-portal-container textarea,
+.student-portal-container select {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(220, 20, 60, 0.15) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+[data-theme='dark'] .student-portal-container input,
+.dark .student-portal-container input,
+[data-theme='dark'] .student-portal-container textarea,
+.dark .student-portal-container textarea,
+[data-theme='dark'] .student-portal-container select,
+.dark .student-portal-container select {
+  background: rgba(10, 5, 6, 0.65) !important;
+  border: 1px solid rgba(225, 29, 72, 0.25) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+.student-portal-container input:focus,
+.student-portal-container textarea:focus,
+.student-portal-container select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.15), inset 0 1px 1px rgba(0, 0, 0, 0.04) !important;
+  outline: none !important;
+}
+
+[data-theme='dark'] .student-portal-container input:focus,
+.dark .student-portal-container input:focus,
+[data-theme='dark'] .student-portal-container textarea:focus,
+.dark .student-portal-container textarea:focus {
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
 .student-portal-container .text-card-foreground { color: var(--card-foreground) !important; }
 .student-portal-container .border-border { border-color: var(--border) !important; }
 .student-portal-container .bg-muted { background-color: var(--muted) !important; }
@@ -388,3 +712,4 @@
 .student-portal-container .size-8 { width: 2rem; height: 2rem; }
 .student-portal-container .size-24 { width: 6rem; height: 6rem; }
 .student-portal-container .size-32 { width: 8rem; height: 8rem; }
+

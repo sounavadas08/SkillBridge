@@ -99,9 +99,9 @@ export function CommandCenterView({ onNavigateSection, user }) {
                   <h4 className="font-medium text-sm">{course.title}</h4>
                   <p className="text-xs text-muted-foreground mt-1">{course.source}</p>
                 </div>
-                <div className="flex flex-col items-end w-24">
-                  <span className="text-xs font-mono mb-1">{course.progress}%</span>
-                  <div className="w-full bg-background rounded-full h-1.5">
+                <div className="text-right">
+                  <span className="text-xs font-mono font-medium">{course.progress}%</span>
+                  <div className="w-20 bg-background rounded-full h-1.5 mt-1 border border-border/50">
                     <div className="bg-primary h-1.5 rounded-full" style={{ width: `${course.progress}%` }} />
                   </div>
                 </div>
@@ -146,7 +146,7 @@ function StatusCard({ title, value, subtitle, icon, trend, onClick }) {
   return (
     <div 
       onClick={onClick}
-      className="bg-card border border-border p-5 rounded-xl flex flex-col justify-between hover:border-primary/50 transition-colors cursor-pointer group shadow-sm"
+      className="bg-card border border-border p-5 rounded-xl flex flex-col justify-between cursor-pointer group shadow-sm hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200"
     >
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-sm text-muted-foreground font-medium group-hover:text-foreground transition-colors">{title}</h3>

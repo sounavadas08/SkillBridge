@@ -19,26 +19,62 @@
 }
 
 .job-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(252, 252, 252, 0.74) 45%, rgba(255, 245, 240, 0.65) 100%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
   padding: 28px 26px;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.25s ease;
+  box-shadow: 
+    0 6px 24px -4px rgba(0, 0, 0, 0.04),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1.5px 2px 0 rgba(220, 20, 60, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  transform: translate3d(0, 0, 0);
 }
 
 [data-theme="dark"] .job-card {
-  background-color: var(--bg-card);
-  border-color: var(--border-card);
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, rgba(16, 7, 9, 0.88) 0%, rgba(10, 5, 6, 0.75) 45%, rgba(26, 9, 14, 0.80) 100%);
+  border: 1px solid rgba(225, 29, 72, 0.15);
+  box-shadow: 
+    0 10px 32px -4px rgba(0, 0, 0, 0.7),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1.5px 2px 0 rgba(184, 90, 18, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .job-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--crimson-red);
-  box-shadow: var(--shadow-md);
+  transform: translate3d(0, -4px, 0) scale(1.015);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 16px 36px -8px rgba(0, 0, 0, 0.08),
+    0 6px 16px -2px rgba(220, 20, 60, 0.08),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  z-index: 2;
+}
+
+[data-theme="dark"] .job-card:hover {
+  border-color: rgba(225, 29, 72, 0.35);
+  box-shadow: 
+    0 20px 48px -10px rgba(0, 0, 0, 0.85),
+    0 0 32px 2px rgba(225, 29, 72, 0.18),
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.job-card:active {
+  transform: translate3d(0, 0, 0) scale(0.99);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 /* Card Header Meta */

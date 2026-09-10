@@ -107,7 +107,7 @@ export function SkillVaultView({ user, onUpdateUser }) {
 
         <button
           onClick={() => setIsEditModalOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-xs font-medium rounded-xl hover:bg-primary/90 transition-all shadow-sm self-start sm:self-auto"
+          className="btn-3d-liquid inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-xl shadow-sm self-start sm:self-auto"
         >
           <Pencil size={14} /> Edit Profile
         </button>

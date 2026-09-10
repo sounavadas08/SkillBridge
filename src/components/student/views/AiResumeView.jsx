@@ -365,7 +365,7 @@ export function AiResumeView({ user }) {
         <div className="lg:col-span-6 space-y-6">
           
           {/* Section 1: Template Upload Zone */}
-          <div className="border border-border bg-card rounded-xl p-5 shadow-sm space-y-4">
+          <div className="border border-border bg-card rounded-2xl p-6 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Layout size={18} className="text-primary" />
@@ -422,7 +422,7 @@ export function AiResumeView({ user }) {
           </div>
 
           {/* Section 2: Structured Data Input Fields */}
-          <div className="border border-border bg-card rounded-xl p-5 shadow-sm space-y-4">
+          <div className="border border-border bg-card rounded-2xl p-6 shadow-sm space-y-4">
             <h3 className="font-semibold text-base border-b border-border pb-3 text-foreground flex items-center gap-2">
               <FileText size={18} className="text-primary" /> Structured Data Input
             </h3>
@@ -575,7 +575,7 @@ export function AiResumeView({ user }) {
             <button
               onClick={handleGenerateCv}
               disabled={isGenerating}
-              className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary/90 shadow-md transition-all disabled:opacity-50 text-sm mt-3"
+              className="w-full btn-3d-liquid font-semibold py-3 rounded-xl flex items-center justify-center gap-2 shadow-md transition-all disabled:opacity-50 text-sm mt-3"
             >
               <Wand2 size={18} className={isGenerating ? "animate-spin" : ""} />
               {isGenerating ? "Architecting ATS Resume..." : "Generate ATS CV"}
@@ -614,7 +614,7 @@ export function AiResumeView({ user }) {
                 {/* Print / Download PDF Button */}
                 <button
                   onClick={handleDownloadPdf}
-                  className="flex items-center gap-1.5 text-xs font-semibold bg-primary hover:bg-primary/90 text-primary-foreground px-3 py-1.5 rounded-lg shadow-sm transition-all shrink-0"
+                  className="btn-3d-liquid flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg shadow-sm transition-all shrink-0"
                   title="Download / Print Interview PDF"
                 >
                   <Printer size={14} /> Download PDF

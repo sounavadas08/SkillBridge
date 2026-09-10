@@ -74,7 +74,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
       {/* Sidebar Navigation */}
       <aside 
         style={{ width: collapsed ? '76px' : '270px' }}
-        className="student-sidebar flex flex-col border-r border-border bg-card relative shrink-0 transition-all duration-300 z-20"
+        className="student-sidebar flex flex-col relative shrink-0 transition-all duration-300 z-20"
       >
         <div className="student-sidebar-header h-16 flex items-center px-4 shrink-0 justify-between">
           <div className="flex items-center gap-3 overflow-hidden cursor-pointer" onClick={() => handleTabChange('command-center')}>
@@ -86,13 +86,6 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
             )}
           </div>
         </div>
-
-        <button 
-          onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-20 bg-card border border-border rounded-full p-1 text-muted-foreground hover:text-primary z-30 shadow-md transition-colors"
-        >
-          {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
-        </button>
 
         <nav className="flex-1 overflow-y-auto py-6 px-3 flex flex-col gap-1.5">
           {NAV_ITEMS.map((item) => {
@@ -114,7 +107,7 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
         </nav>
 
         {/* Footer Actions: Home, Theme Toggle & AI Mentor */}
-        <div className="p-3 mt-auto border-t border-border shrink-0 flex flex-col gap-2 bg-card">
+        <div className="sidebar-glass-footer p-3 mt-auto border-t shrink-0 flex flex-col gap-2">
           <button 
             onClick={onExploreHome}
             className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-muted-foreground hover:bg-muted hover:text-foreground text-sm font-medium ${collapsed ? 'justify-center' : ''}`}
