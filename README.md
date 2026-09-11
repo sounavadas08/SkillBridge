@@ -23,7 +23,7 @@ SkillBridge unites students, partner universities, and enterprise recruiters on 
 - **Build Tool:** Vite
 - **Styling:** Vanilla CSS design tokens & CSS custom properties
 - **Visualization:** Pure SVG geometry (zero third-party chart dependencies)
-- **Typography:** Playfair Display / Newsreader & Plus Jakarta Sans via Google Fonts
+- **Typography:** Inter (Local Variable & Multi-Weight: Regular, Medium, SemiBold, Bold, ExtraBold & Italics)
 
 ---
 

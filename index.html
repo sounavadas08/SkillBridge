@@ -8,14 +8,9 @@
   <meta name="description"
     content="SkillBridge - Academia-Industry Integration Platform bridging the gap between learning and hiring." />
   <title>SkillBridge | Bridge the gap between learning and hiring</title>
-  <!-- Google Fonts: Plus Jakarta Sans & Fraunces (Recruiter Display Serif) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Space+Mono:wght@400;700&display=swap"
-    rel="stylesheet" />
-  <!-- Fontshare: General Sans (Recruiter UI & Body) -->
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+  <!-- Local Inter Font Family Preloads (Normal & Italic) -->
+  <link rel="preload" href="/fonts/inter/Inter-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin />
   <!-- Tailwind CSS Play CDN for Figma components -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -24,8 +19,10 @@
       theme: {
         extend: {
           fontFamily: {
-            fraunces: ['Fraunces', 'serif'],
-            generalsans: ['General Sans', 'sans-serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            fraunces: ['Inter', 'sans-serif'],
+            generalsans: ['Inter', 'sans-serif'],
           },
           colors: {
             background: 'var(--background, #f8fafc)',

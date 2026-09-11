@@ -53,7 +53,7 @@ export function RecruiterPortalLayout({ user, onLogout, onExploreHome }) {
               />
             </div>
             {!collapsed && (
-              <span className="font-bold text-lg tracking-tight whitespace-nowrap text-[var(--rp-ink)] font-['Fraunces']">
+              <span className="font-bold text-lg tracking-tight whitespace-nowrap text-[var(--rp-ink)] font-['Inter']">
                 Recruiter Portal
               </span>
             )}

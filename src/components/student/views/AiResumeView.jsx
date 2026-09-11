@@ -182,7 +182,7 @@ export function AiResumeView({ user }) {
               box-sizing: border-box;
             }
             body {
-              font-family: 'Helvetica Neue', Arial, sans-serif;
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
               color: #1a1a1a;
               background: #ffffff;
               margin: 0;
