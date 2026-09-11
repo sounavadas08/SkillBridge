@@ -188,11 +188,11 @@ export function AiMentorDrawer({ user, onClose, onNavigateSection }) {
           <div>
             <div className="flex items-center gap-1.5">
               <h3 className="font-semibold text-sm">SkillBridge AI Mentor</h3>
-              <span className="px-1.5 py-0.2 bg-primary/10 text-primary text-[9px] font-medium rounded-full">
+              <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs font-medium rounded-full">
                 Cloudflare AI
               </span>
             </div>
-            <p className="text-[10px] text-muted-foreground">Context-Aware Career Guide</p>
+            <p className="text-xs text-muted-foreground">Context-Aware Career Guide</p>
           </div>
         </div>
 
@@ -231,7 +231,7 @@ export function AiMentorDrawer({ user, onClose, onNavigateSection }) {
               <X size={14} />
             </button>
           </div>
-          <p className="text-[11px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Optional: Provide a free Google Gemini API key to enable live AI responses, or leave empty to use our built-in Smart Offline Engine.
           </p>
           <form onSubmit={handleSaveApiKey} className="space-y-2">
@@ -244,23 +244,23 @@ export function AiMentorDrawer({ user, onClose, onNavigateSection }) {
             />
             <div className="flex items-center justify-between">
               {keySavedStatus ? (
-                <span className="text-green-500 text-[10px] flex items-center gap-1">
+                <span className="text-green-500 text-xs flex items-center gap-1">
                   <CheckCircle2 size={12} /> Saved successfully!
                 </span>
               ) : (
-                <span className="text-[10px] text-muted-foreground">Stored securely in browser local memory</span>
+                <span className="text-xs text-muted-foreground">Stored securely in browser local memory</span>
               )}
               <div className="flex gap-2">
                 {apiKeyInput && (
                   <button 
                     type="button" 
                     onClick={() => { setApiKeyInput(''); setStoredApiKey(''); }} 
-                    className="text-[10px] text-red-400 hover:underline"
+                    className="text-xs text-red-400 hover:underline"
                   >
                     Clear
                   </button>
                 )}
-                <button type="submit" className="px-2.5 py-1 bg-primary text-primary-foreground rounded text-[11px] font-medium">
+                <button type="submit" className="px-2.5 py-1 bg-primary text-primary-foreground rounded text-xs font-medium">
                   Save Key
                 </button>
               </div>
@@ -305,7 +305,7 @@ export function AiMentorDrawer({ user, onClose, onNavigateSection }) {
                 </div>
               )}
               {msg.timestamp && (
-                <div className={`text-[9px] mt-1 text-right ${msg.sender === 'user' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
+                <div className={`text-xs mt-1 text-right ${msg.sender === 'user' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
                   {msg.timestamp}
                 </div>
               )}

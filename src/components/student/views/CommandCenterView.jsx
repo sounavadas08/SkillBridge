@@ -160,7 +160,7 @@ function StatusCard({ title, value, subtitle, icon, trend, onClick }) {
       <div>
         <div className="text-2xl font-semibold mb-1 tracking-tight">{value}</div>
         <p className="text-xs text-muted-foreground mb-3">{subtitle}</p>
-        <div className="inline-flex items-center text-[10px] font-mono px-2 py-1 bg-muted rounded-md text-foreground">
+        <div className="inline-flex items-center text-xs font-mono px-2 py-1 bg-muted rounded-md text-foreground">
           {trend}
         </div>
       </div>

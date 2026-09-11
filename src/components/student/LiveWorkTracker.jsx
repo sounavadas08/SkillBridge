@@ -170,7 +170,7 @@ export function LiveWorkTracker({ onNavigateSection }) {
           >
             <Clock size={14} />
             Starting Soon
-            <span className={`px-1.5 py-0.2 rounded-md text-[10px] font-mono ${
+            <span className={`px-2 py-0.5 rounded-md text-xs font-mono ${
               activeTab === 'upcoming' ? 'bg-black/20 text-white' : 'bg-muted text-foreground'
             }`}>
               {UPCOMING_COHORTS.length}
@@ -187,7 +187,7 @@ export function LiveWorkTracker({ onNavigateSection }) {
           >
             <PlayCircle size={14} />
             Running Now
-            <span className={`px-1.5 py-0.2 rounded-md text-[10px] font-mono ${
+            <span className={`px-2 py-0.5 rounded-md text-xs font-mono ${
               activeTab === 'active' ? 'bg-black/20 text-white' : 'bg-muted text-foreground'
             }`}>
               {ACTIVE_ONGOING_WORKS.length}
@@ -286,7 +286,7 @@ export function LiveWorkTracker({ onNavigateSection }) {
 
                     {/* LIVE COUNTDOWN TIMER WIDGET (Crimson & Amber Style) */}
                     <div className="p-3.5 rounded-xl bg-background/90 border border-amber-500/30 space-y-1.5 shadow-inner">
-                      <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-amber-500 font-bold">
+                      <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-amber-500 font-bold">
                         <span className="flex items-center gap-1">
                           <Clock size={12} className="animate-pulse" /> Time Until Start
                         </span>
@@ -299,25 +299,25 @@ export function LiveWorkTracker({ onNavigateSection }) {
                           <span className="block font-mono font-extrabold text-lg text-foreground leading-none">
                             {cd.days}
                           </span>
-                          <span className="text-[9px] font-mono uppercase text-muted-foreground">Days</span>
+                          <span className="text-[11px] font-mono uppercase font-semibold text-muted-foreground">Days</span>
                         </div>
                         <div className="p-1.5 rounded-lg bg-card border border-border">
                           <span className="block font-mono font-extrabold text-lg text-foreground leading-none">
                             {cd.hours}
                           </span>
-                          <span className="text-[9px] font-mono uppercase text-muted-foreground">Hours</span>
+                          <span className="text-[11px] font-mono uppercase font-semibold text-muted-foreground">Hours</span>
                         </div>
                         <div className="p-1.5 rounded-lg bg-card border border-border">
                           <span className="block font-mono font-extrabold text-lg text-foreground leading-none">
                             {cd.minutes}
                           </span>
-                          <span className="text-[9px] font-mono uppercase text-muted-foreground">Mins</span>
+                          <span className="text-[11px] font-mono uppercase font-semibold text-muted-foreground">Mins</span>
                         </div>
                         <div className="p-1.5 rounded-lg bg-card border border-amber-500/40 bg-amber-500/5">
                           <span className="block font-mono font-extrabold text-lg text-amber-500 leading-none">
                             {cd.seconds}
                           </span>
-                          <span className="text-[9px] font-mono uppercase text-amber-500/80">Secs</span>
+                          <span className="text-[11px] font-mono uppercase font-semibold text-amber-500/90">Secs</span>
                         </div>
                       </div>
                     </div>
@@ -401,12 +401,12 @@ export function LiveWorkTracker({ onNavigateSection }) {
                       <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
                         {work.company}
                       </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary uppercase">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary uppercase">
                         {work.type}
                       </span>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-amber-500">
+                    <span className="inline-flex items-center gap-1 text-xs font-mono font-bold text-amber-500">
                       <span className="size-2 rounded-full bg-amber-500 animate-ping" />
                       {work.status}
                     </span>

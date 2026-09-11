@@ -87,7 +87,7 @@
 
 .work-meta {
   font-family: var(--font-mono);
-  font-size: 0.725rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.06em;
@@ -95,7 +95,7 @@
 
 .match-pill {
   font-family: var(--font-mono);
-  font-size: 0.725rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--crimson-red);
   background-color: var(--bg-card-subtle);
@@ -159,7 +159,7 @@
 
 .match-percent-label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--text-muted);
 }

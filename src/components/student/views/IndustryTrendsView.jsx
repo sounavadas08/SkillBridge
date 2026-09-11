@@ -121,7 +121,7 @@ function TrendCard({ title, description, impact, match, isNegative = false }) {
     <div className="bg-muted p-4 rounded-lg border border-border flex flex-col gap-2">
       <div className="flex justify-between items-start">
         <h4 className="font-medium text-sm">{title}</h4>
-        <span className={`text-[10px] font-mono px-2 py-0.5 rounded border uppercase tracking-wider ${
+        <span className={`text-xs font-mono px-2 py-0.5 rounded border uppercase tracking-wider ${
           isNegative 
             ? 'bg-red-500/10 border-red-500/20 text-red-500' 
             : 'bg-primary/10 border-primary/20 text-primary'

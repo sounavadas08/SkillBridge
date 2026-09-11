@@ -521,18 +521,18 @@ export function ThreeMatchCanvas({
     >
       {/* Top Header Overlay */}
       <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-2 pointer-events-none">
-        <div className="inline-flex items-center gap-1.5 text-[11px] font-mono tracking-wider text-primary uppercase bg-black/75 backdrop-blur-md px-3 py-1 rounded-md border border-primary/30 shadow-sm">
+        <div className="inline-flex items-center gap-1.5 text-xs font-mono tracking-wider text-primary uppercase bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-md border border-primary/30 shadow-sm">
           <span className="size-1.5 rounded-full bg-primary animate-pulse" />
           Semantic Vector Embedding Field
         </div>
-        <div className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono text-muted-foreground bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-border/30">
+        <div className="hidden sm:inline-flex items-center gap-1 text-xs font-mono text-muted-foreground bg-black/60 backdrop-blur-md px-2.5 py-1.5 rounded-md border border-border/30">
           <span>768-D → 3D PCA</span>
         </div>
       </div>
 
       {/* Top Right Active Candidate Indicator */}
       <div className="absolute top-3 right-3 z-10 pointer-events-none">
-        <div className="text-[11px] font-mono font-medium text-foreground bg-black/75 backdrop-blur-md px-3 py-1 rounded-md border border-border/40 shadow-sm">
+        <div className="text-xs font-mono font-medium text-foreground bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-md border border-border/40 shadow-sm">
           Target: <span className="text-primary font-bold">{currentActiveCandidate.name}</span> ({currentActiveCandidate.matchScore}%)
         </div>
       </div>
@@ -548,30 +548,30 @@ export function ThreeMatchCanvas({
         >
           <div className="flex items-center justify-between gap-1 border-b border-border/60 pb-1 mb-1">
             <span className="font-bold text-foreground truncate">{hoveredCandidate.name}</span>
-            <span className="font-mono text-primary font-bold text-[11px]">{hoveredCandidate.matchScore}%</span>
+            <span className="font-mono text-primary font-bold text-xs">{hoveredCandidate.matchScore}%</span>
           </div>
-          <p className="text-[10px] text-muted-foreground truncate">{hoveredCandidate.school}</p>
-          <p className="text-[10px] text-primary/90 font-medium mt-0.5 truncate">★ {hoveredCandidate.topSkill}</p>
-          <p className="text-[9px] text-muted-foreground/75 mt-1 text-center font-mono">Click node to inspect dossier</p>
+          <p className="text-xs text-muted-foreground truncate">{hoveredCandidate.school}</p>
+          <p className="text-xs text-primary/90 font-medium mt-0.5 truncate">★ {hoveredCandidate.topSkill}</p>
+          <p className="text-[11px] text-muted-foreground/75 mt-1 text-center font-mono">Click node to inspect dossier</p>
         </div>
       )}
 
       {/* Bottom Footer Overlay */}
       <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
-        <div className="text-[11px] text-muted-foreground/90 font-mono bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-border/30">
+        <div className="text-xs text-muted-foreground/90 font-mono bg-black/70 backdrop-blur-md px-2.5 py-1.5 rounded border border-border/30">
           Cosine Distance: <span className="text-foreground font-semibold">{(1 - currentActiveCandidate.matchScore / 100).toFixed(3)}</span>
         </div>
 
         <div className="flex items-center gap-2 pointer-events-auto">
-          <span className="hidden md:inline-block text-[10px] text-muted-foreground/80 font-mono">
+          <span className="hidden md:inline-block text-xs text-muted-foreground/80 font-mono">
             Drag to rotate • Click node to select
           </span>
           <button
             onClick={handleResetCamera}
-            className="inline-flex items-center gap-1 text-[10px] font-mono text-muted-foreground hover:text-foreground bg-black/70 hover:bg-black/90 px-2 py-1 rounded border border-border/40 transition-colors shadow-sm cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground bg-black/70 hover:bg-black/90 px-2.5 py-1.5 rounded border border-border/40 transition-colors shadow-sm cursor-pointer"
             title="Reset Camera Orientation"
           >
-            <RotateCcw size={11} />
+            <RotateCcw size={13} />
             Reset View
           </button>
         </div>

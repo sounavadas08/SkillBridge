@@ -322,7 +322,7 @@ export function StudentChallengesView({ user }) {
                     {item.tags && (
                       <div className="flex flex-wrap gap-1.5 pt-1">
                         {item.tags.split(',').slice(0, 3).map((tag, idx) => (
-                          <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-muted text-foreground border border-border">
+                          <span key={idx} className="text-xs font-mono px-2 py-0.5 rounded-md bg-muted text-foreground border border-border">
                             {tag.trim()}
                           </span>
                         ))}
@@ -333,11 +333,11 @@ export function StudentChallengesView({ user }) {
                   <div className="pt-4 mt-4 border-t border-border space-y-3">
                     <div className="flex items-center justify-between text-xs">
                       <div>
-                        <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Stipend Bounty</span>
+                        <span className="text-muted-foreground block text-xs uppercase font-semibold">Stipend Bounty</span>
                         <span className="font-mono font-bold text-primary text-sm">{item.stipend}</span>
                       </div>
                       <div className="text-right">
-                        <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Effort</span>
+                        <span className="text-muted-foreground block text-xs uppercase font-semibold">Effort</span>
                         <span className="font-medium text-foreground flex items-center gap-1">
                           <Clock size={12} /> {item.duration}
                         </span>
@@ -483,7 +483,7 @@ export function StudentChallengesView({ user }) {
 
                       <div className="p-4 rounded-xl border border-border bg-background space-y-3 text-xs">
                         <div>
-                          <span className="text-muted-foreground block text-[11px] mb-1">GitHub Repository:</span>
+                          <span className="text-muted-foreground block text-xs mb-1">GitHub Repository:</span>
                           <a
                             href={mySub.repo_url}
                             target="_blank"
@@ -497,7 +497,7 @@ export function StudentChallengesView({ user }) {
 
                         {mySub.demo_url && (
                           <div>
-                            <span className="text-muted-foreground block text-[11px] mb-1">Live Demo:</span>
+                            <span className="text-muted-foreground block text-xs mb-1">Live Demo:</span>
                             <a
                               href={mySub.demo_url}
                               target="_blank"
@@ -511,7 +511,7 @@ export function StudentChallengesView({ user }) {
 
                         {mySub.notes && (
                           <div>
-                            <span className="text-muted-foreground block text-[11px] mb-1">Architecture Notes:</span>
+                            <span className="text-muted-foreground block text-xs mb-1">Architecture Notes:</span>
                             <p className="text-foreground leading-relaxed bg-muted/40 p-2.5 rounded-lg">
                               {mySub.notes}
                             </p>

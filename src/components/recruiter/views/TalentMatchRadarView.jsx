@@ -143,7 +143,7 @@ export function TalentMatchRadarView() {
                       <span className="text-xl font-extrabold font-mono text-primary">
                         {candidate.matchScore}%
                       </span>
-                      <span className="block text-[11px] text-muted-foreground">Vector Alignment</span>
+                      <span className="block text-xs text-muted-foreground">Vector Alignment</span>
                     </div>
                   </div>
 

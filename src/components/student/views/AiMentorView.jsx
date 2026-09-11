@@ -274,7 +274,7 @@ export function AiMentorView({ user, onNavigateSection }) {
                     <div className="size-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                       <IconComponent size={18} />
                     </div>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
                       {action.badge}
                     </span>
                   </div>
@@ -350,7 +350,7 @@ export function AiMentorView({ user, onNavigateSection }) {
                   </div>
                 )}
                 {msg.timestamp && (
-                  <div className={`text-[10px] mt-2 text-right ${msg.sender === 'user' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
+                  <div className={`text-xs mt-2 text-right ${msg.sender === 'user' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
                     {msg.timestamp}
                   </div>
                 )}

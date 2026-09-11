@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Sparkles, 
   Check, 
@@ -11,16 +11,58 @@ import {
   ShieldCheck, 
   Clock, 
   ExternalLink,
-  Code2
+  Code2,
+  Lock
 } from 'lucide-react';
 import { gsap } from 'gsap';
-import { ROUTES, navigateTo } from '../../utils/navigation';
+import { ROUTES, navigateTo, getCurrentUser, setPortalTab } from '../../utils/navigation';
+import { useToast } from '../../context/ToastContext';
+import { useSafeClerk } from '../../utils/clerkAuth';
 import './PersonalizedShowcase.css';
 
 export default function PersonalizedShowcase() {
   const sectionRef = useRef(null);
   const headlineRef = useRef(null);
   const badgesRef = useRef([]);
+  const { showToast } = useToast();
+  const { isClerkSignedIn, user: clerkUser } = useSafeClerk();
+
+  const [hasAccount, setHasAccount] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const local = getCurrentUser();
+    return Boolean(local && local.email && (local.role || local.name));
+  });
+
+  useEffect(() => {
+    const checkAccount = () => {
+      const isClerk = Boolean(isClerkSignedIn && clerkUser);
+      const local = getCurrentUser();
+      const hasLocal = Boolean(local && local.email && (local.role || local.name));
+      setHasAccount(isClerk || hasLocal);
+    };
+    checkAccount();
+    window.addEventListener('storage', checkAccount);
+    return () => window.removeEventListener('storage', checkAccount);
+  }, [isClerkSignedIn, clerkUser]);
+
+  const handleFeatureAccess = (e, featureName, targetTab) => {
+    e.preventDefault();
+    if (!hasAccount) {
+      showToast(
+        `Account Required: You cannot access ${featureName} without creating a verified account. Please sign in or register first.`,
+        'warning'
+      );
+      setTimeout(() => {
+        navigateTo(ROUTES.LOGIN);
+      }, 900);
+      return;
+    }
+
+    if (targetTab) {
+      setPortalTab(targetTab);
+    }
+    navigateTo(ROUTES.PORTAL);
+  };
 
   useEffect(() => {
     // GSAP floating animations for badges (inspired by GSAP showcase video)
@@ -186,9 +228,11 @@ export default function PersonalizedShowcase() {
                   Live Platform: Micro-Internship & Challenge Hub
                 </span>
                 <button 
-                  onClick={() => navigateTo(ROUTES.PORTAL)}
-                  className="banner-action-btn"
+                  onClick={(e) => handleFeatureAccess(e, 'Micro-Internship & Challenge Hub', 'challenges')}
+                  className={`banner-action-btn ${!hasAccount ? 'banner-action-locked' : ''}`}
+                  title={hasAccount ? 'Explore Challenges' : 'Account Required: Sign In to Explore'}
                 >
+                  {!hasAccount && <Lock size={12} className="shrink-0 text-amber-400" />}
                   Explore Challenges <ArrowRight size={12} />
                 </button>
               </div>
@@ -227,9 +271,9 @@ export default function PersonalizedShowcase() {
             {/* Real Screenshot Preview */}
             <div className="banner-screenshot-frame">
               <img 
-                src="/showcase/feature-vector-radar.png" 
+                src="/showcase/feature-vector-field-view.png" 
                 alt="AI Talent Match Radar with 3D Vector Embeddings" 
-                className="banner-screenshot-img"
+                className="banner-screenshot-img banner-screenshot-contain"
               />
               <div className="banner-screenshot-overlay">
                 <span className="banner-screenshot-caption">
@@ -237,9 +281,11 @@ export default function PersonalizedShowcase() {
                   Live Platform: 3D AI Talent Match Radar
                 </span>
                 <button 
-                  onClick={() => navigateTo(ROUTES.PORTAL)}
-                  className="banner-action-btn"
+                  onClick={(e) => handleFeatureAccess(e, '3D AI Talent Match Radar', 'radar')}
+                  className={`banner-action-btn ${!hasAccount ? 'banner-action-locked' : ''}`}
+                  title={hasAccount ? 'View 3D Radar' : 'Account Required: Sign In to View'}
                 >
+                  {!hasAccount && <Lock size={12} className="shrink-0 text-amber-400" />}
                   View 3D Radar <ArrowRight size={12} />
                 </button>
               </div>
@@ -288,9 +334,11 @@ export default function PersonalizedShowcase() {
                   Live Platform: Interview Scheduler Ledger
                 </span>
                 <button 
-                  onClick={() => navigateTo(ROUTES.PORTAL)}
-                  className="banner-action-btn"
+                  onClick={(e) => handleFeatureAccess(e, 'Interview Scheduler Ledger', 'scheduler')}
+                  className={`banner-action-btn ${!hasAccount ? 'banner-action-locked' : ''}`}
+                  title={hasAccount ? 'Open Scheduler' : 'Account Required: Sign In to View'}
                 >
+                  {!hasAccount && <Lock size={12} className="shrink-0 text-amber-400" />}
                   Open Scheduler <ArrowRight size={12} />
                 </button>
               </div>
@@ -339,9 +387,11 @@ export default function PersonalizedShowcase() {
                   Live Platform: Verified Internships & Timers
                 </span>
                 <button 
-                  onClick={() => navigateTo(ROUTES.PORTAL)}
-                  className="banner-action-btn"
+                  onClick={(e) => handleFeatureAccess(e, 'Verified Internships & Timers', 'opportunities')}
+                  className={`banner-action-btn ${!hasAccount ? 'banner-action-locked' : ''}`}
+                  title={hasAccount ? 'View Opportunities' : 'Account Required: Sign In to View'}
                 >
+                  {!hasAccount && <Lock size={12} className="shrink-0 text-amber-400" />}
                   View Opportunities <ArrowRight size={12} />
                 </button>
               </div>

@@ -331,7 +331,7 @@ export function ChallengeHubView() {
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono tracking-wider uppercase text-muted-foreground font-semibold truncate max-w-[170px]">
+                      <span className="text-xs font-mono tracking-wider uppercase text-muted-foreground font-semibold truncate max-w-[170px]">
                         {item.company}
                       </span>
 
@@ -365,7 +365,7 @@ export function ChallengeHubView() {
                     {item.tags && (
                       <div className="flex flex-wrap gap-1 pt-1">
                         {item.tags.split(',').slice(0, 3).map((tag, idx) => (
-                          <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border">
+                          <span key={idx} className="text-xs font-mono px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border">
                             {tag.trim()}
                           </span>
                         ))}

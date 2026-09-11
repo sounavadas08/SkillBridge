@@ -397,7 +397,7 @@ export function InterviewSchedulerView() {
                                 <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold whitespace-nowrap">
                                   Confirmed
                                 </span>
-                                <span className="text-[11px] text-muted-foreground truncate max-w-[95px] font-mono">
+                                <span className="text-xs text-muted-foreground truncate max-w-[95px] font-mono">
                                   {slot.round_type}
                                 </span>
                               </div>
@@ -414,7 +414,7 @@ export function InterviewSchedulerView() {
                               <span className="text-muted-foreground group-hover:text-primary font-semibold text-xs transition-colors">
                                 + Click to Book
                               </span>
-                              <span className="text-[10px] text-muted-foreground font-mono">
+                              <span className="text-xs text-muted-foreground font-mono">
                                 {slot.round_type}
                               </span>
                             </div>
@@ -599,7 +599,7 @@ export function InterviewSchedulerView() {
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                   <span className="text-2xl font-mono font-bold text-foreground">{metrics.total}</span>
-                  <span className="text-[10px] font-mono text-muted-foreground uppercase font-semibold">Rounds</span>
+                  <span className="text-xs font-mono text-muted-foreground uppercase font-semibold">Rounds</span>
                 </div>
               </div>
 

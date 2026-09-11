@@ -104,7 +104,7 @@
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.725rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.12em;

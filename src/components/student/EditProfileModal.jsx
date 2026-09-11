@@ -213,7 +213,7 @@ export function EditProfileModal({ isOpen, onClose, user, onSave }) {
                   alt="Profile Avatar Preview"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-[10px] font-medium">
+                <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-medium">
                   <Camera size={18} className="mb-0.5" />
                   <span>Upload</span>
                 </div>

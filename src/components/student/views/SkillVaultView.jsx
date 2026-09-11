@@ -181,10 +181,10 @@ export function SkillVaultView({ user, onUpdateUser }) {
                       href={githubUrl.startsWith('http') ? githubUrl : `https://${githubUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-background hover:bg-muted text-foreground text-[11px] font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-background hover:bg-muted text-foreground text-xs font-medium transition-colors"
                       title="GitHub Profile"
                     >
-                      <GithubIcon size={13} /> GitHub <ExternalLink size={10} className="text-muted-foreground" />
+                      <GithubIcon size={14} /> GitHub <ExternalLink size={11} className="text-muted-foreground" />
                     </a>
                   )}
                   {linkedinUrl && (
@@ -192,10 +192,10 @@ export function SkillVaultView({ user, onUpdateUser }) {
                       href={linkedinUrl.startsWith('http') ? linkedinUrl : `https://${linkedinUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-background hover:bg-muted text-foreground text-[11px] font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-background hover:bg-muted text-foreground text-xs font-medium transition-colors"
                       title="LinkedIn Profile"
                     >
-                      <LinkedinIcon size={13} /> LinkedIn <ExternalLink size={10} className="text-muted-foreground" />
+                      <LinkedinIcon size={14} /> LinkedIn <ExternalLink size={11} className="text-muted-foreground" />
                     </a>
                   )}
                   {portfolioUrl && (
@@ -203,10 +203,10 @@ export function SkillVaultView({ user, onUpdateUser }) {
                       href={portfolioUrl.startsWith('http') ? portfolioUrl : `https://${portfolioUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-background hover:bg-muted text-foreground text-[11px] font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-background hover:bg-muted text-foreground text-xs font-medium transition-colors"
                       title="Portfolio Website"
                     >
-                      <Globe size={13} /> Portfolio <ExternalLink size={10} className="text-muted-foreground" />
+                      <Globe size={14} /> Portfolio <ExternalLink size={11} className="text-muted-foreground" />
                     </a>
                   )}
                 </div>
@@ -291,7 +291,7 @@ export function SkillVaultView({ user, onUpdateUser }) {
                     </h4>
                     <p className="text-xs text-muted-foreground mt-0.5">React • Tailwind • Recharts</p>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 bg-background rounded-full border border-border">Featured</span>
+                  <span className="text-xs font-mono px-2.5 py-0.5 bg-background rounded-full border border-border">Featured</span>
                 </div>
                 <p className="text-xs mt-2.5 text-muted-foreground leading-relaxed">
                   A responsive admin dashboard template with real-time data visualization components and state management.
@@ -307,7 +307,7 @@ export function SkillVaultView({ user, onUpdateUser }) {
                     </h4>
                     <p className="text-xs text-muted-foreground mt-0.5">JavaScript • Chrome Extension API • OpenAI</p>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 bg-background rounded-full border border-border">Verified</span>
+                  <span className="text-xs font-mono px-2.5 py-0.5 bg-background rounded-full border border-border">Verified</span>
                 </div>
                 <p className="text-xs mt-2.5 text-muted-foreground leading-relaxed">
                   Browser extension that parses job descriptions and compares required keywords against your resume.

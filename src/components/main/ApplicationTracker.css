@@ -42,7 +42,7 @@
 .pipeline-table th {
   padding: 16px 24px;
   font-family: var(--font-mono);
-  font-size: 0.725rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: 0.08em;
@@ -126,7 +126,7 @@
 
 .confidence-percent {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--text-muted);
 }
