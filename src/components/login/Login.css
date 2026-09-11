@@ -4,12 +4,15 @@
 
 /* Full-screen Container */
 .auth-page-wrapper {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
+  margin: 0 auto;
+  box-sizing: border-box;
   /* Light mode mixed look: crimson red, #FF8100, #FCFCFC */
   background: 
     radial-gradient(circle at 50% 12%, rgba(220, 20, 60, 0.08) 0%, transparent 55%),
@@ -73,12 +76,38 @@
 .auth-card {
   width: 100%;
   max-width: 440px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
   background-color: #FFFFFF;
   border: 1px solid rgba(220, 20, 60, 0.15);
   border-radius: var(--radius-xl);
   padding: 2.5rem 2rem;
   box-shadow: 0 10px 32px rgba(220, 20, 60, 0.08), 0 2px 10px rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
+}
+
+/* Clerk & Social Auth Centering */
+.clerk-auth-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.clerk-auth-container .cl-rootBox,
+.clerk-auth-container .cl-card,
+.clerk-auth-container .cl-signIn-root,
+.cl-rootBox,
+.cl-signIn-root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex !important;
+  justify-content: center !important;
 }
 
 [data-theme='dark'] .auth-card {

@@ -399,9 +399,15 @@ html {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: none;           /* Eliminate scroll bounce jank */
   scroll-padding-top: 80px;             /* So anchor links don't hide under sticky header */
+  width: 100%;
+  min-height: 100vh;
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   font-family: var(--font-sans);
   background-color: var(--bg-page);
   color: var(--text-primary);
@@ -412,6 +418,13 @@ body {
   /* Promote body to its own GPU composite layer for smooth momentum scroll */
   transform: translateZ(0);
   transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ==========================================================================

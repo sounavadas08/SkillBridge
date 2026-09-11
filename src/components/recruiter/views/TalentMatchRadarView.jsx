@@ -180,7 +180,13 @@ export function TalentMatchRadarView() {
             <h3 className="rp-heading text-sm text-muted-foreground uppercase tracking-wider">
               Vector Embedding Field View
             </h3>
-            <ThreeMatchCanvas activeMatchId={selectedCandidate?.id} />
+            <ThreeMatchCanvas 
+              activeMatchId={selectedCandidate?.id} 
+              candidates={SAMPLE_CANDIDATES}
+              selectedCandidate={selectedCandidate}
+              onSelectCandidate={setSelectedCandidate}
+              searchQuery={searchQuery}
+            />
           </div>
 
           {/* Selected Candidate Detailed Dossier */}

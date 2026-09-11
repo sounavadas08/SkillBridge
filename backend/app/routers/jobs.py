@@ -10,42 +10,72 @@ router = APIRouter(prefix="/api", tags=["Jobs & Applications"])
 DEFAULT_JOBS = [
     {
         "id": 1,
-        "title": "Junior ML Engineer",
-        "company": "Apex Data Systems",
-        "location": "Remote",
-        "work_type": "Remote",
-        "duration": "6 Months",
-        "skills_required": ["Python", "PyTorch", "FastAPI", "SQL"],
-        "match_score_base": 94
+        "title": "Software Engineering Intern",
+        "company": "Google",
+        "location": "Mountain View, CA",
+        "work_type": "Hybrid",
+        "duration": "3 Months",
+        "skills_required": ["Python", "Go", "Distributed Systems", "Algorithms"],
+        "match_score_base": 96
     },
     {
         "id": 2,
-        "title": "Full-Stack Intern",
-        "company": "Novus Cloud",
+        "title": "Full-Stack Systems Intern",
+        "company": "Stripe",
         "location": "San Francisco, CA",
-        "work_type": "Hybrid",
-        "duration": "3 Months",
-        "skills_required": ["React", "Node.js", "TypeScript", "Tailwind"],
-        "match_score_base": 87
+        "work_type": "Remote",
+        "duration": "4 Months",
+        "skills_required": ["React", "TypeScript", "Node.js", "PostgreSQL"],
+        "match_score_base": 94
     },
     {
         "id": 3,
-        "title": "Cloud Associate",
-        "company": "Nexus Global",
-        "location": "New York, NY",
+        "title": "Applied AI & ML Intern",
+        "company": "Microsoft",
+        "location": "Redmond, WA",
+        "work_type": "Hybrid",
+        "duration": "6 Months",
+        "skills_required": ["PyTorch", "Python", "Azure AI", "Transformers"],
+        "match_score_base": 91
+    },
+    {
+        "id": 4,
+        "title": "Deep Learning & CUDA Intern",
+        "company": "NVIDIA",
+        "location": "Santa Clara, CA",
         "work_type": "On-Site",
         "duration": "6 Months",
-        "skills_required": ["AWS", "Docker", "Linux", "Git"],
-        "match_score_base": 78
+        "skills_required": ["C++", "CUDA", "Python", "TensorRT"],
+        "match_score_base": 89
+    },
+    {
+        "id": 5,
+        "title": "Cloud DevOps Intern",
+        "company": "Amazon Web Services",
+        "location": "Seattle, WA",
+        "work_type": "Hybrid",
+        "duration": "3 Months",
+        "skills_required": ["AWS", "Kubernetes", "Docker", "Terraform"],
+        "match_score_base": 88
+    },
+    {
+        "id": 6,
+        "title": "Production Engineering Intern",
+        "company": "Meta",
+        "location": "Menlo Park, CA",
+        "work_type": "Remote",
+        "duration": "3 Months",
+        "skills_required": ["Linux", "Python", "CI/CD", "Distributed Systems"],
+        "match_score_base": 86
     }
 ]
 
 @router.get("/jobs", response_model=List[JobResponse])
 async def list_jobs(db: Session = Depends(get_db)):
     db_jobs = db.query(Job).all()
-    if not any(j.title == "Junior ML Engineer" for j in db_jobs):
+    if not any(j.company == "Google" for j in db_jobs):
         for item in DEFAULT_JOBS:
-            if not any(j.title == item["title"] for j in db_jobs):
+            if not any(j.company == item["company"] and j.title == item["title"] for j in db_jobs):
                 job = Job(
                     title=item["title"],
                     company=item["company"],
@@ -58,6 +88,7 @@ async def list_jobs(db: Session = Depends(get_db)):
                 db.add(job)
         db.commit()
         db_jobs = db.query(Job).all()
+
     return db_jobs
 
 

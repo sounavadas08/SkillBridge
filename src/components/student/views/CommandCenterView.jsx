@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, TrendingUp, Briefcase, FileText, Code2, AlertCircle } from 'lucide-react';
+import { LiveWorkTracker } from '../LiveWorkTracker';
 
 export function CommandCenterView({ onNavigateSection, user }) {
   const userName = user?.name || user?.email?.split('@')[0] || 'Alex Chen';
@@ -14,8 +15,8 @@ export function CommandCenterView({ onNavigateSection, user }) {
           <p className="text-muted-foreground mt-1">Welcome back, {userName}. Here is where you stand today.</p>
         </div>
         <div className="flex items-center gap-3 bg-card px-4 py-2 border border-border rounded-lg shadow-sm">
-          <div className="size-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-sm font-medium">Readiness Score: 85%</span>
+          <div className="size-2 bg-amber-500 rounded-full animate-pulse" />
+          <span className="text-sm font-medium font-mono text-amber-500">Readiness Score: 85%</span>
         </div>
       </header>
 
@@ -54,31 +55,35 @@ export function CommandCenterView({ onNavigateSection, user }) {
           <StatusCard 
             title="Matched Jobs"
             value="12"
-            subtitle="Based on your React proficiency"
-            icon={<Briefcase className="text-blue-500" size={20} />}
+            subtitle="Top tier tech opportunities"
+            icon={<Briefcase className="text-primary" size={20} />}
             trend="+4 this week"
             onClick={() => onNavigateSection && onNavigateSection('opportunities')}
           />
           <StatusCard 
             title="Resume Status"
             value="Strong"
-            subtitle="Last updated 2 days ago"
-            icon={<FileText className="text-green-500" size={20} />}
+            subtitle="Verified ATS rating: 92%"
+            icon={<FileText className="text-amber-500" size={20} />}
             trend="Ready for apply"
             onClick={() => onNavigateSection && onNavigateSection('resume')}
           />
           <StatusCard 
-            title="Code Arena"
-            value="Top 15%"
-            subtitle="HackerRank & LeetCode combined"
-            icon={<Code2 className="text-purple-500" size={20} />}
-            trend="+2% this month"
-            onClick={() => onNavigateSection && onNavigateSection('mock-interviews')}
+            title="Micro-Internships"
+            value="4 Active"
+            subtitle="Corporate tasks & bounties"
+            icon={<Code2 className="text-primary" size={20} />}
+            trend="Open Bounties"
+            onClick={() => onNavigateSection && onNavigateSection('challenges')}
           />
         </div>
       </div>
 
+      {/* Live Work & Upcoming Internship Tracker Section */}
+      <LiveWorkTracker onNavigateSection={onNavigateSection} />
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
         <div className="border border-border bg-card p-6 rounded-xl shadow-sm">
           <div className="flex justify-between items-center mb-6">
             <h3 className="font-semibold text-lg">Next Steps: Upskilling</h3>

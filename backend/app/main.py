@@ -27,13 +27,16 @@ async def health_check():
     }
 
 from app.database import init_db
-from app.routers import ai, skills, jobs, auth
+from app.routers import ai, skills, jobs, auth, interviews, challenges
 
 init_db()
-
 
 app.include_router(ai.router)
 app.include_router(skills.router)
 app.include_router(jobs.router)
 app.include_router(auth.router)
+app.include_router(interviews.router)
+app.include_router(challenges.router)
+
+
 

@@ -41,8 +41,14 @@ export default function CuratedMatches() {
                 {/* Job Info */}
                 <div className="job-main-info">
                   <h3 className="job-role">{job.role}</h3>
-                  <div className="job-company">{job.company}</div>
+                  <div className="job-company flex items-center justify-between">
+                    <span>{job.company} • {job.location}</span>
+                    {job.stipend && (
+                      <span className="font-mono text-xs font-bold text-amber-500">{job.stipend}</span>
+                    )}
+                  </div>
                 </div>
+
 
                 {/* Match Progress Bar */}
                 <div className="match-bar-wrapper">

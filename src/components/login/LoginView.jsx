@@ -66,7 +66,14 @@ export default function LoginView({ onLogin, onNewUser, onBackHome }) {
         </button>
       )}
 
-      <div className="auth-card" style={{ maxWidth: isClerkAvailable && useClerkForm ? '440px' : '400px' }}>
+      <div 
+        className="auth-card" 
+        style={{ 
+          maxWidth: isClerkAvailable && useClerkForm ? '440px' : '400px',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}
+      >
         {/* Logo area */}
         <div className="auth-logo-header">
           <div className="auth-logo-icon">
@@ -94,7 +101,8 @@ export default function LoginView({ onLogin, onNewUser, onBackHome }) {
               signUpForceRedirectUrl="/onboarding.html"
               appearance={{
                 elements: {
-                  card: { background: 'transparent', boxShadow: 'none', padding: 0 },
+                  rootBox: { width: '100%', marginLeft: 'auto', marginRight: 'auto', display: 'flex', justifyContent: 'center' },
+                  card: { background: 'transparent', boxShadow: 'none', padding: 0, width: '100%', margin: '0 auto' },
                   headerTitle: { display: 'none' },
                   headerSubtitle: { display: 'none' },
                   socialButtonsBlockButton: {

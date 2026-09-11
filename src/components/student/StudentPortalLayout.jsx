@@ -15,7 +15,8 @@ import {
   Sun,
   Home,
   LogOut,
-  Sparkles
+  Sparkles,
+  Code2
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { getPortalTab, setPortalTab } from '../../utils/navigation';
@@ -23,6 +24,7 @@ import { CommandCenterView } from './views/CommandCenterView';
 import { SkillVaultView } from './views/SkillVaultView';
 import { SkillRadarView } from './views/SkillRadarView';
 import { AiResumeView } from './views/AiResumeView';
+import { StudentChallengesView } from './views/StudentChallengesView';
 import { OpportunitiesView } from './views/OpportunitiesView';
 import { MockInterviewsView } from './views/MockInterviewsView';
 import { IndustryTrendsView } from './views/IndustryTrendsView';
@@ -32,6 +34,7 @@ import './StudentPortal.css';
 
 const NAV_ITEMS = [
   { id: 'command-center', label: 'Command Center', icon: LayoutDashboard },
+  { id: 'challenges', label: 'Micro-Internships', icon: Code2 },
   { id: 'ai-mentor', label: 'AI Mentor Studio', icon: Sparkles },
   { id: 'skillvault', label: 'SkillVault', icon: UserCircle2 },
   { id: 'radar', label: 'Skill-Gap Radar', icon: Radar },
@@ -40,6 +43,7 @@ const NAV_ITEMS = [
   { id: 'mock-interviews', label: 'Mock Interviews', icon: BrainCircuit },
   { id: 'trends', label: 'Industry Trends', icon: TrendingUp },
 ];
+
 
 export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUser }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -206,14 +210,16 @@ export function StudentPortalLayout({ user, onLogout, onExploreHome, onUpdateUse
         <main className="student-main-content flex-1 overflow-y-auto">
           <div className="student-view-wrapper">
             {activeTab === 'command-center' && <CommandCenterView user={user} onNavigateSection={handleTabChange} />}
+            {activeTab === 'challenges' && <StudentChallengesView user={user} />}
             {activeTab === 'ai-mentor' && <AiMentorView user={user} onNavigateSection={handleTabChange} />}
             {activeTab === 'skillvault' && <SkillVaultView user={user} onUpdateUser={onUpdateUser} />}
             {activeTab === 'radar' && <SkillRadarView />}
             {activeTab === 'resume' && <AiResumeView user={user} />}
-            {activeTab === 'opportunities' && <OpportunitiesView />}
+            {activeTab === 'opportunities' && <OpportunitiesView onNavigateSection={handleTabChange} />}
             {activeTab === 'mock-interviews' && <MockInterviewsView />}
             {activeTab === 'trends' && <IndustryTrendsView />}
           </div>
+
         </main>
       </div>
 

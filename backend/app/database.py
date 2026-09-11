@@ -20,6 +20,7 @@ def get_db():
         db.close()
 
 def init_db():
+    import app.models  # noqa: F401 - Register all models with Base.metadata
     Base.metadata.create_all(bind=engine)
     if "sqlite" in settings.database_url:
         with engine.connect() as conn:

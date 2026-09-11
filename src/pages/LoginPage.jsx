@@ -31,7 +31,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="skillbridge-app">
+    <div className="skillbridge-app" style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <LoginView
         onLogin={handleLoginSuccess}
         onNewUser={handleNewUser}
