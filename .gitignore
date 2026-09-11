@@ -6,5 +6,6 @@ dist/
 *.db
 backend/venv/
 backend/.env
-.env
-.env.*
+*.env
+*.env.*
+*.mp4

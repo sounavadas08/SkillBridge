@@ -3,8 +3,9 @@ import Navbar from '../components/main/Navbar';
 import Hero from '../components/main/Hero';
 import StatsStrip from '../components/main/StatsStrip';
 import PlatformArchitecture from '../components/main/PlatformArchitecture';
-import CuratedMatches from '../components/main/CuratedMatches';
+import PersonalizedShowcase from '../components/main/PersonalizedShowcase';
 import SkillGapEngine from '../components/main/SkillGapEngine';
+
 import ApplicationTracker from '../components/main/ApplicationTracker';
 import CTASection from '../components/main/CTASection';
 import Footer from '../components/main/Footer';
@@ -71,8 +72,9 @@ export default function LandingPage() {
         />
         <StatsStrip />
         <PlatformArchitecture />
-        <CuratedMatches />
+        <PersonalizedShowcase />
         <SkillGapEngine />
+
         <ApplicationTracker />
         <CTASection
           onStartStudent={handleStartStudent}
